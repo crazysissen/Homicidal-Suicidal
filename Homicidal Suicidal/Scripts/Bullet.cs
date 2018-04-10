@@ -23,6 +23,12 @@ namespace HomicidalSuicidal
         Texture2D IRenderable.Sprite { get => sprite; }
         Texture2D sprite;
 
+        float IRenderable.Rotation { get => rotation; }
+        float rotation;
+
+        float IRenderable.Layer { get => layer; }
+        float layer;
+
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
@@ -32,15 +38,16 @@ namespace HomicidalSuicidal
 
         #endregion
 
-        float damage, speed, ;
+        float damage;
 
-        public Bullet(string bulletName, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletSpeed, ) : base()
+        public Bullet(string bulletName, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletRotation, float bulletLayer) : base(initialVelocity, 0, bulletName, bulletRectangle)
         {
             Name = bulletName;
+            layer = bulletLayer;
             sprite = bulletSprite;
             color = bulletColor;
             damage = bulletDamage;
-            speed = bulletSpeed;
+            rotation = bulletRotation;
         }
     }
 }

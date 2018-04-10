@@ -23,6 +23,12 @@ namespace HomicidalSuicidal
         Texture2D IRenderable.Sprite { get => sprite; }
         Texture2D sprite;
 
+        float IRenderable.Rotation { get => rotation; }
+        float rotation;
+
+        float IRenderable.Layer { get => layer; }
+        float layer;
+
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
@@ -34,12 +40,13 @@ namespace HomicidalSuicidal
 
         float health, healing;
 
-        public NurseEnemy(string nurseName, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseHealth, float nurseHealing) : base(nurseName)
+        public NurseEnemy(string nurseName, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseHealth, float nurseHealing, float nurseLayer) : base(nurseName)
         {
             Name = nurseName;
+            Size = nurseSize;
+            layer = nurseLayer;
             sprite = nurseTexture;
             color = nurseColor;
-            Size = nurseSize;
             Position = nurseStartPos;
             healing = nurseHealing;
             health = nurseHealth;

@@ -23,6 +23,12 @@ namespace HomicidalSuicidal
         Texture2D IRenderable.Sprite { get => sprite; }
         Texture2D sprite;
 
+        float IRenderable.Rotation { get => rotation; }
+        float rotation;
+
+        float IRenderable.Layer { get => layer; }
+        float layer;
+
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
@@ -34,12 +40,13 @@ namespace HomicidalSuicidal
 
         float health, healing;
 
-        public SurgeonEnemy(string surgeonName, Texture2D surgeonTexture, Color surgeonColor, Point surgeonSize, Vector2 surgeonStartPos, float surgeonHealth, float surgeonHealing) : base(surgeonName)
+        public SurgeonEnemy(string surgeonName, Texture2D surgeonTexture, Color surgeonColor, Point surgeonSize, Vector2 surgeonStartPos, float surgeonHealth, float surgeonHealing, float surgeonLayer) : base(surgeonName)
         {
             Name = surgeonName;
+            Size = surgeonSize;
+            layer = surgeonLayer;
             sprite = surgeonTexture;
             color = surgeonColor;
-            Size = surgeonSize;
             Position = surgeonStartPos;
             healing = surgeonHealing;
             health = surgeonHealth;
