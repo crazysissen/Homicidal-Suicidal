@@ -46,7 +46,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Constants.cs" />
+    <Compile Include="Scripts\Enemies\DoctorEnemy.cs" />
+    <Compile Include="Scripts\Enemies\SurgeonEnemy.cs" />
     <Compile Include="Scripts\IRenderable.cs" />
+    <Compile Include="Scripts\Enemies\NurseEnemy.cs" />
     <Compile Include="Scripts\PhysicsObject.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\Renderer.cs" />
