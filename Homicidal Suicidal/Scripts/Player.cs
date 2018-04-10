@@ -19,11 +19,11 @@ namespace HomicidalSuicidal
 
         Rectangle IRenderable.Rect { get => Rect; }
 
-        Texture2D IRenderable.Sprite { get => _sprite; }
-        Texture2D _sprite;
+        Texture2D IRenderable.Sprite { get => sprite; }
+        Texture2D sprite;
 
-        Color IRenderable.SpriteColor { get => _color; }
-        Color _color;
+        Color IRenderable.SpriteColor { get => color; }
+        Color color;
 
         // Make sure to set the sprite and color variables in the constructor.
         // Example: [ public MyClass(string name, Texture2D texture, Color spriteColor) : base(name) { sprite = texture; color = spriteColor; } ]
@@ -33,8 +33,8 @@ namespace HomicidalSuicidal
 
         public Player(string name, Texture2D texture, Color textureColor, Rectangle rectangle) : base(Vector2.Zero, 1, name, rectangle)
         {
-            _sprite = texture;
-            _color = textureColor;
+            sprite = texture;
+            color = textureColor;
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
