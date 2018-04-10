@@ -12,12 +12,14 @@ namespace HomicidalSuicidal
     {
         public static Dictionary<string, WorldObject> WorldObjects { get; private set; }
 
+        public List<string> Tags { get; private set; }
+
         static int worldObjectIndex;
 
-        string _name;
+        string name;
         public string Name
         {
-            get => _name;
+            get => name;
 
             set
             {
@@ -27,16 +29,18 @@ namespace HomicidalSuicidal
                     return;
                 }
 
-                WorldObjects.Remove(_name);
+                WorldObjects.Remove(name);
                 WorldObjects.Add(value, this);
 
-                _name = value;
+                name = value;
             }
         }
 
         public Point Size { get; set; } 
         public Vector2 Position { get; set; }
         public Rectangle Rect { get => new Rectangle(Position.ToPoint(), Size); }
+
+        public virtual PhysicsObject PhysObject { get => null; }
 
         public virtual IRenderable Renderable
         {
@@ -51,6 +55,8 @@ namespace HomicidalSuicidal
 
         public WorldObject(string name)
         {
+            Tags = new List<string>();
+
             if (WorldObjects == null)
                 WorldObjects = new Dictionary<string, WorldObject>();
 
@@ -64,6 +70,8 @@ namespace HomicidalSuicidal
 
         public WorldObject(string name, out string trueName)
         {
+            Tags = new List<string>();
+
             if (WorldObjects == null)
                 WorldObjects = new Dictionary<string, WorldObject>();
 
@@ -78,6 +86,8 @@ namespace HomicidalSuicidal
 
         public WorldObject(string name, Rectangle rectangle)
         {
+            Tags = new List<string>();
+
             if (WorldObjects == null)
                 WorldObjects = new Dictionary<string, WorldObject>();
 
@@ -94,6 +104,8 @@ namespace HomicidalSuicidal
 
         public WorldObject(string name, out string trueName, Rectangle rectangle)
         {
+            Tags = new List<string>();
+
             if (WorldObjects == null)
                 WorldObjects = new Dictionary<string, WorldObject>();
 
@@ -108,6 +120,19 @@ namespace HomicidalSuicidal
             trueName = tempName;
             WorldObjects.Add(tempName, this);
         }
+
+        public static void UpdateAllDerived(GameTime gameTime)
+        {
+            foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
+            {
+                pair.Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+        }
+        
+        //public bool Intersects(WorldObject worldObject)
+        //{
+        //    if (Position )
+        //}
 
         /// <summary>
         /// Is this name avaliable? Returns true if so and false otherwise. 

@@ -12,7 +12,10 @@ namespace HomicidalSuicidal
     abstract class PhysicsObject : WorldObject
     {
         public Vector2 Velocity { get; set; }
-        public bool Static { get; private set; }
+
+        public float GravityMultiplier { get; private set; }
+
+        public override PhysicsObject PhysObject => this;
 
         public void UpdatePhysics(GameTime gameTime, float deltaTime)
         {
@@ -20,28 +23,28 @@ namespace HomicidalSuicidal
             Position += Velocity;
         }
 
-        public PhysicsObject(Vector2 initialVelocity, bool isStatic, string name) : base(name)
+        public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name) : base(name)
         {
+            GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
-            Static = isStatic;
         }
 
-        public PhysicsObject(Vector2 initialVelocity, bool isStatic, string name, out string trueName) : base(name, out trueName)
+        public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name, out string trueName) : base(name, out trueName)
         {
+            GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
-            Static = isStatic;
         }
 
-        public PhysicsObject(Vector2 initialVelocity, bool isStatic, string name, Rectangle rectangle) : base(name, rectangle)
+        public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name, Rectangle rectangle) : base(name, rectangle)
         {
+            GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
-            Static = isStatic;
         }
 
-        public PhysicsObject(Vector2 initialVelocity, bool isStatic, string name, out string trueName, Rectangle rectangle) : base(name, out trueName, rectangle)
+        public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name, out string trueName, Rectangle rectangle) : base(name, out trueName, rectangle)
         {
+            GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
-            Static = isStatic;
         }
     }
 }

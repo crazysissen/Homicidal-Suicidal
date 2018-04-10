@@ -17,7 +17,7 @@ namespace HomicidalSuicidal
         public static SpriteBatch MainSpriteBatch { get => spriteBatch; }
 
         static Dictionary<string, Texture2D> allSprites;
-        string[] loadTags = new string[] { "Square" };
+        string[] _loadTags = new string[] { "Square" };
 
         Player player;
 
@@ -40,15 +40,11 @@ namespace HomicidalSuicidal
 
             allSprites = new Dictionary<string, Texture2D>();
 
-            foreach (string name in loadTags)
+            foreach (string name in _loadTags)
                 if (Content.Load<Texture2D>(name) != null)
                     allSprites.Add(name, Content.Load<Texture2D>(name));
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
@@ -59,15 +55,16 @@ namespace HomicidalSuicidal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            foreach (KeyValuePair<string, WorldObject> pair in WorldObject.WorldObjects)
+            {
+                pair.Value.PhysObject.UpdatePhysics(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna;
 
 namespace HomicidalSuicidal
 {
-    class Player : PhysicsObject, IRenderable
+    class SurgeonEnemy : WorldObject, IRenderable
     {
         #region Renderable Implementation
 
@@ -31,16 +32,17 @@ namespace HomicidalSuicidal
 
         #endregion
 
-        public Player(string name, Texture2D texture, Color textureColor, Rectangle rectangle) : base(Vector2.Zero, 1, name, rectangle)
-        {
-            _sprite = texture;
-            _color = textureColor;
-        }
+        Vector2 startPos;
+        float health, healing;
 
-        protected override void Update(GameTime gameTime, float deltaTime)
+        public SurgeonEnemy(string surgeonName, Texture2D surgeonTexture, Color surgeonColor, Rectangle surgeonRectangle, Vector2 surgeonStartPos, float surgeonHealth, float surgeonHealing) : base(surgeonName, surgeonRectangle)
         {
-            base.Update(gameTime, deltaTime);
-            // TODO: Insert update code here.
+            Name = surgeonName;
+            _sprite = surgeonTexture;
+            _color = surgeonColor;
+            startPos = surgeonStartPos;
+            healing = surgeonHealing;
+            health = surgeonHealth;
         }
     }
 }
