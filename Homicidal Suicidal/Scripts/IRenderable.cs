@@ -17,5 +17,7 @@ namespace HomicidalSuicidal
         Texture2D Sprite { get; }
 
         Color SpriteColor { get; }
+
+        float Rotation { get; }
     }
 }

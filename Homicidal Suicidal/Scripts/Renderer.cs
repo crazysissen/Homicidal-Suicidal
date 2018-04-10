@@ -50,7 +50,7 @@ namespace HomicidalSuicidal
             => Render(renderable, Game1.MainSpriteBatch, camera);
 
         public static void Render(IRenderable renderable, SpriteBatch spriteBatch, Point camera)
-            => spriteBatch.Draw(renderable.Sprite, new Rectangle(renderable.Rect.Location - camera, renderable.Rect.Size), renderable.SpriteColor);
+            => spriteBatch.Draw(renderable.Sprite, new Rectangle(renderable.Rect.Location - camera, renderable.Rect.Size), renderable.SpriteColor, );
 
         public static void RenderThis(this IRenderable renderable) 
             => Render(renderable, Game1.MainSpriteBatch);
