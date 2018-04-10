@@ -40,26 +40,8 @@ namespace HomicidalSuicidal
         public static void RenderAll(SpriteBatch spriteBatch)
             => RenderAll(spriteBatch, Point.Zero);
 
-        public static void Render(IRenderable renderable) 
-            => Render(renderable, Game1.MainSpriteBatch);
-
-        public static void Render(IRenderable renderable, SpriteBatch spriteBatch) 
-            => spriteBatch.Draw(renderable.Sprite, renderable.Rect, renderable.SpriteColor);
-
-        public static void Render(IRenderable renderable, Point camera)
-            => Render(renderable, Game1.MainSpriteBatch, camera);
-
         public static void Render(IRenderable renderable, SpriteBatch spriteBatch, Point camera)
-            => spriteBatch.Draw(renderable.Sprite, new Rectangle(renderable.Rect.Location - camera, renderable.Rect.Size), renderable.SpriteColor, );
-
-        public static void RenderThis(this IRenderable renderable) 
-            => Render(renderable, Game1.MainSpriteBatch);
-
-        public static void RenderThis(this IRenderable renderable, SpriteBatch spriteBatch) 
-            => Render(renderable, spriteBatch);
-
-        public static void RenderThis(this IRenderable renderable, Point camera)
-            => Render(renderable, Game1.MainSpriteBatch, camera);
+            => spriteBatch.Draw(renderable.Sprite, new Rectangle(renderable.Rect.Location, renderable.Rect.Size), null, renderable.SpriteColor, renderable.Rotation, camera, SpriteEffects.None, );
 
         public static void RenderThis(this IRenderable renderable, SpriteBatch spriteBatch, Point camera)
             => Render(renderable, spriteBatch, camera);

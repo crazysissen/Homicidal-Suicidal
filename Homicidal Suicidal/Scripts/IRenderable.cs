@@ -19,5 +19,7 @@ namespace HomicidalSuicidal
         Color SpriteColor { get; }
 
         float Rotation { get; }
+
+        float Layer { get; }
     }
 }
