@@ -9,7 +9,7 @@ using Microsoft.Xna;
 
 namespace HomicidalSuicidal
 {
-    class NurseEnemy : WorldObject, IRenderable
+    class Bullet : PhysicsObject, IRenderable
     {
         #region Renderable Implementation
 
@@ -32,23 +32,15 @@ namespace HomicidalSuicidal
 
         #endregion
 
-        float health, healing;
+        float damage, speed, ;
 
-        public NurseEnemy(string nurseName, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseHealth, float nurseHealing) : base(nurseName)
+        public Bullet(string bulletName, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletSpeed, ) : base()
         {
-            Name = nurseName;
-            sprite = nurseTexture;
-            color = nurseColor;
-            Size = nurseSize;
-            Position = nurseStartPos;
-            healing = nurseHealing;
-            health = nurseHealth;
-        }
-
-        protected override void Update(GameTime gameTime, float deltaTime)
-        {
-            base.Update(gameTime, deltaTime);
-
+            Name = bulletName;
+            sprite = bulletSprite;
+            color = bulletColor;
+            damage = bulletDamage;
+            speed = bulletSpeed;
         }
     }
 }

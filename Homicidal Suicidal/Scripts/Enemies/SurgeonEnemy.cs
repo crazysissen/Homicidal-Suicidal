@@ -20,11 +20,11 @@ namespace HomicidalSuicidal
 
         Rectangle IRenderable.Rect { get => Rect; }
 
-        Texture2D IRenderable.Sprite { get => _sprite; }
-        Texture2D _sprite;
+        Texture2D IRenderable.Sprite { get => sprite; }
+        Texture2D sprite;
 
-        Color IRenderable.SpriteColor { get => _color; }
-        Color _color;
+        Color IRenderable.SpriteColor { get => color; }
+        Color color;
 
         // Make sure to set the sprite and color variables in the constructor.
         // Example: [ public MyClass(string name, Texture2D texture, Color spriteColor) : base(name) { sprite = texture; color = spriteColor; } ]
@@ -32,17 +32,23 @@ namespace HomicidalSuicidal
 
         #endregion
 
-        Vector2 startPos;
         float health, healing;
 
-        public SurgeonEnemy(string surgeonName, Texture2D surgeonTexture, Color surgeonColor, Rectangle surgeonRectangle, Vector2 surgeonStartPos, float surgeonHealth, float surgeonHealing) : base(surgeonName, surgeonRectangle)
+        public SurgeonEnemy(string surgeonName, Texture2D surgeonTexture, Color surgeonColor, Point surgeonSize, Vector2 surgeonStartPos, float surgeonHealth, float surgeonHealing) : base(surgeonName)
         {
             Name = surgeonName;
-            _sprite = surgeonTexture;
-            _color = surgeonColor;
-            startPos = surgeonStartPos;
+            sprite = surgeonTexture;
+            color = surgeonColor;
+            Size = surgeonSize;
+            Position = surgeonStartPos;
             healing = surgeonHealing;
             health = surgeonHealth;
+        }
+
+        protected override void Update(GameTime gameTime, float deltaTime)
+        {
+            base.Update(gameTime, deltaTime);
+
         }
     }
 }
