@@ -55,10 +55,14 @@ namespace HomicidalSuicidal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            // In order: All movement, all updates, all collision
+
             foreach (KeyValuePair<string, WorldObject> pair in WorldObject.WorldObjects)
             {
                 pair.Value.PhysObject.UpdatePhysics(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
+
+            WorldObject.UpdateAll(gameTime);
 
             // TODO: Add your update logic here
 

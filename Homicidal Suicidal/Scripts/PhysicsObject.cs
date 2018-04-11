@@ -19,7 +19,7 @@ namespace HomicidalSuicidal
 
         public void UpdatePhysics(GameTime gameTime, float deltaTime)
         {
-            Velocity += new Vector2(0, 1) * Constants.gravity;
+            Velocity += new Vector2(0, 1) * Constants.gravity * deltaTime;
             Position += Velocity;
         }
 

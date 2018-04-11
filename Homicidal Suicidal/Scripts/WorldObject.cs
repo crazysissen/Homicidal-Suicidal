@@ -38,18 +38,13 @@ namespace HomicidalSuicidal
 
         public Point Size { get; set; } 
         public Vector2 Position { get; set; }
-        public Rectangle Rect { get => new Rectangle(Position.ToPoint(), Size); }
+        public Vector2 Offset => new Vector2((float)Size.X / 2, (float)Size.Y / 2);
+        public Vector2 CenterPosition => Position + Offset; 
+        public Rectangle Rect => new Rectangle(Position.ToPoint(), Size); 
 
-        public virtual PhysicsObject PhysObject { get => null; }
+        public virtual PhysicsObject PhysObject => null;
 
-        public virtual IRenderable Renderable
-        {
-            get
-            {
-                Console.WriteLine("Tried to get nonexistent IRenderable. Object: " + Name);
-                return null;
-            }
-        }
+        public virtual IRenderable Renderable => null;
 
         public static WorldObject Get(string name) => WorldObjects[name];
 

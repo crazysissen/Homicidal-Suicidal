@@ -22,6 +22,12 @@ namespace HomicidalSuicidal
         Texture2D IRenderable.Sprite { get => sprite; }
         Texture2D sprite;
 
+        float IRenderable.Rotation { get => rotation; }
+        float rotation;
+
+        float IRenderable.Layer { get => layer; }
+        float layer;
+
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 

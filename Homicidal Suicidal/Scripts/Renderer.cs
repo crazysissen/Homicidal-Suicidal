@@ -31,8 +31,10 @@ namespace HomicidalSuicidal
 
         public static void RenderAll(SpriteBatch spriteBatch, Point camera)
         {
-            foreach (IRenderable renderable in Renderables)
+            List<IRenderable> renderables = Renderables;
+            foreach (IRenderable renderable in renderables)
             {
+                Console.WriteLine(renderable.Rect + "" + renderable.Sprite);
                 Render(renderable, Game1.MainSpriteBatch, camera);
             }
         }
@@ -41,7 +43,7 @@ namespace HomicidalSuicidal
             => RenderAll(spriteBatch, Point.Zero);
 
         public static void Render(IRenderable renderable, SpriteBatch spriteBatch, Point camera)
-            => spriteBatch.Draw(renderable.Sprite, new Rectangle(renderable.Rect.Location, renderable.Rect.Size), null, renderable.SpriteColor, renderable.Rotation, camera, SpriteEffects.None, );
+            => spriteBatch.Draw(renderable.Sprite, renderable.Rect.Location.ToVector2(), null, renderable.SpriteColor, renderable.Rotation, Vector2.Zero, renderable.Rect.Size.ToVector2() / new Vector2(renderable.Sprite.Width, renderable.Sprite.Height), SpriteEffects.None, 0);
 
         public static void RenderThis(this IRenderable renderable, SpriteBatch spriteBatch, Point camera)
             => Render(renderable, spriteBatch, camera);
