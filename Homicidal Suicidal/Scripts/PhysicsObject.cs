@@ -11,13 +11,15 @@ namespace HomicidalSuicidal
 {
     abstract class PhysicsObject : WorldObject
     {
-        public Vector2 Velocity { get; set; }
-
-        public float GravityMultiplier { get; private set; }
-
+        public Vector2 Velocity { get; protected set; }
+        public float GravityMultiplier { get; protected set; }
+        public bool Kinematic { get; protected set; }
+        public string[] CollisionTags { get; protected set; }
         public override PhysicsObject PhysObject => this;
 
-        public void UpdatePhysics(GameTime gameTime, float deltaTime)
+        public virtual void OnCollision(string[] tags) { }
+
+        public void UpdateMovement(GameTime gameTime, float deltaTime)
         {
             Velocity += new Vector2(0, 1) * Constants.gravity * deltaTime;
             Position += Velocity;

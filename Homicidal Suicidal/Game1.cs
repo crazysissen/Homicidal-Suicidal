@@ -59,7 +59,7 @@ namespace HomicidalSuicidal
 
             foreach (KeyValuePair<string, WorldObject> pair in WorldObject.WorldObjects)
             {
-                pair.Value.PhysObject.UpdatePhysics(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+                pair.Value.PhysObject.UpdateMovement(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
 
             WorldObject.UpdateAll(gameTime);

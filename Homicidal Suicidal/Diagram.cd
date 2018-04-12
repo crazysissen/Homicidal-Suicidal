@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HomicidalSuicidal.DoctorEnemy">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQBAAAAAAQgAAAAAASAAAAAABAAAACAAAAABAASAAg=</HashCode>
+      <FileName>Scripts\Enemies\DoctorEnemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HomicidalSuicidal.NurseEnemy">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQBAAAAAAQgAAAAAASAAAAAABAAAACAAAAABAASAAg=</HashCode>
+      <FileName>Scripts\Enemies\NurseEnemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HomicidalSuicidal.SurgeonEnemy">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQBAAAAAAQgAAAAAASAAAAAABAAAACAAAAABAASAAg=</HashCode>
+      <FileName>Scripts\Enemies\SurgeonEnemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HomicidalSuicidal.Bullet">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAQggAAAAASAAAAAABAAAACAAAAABAASAAA=</HashCode>
+      <FileName>Scripts\Bullet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HomicidalSuicidal.WorldObject">
+    <Position X="12.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oCQACAAAABQAgABgABACAAQAACAEgEAAAIAAAAAAgoA=</HashCode>
+      <FileName>Scripts\WorldObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomicidalSuicidal.PhysicsObject">
+    <Position X="10.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAICAAAAAAAAAIAAAAAAEAAAAAAAAIAAAAAAEAAA=</HashCode>
+      <FileName>Scripts\PhysicsObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomicidalSuicidal.Player">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAQgAAAAAASAAAAAABAAAACAAAAABAASAAA=</HashCode>
+      <FileName>Scripts\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HomicidalSuicidal.Renderer">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAABAAAAAIAAA=</HashCode>
+      <FileName>Scripts\Renderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomicidalSuicidal.Constants">
+    <Position X="18" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomicidalSuicidal.Game1">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAEEEAAAAAAwAAAAAAAAAAAAAAAAgBAAAAAAAABAQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomicidalSuicidal.Program">
+    <Position X="2" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="HomicidalSuicidal.IRenderable">
+    <Position X="18" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAIAAAAAAAAAAACAAAAAUAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\IRenderable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

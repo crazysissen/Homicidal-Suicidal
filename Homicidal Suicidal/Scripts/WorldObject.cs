@@ -116,6 +116,11 @@ namespace HomicidalSuicidal
             WorldObjects.Add(tempName, this);
         }
 
+        public static void UpdateAllPhysics()
+        {
+
+        }
+
         public static void UpdateAllDerived(GameTime gameTime)
         {
             foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
@@ -123,11 +128,27 @@ namespace HomicidalSuicidal
                 pair.Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
         }
-        
-        //public bool Intersects(WorldObject worldObject)
-        //{
-        //    if (Position )
-        //}
+
+        public bool Intersects(WorldObject worldObject)
+        {
+            float   top = Position.Y - (float)Size.Y / 2,
+                    right = Position.X + (float)Size.X / 2, 
+                    bottom = Position.Y + (float)Size.Y / 2, 
+                    left = Position.X - (float)Size.X / 2;
+
+            return worldObject.IntersectsPoints(top, right, bottom, left);
+        }
+
+        public bool IntersectsPoints(float thatTop, float thatRight, float thatBottom, float thatLeft)
+        {
+            float   top = Position.Y - (float)Size.Y / 2,
+                    right = Position.X + (float)Size.X / 2,
+                    bottom = Position.Y + (float)Size.Y / 2,
+                    left = Position.X - (float)Size.X / 2;
+
+            return  ((top >= thatTop && top <= thatBottom) || (bottom <= thatBottom && bottom >= thatTop)) && ((left >= thatLeft && left <= thatRight) || (right <= thatRight && right >= thatLeft)) ||
+                    ((thatTop >= top && thatTop <= bottom) || (thatBottom <= bottom && thatBottom >= top)) && ((thatLeft >= left && thatLeft <= right) || (thatRight <= right && thatRight >= left));
+        } 
 
         /// <summary>
         /// Is this name avaliable? Returns true if so and false otherwise. 
