@@ -10,6 +10,6 @@ namespace HomicidalSuicidal
 {
     static class Constants
     {
-        public const float gravity = 9.81f;
+        public const float gravity = 9.807f;
     }
 }
