@@ -40,7 +40,9 @@ namespace HomicidalSuicidal
 
         float damage;
 
-        public Bullet(string bulletName, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletRotation, float bulletLayer) : base(initialVelocity, 0, bulletName, bulletRectangle)
+        string targetTag;
+
+        public Bullet(string bulletName, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName, bulletRectangle)
         {
             Name = bulletName;
             layer = bulletLayer;
@@ -48,6 +50,8 @@ namespace HomicidalSuicidal
             color = bulletColor;
             damage = bulletDamage;
             rotation = bulletRotation;
+            targetTag = bulletTargetTag;
+            Velocity = initialVelocity;
         }
     }
 }

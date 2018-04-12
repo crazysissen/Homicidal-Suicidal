@@ -50,6 +50,8 @@ namespace HomicidalSuicidal
             Position = doctorStartPos;
             healing = doctorHealing;
             health = doctorHealth;
+
+            Tags.Add("Enemy");
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
