@@ -31,7 +31,11 @@ namespace HomicidalSuicidal
         {
             base.Initialize();
 
-            player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
+            WorldObject.InitializeClass();
+
+            //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
+            new TestObject("Test", new Rectangle(200, 200, 20, 20), allSprites["Square"]);
+            new TestPlayer("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
         }
 
         protected override void LoadContent()
@@ -57,12 +61,9 @@ namespace HomicidalSuicidal
 
             // In order: All movement, all updates, all collision
 
-            foreach (KeyValuePair<string, WorldObject> pair in WorldObject.WorldObjects)
-            {
-                pair.Value.PhysObject.UpdateMovement(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
-            }
-
-            WorldObject.UpdateAll(gameTime);
+            WorldObject.UpdateAllPhysics(gameTime);
+            WorldObject.UpdateAllDerived(gameTime);
+            WorldObject.UpdateAllCollision();
 
             // TODO: Add your update logic here
 
@@ -71,7 +72,7 @@ namespace HomicidalSuicidal
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DeepSkyBlue);
 
             spriteBatch.Begin();
 

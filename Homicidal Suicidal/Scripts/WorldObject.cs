@@ -116,35 +116,45 @@ namespace HomicidalSuicidal
             WorldObjects.Add(tempName, this);
         }
 
-        public static void UpdateAllPhysics()
+        public static void InitializeClass()
         {
+            WorldObjects = new Dictionary<string, WorldObject>();
+        }
 
+        public static void UpdateAllPhysics(GameTime gameTime)
+        {
+            foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
+                if (pair.Value.PhysObject != null)
+                    pair.Value.PhysObject.UpdateMovement(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
         }
 
         public static void UpdateAllDerived(GameTime gameTime)
         {
             foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
-            {
                 pair.Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
-            }
+        }
+
+        public static void UpdateAllCollision()
+        {
+
         }
 
         public bool Intersects(WorldObject worldObject)
         {
-            float   top = Position.Y - (float)Size.Y / 2,
-                    right = Position.X + (float)Size.X / 2, 
-                    bottom = Position.Y + (float)Size.Y / 2, 
-                    left = Position.X - (float)Size.X / 2;
+            float   top = CenterPosition.Y - (float)Size.Y / 2,
+                    right = CenterPosition.X + (float)Size.X / 2, 
+                    bottom = CenterPosition.Y + (float)Size.Y / 2, 
+                    left = CenterPosition.X - (float)Size.X / 2;
 
             return worldObject.IntersectsPoints(top, right, bottom, left);
         }
 
         public bool IntersectsPoints(float thatTop, float thatRight, float thatBottom, float thatLeft)
         {
-            float   top = Position.Y - (float)Size.Y / 2,
-                    right = Position.X + (float)Size.X / 2,
-                    bottom = Position.Y + (float)Size.Y / 2,
-                    left = Position.X - (float)Size.X / 2;
+            float   top = CenterPosition.Y - (float)Size.Y / 2,
+                    right = CenterPosition.X + (float)Size.X / 2,
+                    bottom = CenterPosition.Y + (float)Size.Y / 2,
+                    left = CenterPosition.X - (float)Size.X / 2;
 
             return  ((top >= thatTop && top <= thatBottom) || (bottom <= thatBottom && bottom >= thatTop)) && ((left >= thatLeft && left <= thatRight) || (right <= thatRight && right >= thatLeft)) ||
                     ((thatTop >= top && thatTop <= bottom) || (thatBottom <= bottom && thatBottom >= top)) && ((thatLeft >= left && thatLeft <= right) || (thatRight <= right && thatRight >= left));
@@ -185,14 +195,6 @@ namespace HomicidalSuicidal
         protected virtual void Update(GameTime gameTime, float deltaTime)
         {
             return;
-        }
-
-        public static void UpdateAll(GameTime gameTime)
-        {
-            foreach (KeyValuePair<string, WorldObject> pair in WorldObjects)
-            {
-                pair.Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
-            }
         }
     }
 }

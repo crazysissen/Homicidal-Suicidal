@@ -11,6 +11,5 @@ namespace HomicidalSuicidal
     static class Constants
     {
         public const float gravity = 9.807f;
-        public const string sixtensNamn = "gay";
     }
 }

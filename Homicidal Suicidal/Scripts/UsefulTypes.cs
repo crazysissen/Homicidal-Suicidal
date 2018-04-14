@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace HomicidalSuicidal
 {
-    class TestPlayer : WorldObject
-    {
-        public TestPlayer(string name) : base()
-        {
+    public enum Direction { Up, Down, Left, Right }
 
+    struct Displacement
+    {
+        public Displacement(float distance, WorldObject b)
+        {
+            
         }
     }
 }
