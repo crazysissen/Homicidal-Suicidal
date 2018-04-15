@@ -14,6 +14,8 @@ namespace HomicidalSuicidal
 
         public List<string> Tags { get; private set; }
 
+        List<WorldObject> touching;
+
         static int worldObjectIndex;
 
         string name;
@@ -136,29 +138,77 @@ namespace HomicidalSuicidal
 
         public static void UpdateAllCollision()
         {
+            bool[,] calculated = new bool[WorldObjects.Count, WorldObjects.Count];
+            int i = 0, j = 0;
 
+            foreach (KeyValuePair<string, WorldObject> pair in WorldObjects)
+            {
+                if (pair.Value.PhysObject != null)
+                {
+                    j = 0;
+
+                    foreach (KeyValuePair<string, WorldObject> subject in WorldObjects)
+                    {
+                        if (!calculated[i, j] && subject.Value.PhysObject != null)
+                        {
+                            if (pair.Value.Intersects(subject.Value))
+                            {
+                                pair.Value.PhysObject.Collide(subject.Value.PhysObject);
+
+                            }
+                        }
+
+                        calculated[i, j] = true;
+                        calculated[j, i] = true;
+                        ++j;
+                    }
+                }
+
+                ++i;
+            }
         }
 
         public bool Intersects(WorldObject worldObject)
         {
             float   top = CenterPosition.Y - (float)Size.Y / 2,
-                    right = CenterPosition.X + (float)Size.X / 2, 
-                    bottom = CenterPosition.Y + (float)Size.Y / 2, 
-                    left = CenterPosition.X - (float)Size.X / 2;
-
-            return worldObject.IntersectsPoints(top, right, bottom, left);
-        }
-
-        public bool IntersectsPoints(float thatTop, float thatRight, float thatBottom, float thatLeft)
-        {
-            float   top = CenterPosition.Y - (float)Size.Y / 2,
                     right = CenterPosition.X + (float)Size.X / 2,
                     bottom = CenterPosition.Y + (float)Size.Y / 2,
-                    left = CenterPosition.X - (float)Size.X / 2;
+                    left = CenterPosition.X - (float)Size.X / 2,
 
-            return  ((top >= thatTop && top <= thatBottom) || (bottom <= thatBottom && bottom >= thatTop)) && ((left >= thatLeft && left <= thatRight) || (right <= thatRight && right >= thatLeft)) ||
-                    ((thatTop >= top && thatTop <= bottom) || (thatBottom <= bottom && thatBottom >= top)) && ((thatLeft >= left && thatLeft <= right) || (thatRight <= right && thatRight >= left));
+                    thatTop = worldObject.CenterPosition.Y - (float)worldObject.Size.Y / 2,
+                    thatRight = worldObject.CenterPosition.X + (float)worldObject.Size.X / 2,
+                    thatBottom = worldObject.CenterPosition.Y + (float)worldObject.Size.Y / 2,
+                    thatLeft = worldObject.CenterPosition.X - (float)worldObject.Size.X / 2;
+
+            return  ((top >= thatTop && top <= thatBottom) || (bottom <= thatBottom && bottom >= thatTop)) && 
+                    ((left >= thatLeft && left <= thatRight) || (right <= thatRight && right >= thatLeft)) ||
+                    ((thatTop >= top && thatTop <= bottom) || (thatBottom <= bottom && thatBottom >= top)) && 
+                    ((thatLeft >= left && thatLeft <= right) || (thatRight <= right && thatRight >= left));
         } 
+
+        public Vector2 ClosestOffset(WorldObject worldObject)
+        {
+            float[] distances = new float[]
+            {
+                (CenterPosition.X + (Size.X * 0.5f)) - (worldObject.CenterPosition.X - (worldObject.Size.X * 0.5f)), // Left
+                (worldObject.CenterPosition.X + worldObject.Size.X * 0.5f) - (CenterPosition.X - Size.X * 0.5f), // Right
+                (CenterPosition.Y + (Size.Y * 0.5f)) - (worldObject.CenterPosition.Y - (worldObject.Size.Y * 0.5f)), // Up
+                (worldObject.CenterPosition.Y + worldObject.Size.Y * 0.5f) - (CenterPosition.Y - Size.Y * 0.5f)  // Down
+            };
+
+            Vector2[] directions = new Vector2[] { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+
+            int index = 0;
+            for (int i = 1; i < distances.Length; ++i)
+            {
+                if (distances[i] < distances[index])
+                {
+                    index = i;
+                }
+            }
+
+            return directions[index] * distances[index];
+        }
 
         /// <summary>
         /// Is this name avaliable? Returns true if so and false otherwise. 

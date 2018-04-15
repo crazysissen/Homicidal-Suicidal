@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HomicidalSuicidal
 {
-    class TestObject : WorldObject, IRenderable
+    class TestObject : PhysicsObject, IRenderable
     {
         public static WorldObject worldObjectThing;
 
@@ -29,7 +29,7 @@ namespace HomicidalSuicidal
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
-        public TestObject(string name, Rectangle rectangle, Texture2D texture) : base(name, rectangle)
+        public TestObject(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 0, name, rectangle)
         {
             color = Color.Black;
             worldObjectThing = this;

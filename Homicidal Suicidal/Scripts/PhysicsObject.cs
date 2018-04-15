@@ -14,15 +14,41 @@ namespace HomicidalSuicidal
         public Vector2 Velocity { get; protected set; }
         public float GravityMultiplier { get; protected set; }
         public bool Kinematic { get; protected set; }
-        public string[] CollisionTags { get; protected set; }
         public override PhysicsObject PhysObject => this;
 
         public virtual void OnCollision(string[] tags) { }
 
         public void UpdateMovement(GameTime gameTime, float deltaTime)
         {
-            Velocity += new Vector2(0, 1) * Constants.gravity * deltaTime;
+            Velocity += new Vector2(0, 1) * Constants.gravity * deltaTime * GravityMultiplier;
             Position += Velocity;
+        }
+
+        public void Collide(PhysicsObject physicsObject)
+        {
+            OnCollision(physicsObject.Tags.ToArray());
+            physicsObject.OnCollision(Tags.ToArray());
+
+            if (!Kinematic && !physicsObject.Kinematic)
+                return;
+
+            Vector2 closestOffset = ClosestOffset(physicsObject);
+
+            if (Kinematic && !physicsObject.Kinematic)
+                Position += closestOffset;
+
+            if (!Kinematic && physicsObject.Kinematic)
+                physicsObject.Position -= closestOffset;
+
+            if (Kinematic && physicsObject.Kinematic)
+            {
+                Position += closestOffset * 0.5f;
+                physicsObject.Position -= closestOffset * 0.5f;
+            }
+
+            Console.WriteLine("Nullifying");
+            Velocity *= closestOffset.VelocityNullifier();
+            physicsObject.Velocity *= closestOffset.VelocityNullifier();
         }
 
         public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name) : base(name)

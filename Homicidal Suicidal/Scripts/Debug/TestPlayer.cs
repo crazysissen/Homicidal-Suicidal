@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HomicidalSuicidal
 {
-    class TestPlayer : WorldObject, IRenderable
+    class TestPlayer : PhysicsObject, IRenderable
     {
         public override IRenderable Renderable => this;
 
@@ -26,12 +26,13 @@ namespace HomicidalSuicidal
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
-        public TestPlayer(string name, Rectangle rectangle, Texture2D texture) : base(name, rectangle)
+        public TestPlayer(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
             sprite = texture;
             Position = rectangle.Location.ToVector2();
             color = Color.Red;
             Size = rectangle.Size;
+            Kinematic = true;
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
