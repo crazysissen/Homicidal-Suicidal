@@ -40,7 +40,7 @@ namespace HomicidalSuicidal
 
         float damage;
 
-        string targetTag;
+        string targetTag; 
 
         public Bullet(string bulletName, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName, bulletRectangle)
         {
