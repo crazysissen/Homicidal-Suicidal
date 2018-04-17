@@ -70,7 +70,7 @@ namespace HomicidalSuicidal
             WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
 
-            Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 20);
+            Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 500);
 
             // TODO: Add your update logic here
 
