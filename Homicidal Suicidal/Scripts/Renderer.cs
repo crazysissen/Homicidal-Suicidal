@@ -34,7 +34,6 @@ namespace HomicidalSuicidal
             List<IRenderable> renderables = Renderables;
             foreach (IRenderable renderable in renderables)
             {
-                Console.WriteLine(renderable.Rect + "" + renderable.Sprite);
                 Render(renderable, Game1.MainSpriteBatch, camera);
             }
         }
