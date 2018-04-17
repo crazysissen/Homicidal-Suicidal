@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace HomicidalSuicidal
 {
@@ -39,19 +40,39 @@ namespace HomicidalSuicidal
 
         public static Player MainPlayer { get; private set; }
 
-        public Player(string name, Texture2D texture, Color textureColor, Rectangle rectangle) : base(Vector2.Zero, 1, name, rectangle)
+        public Player(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
             //if (player != null && player != this)
-            MainPlayer = this;    
+            MainPlayer = this;
 
             sprite = texture;
-            color = textureColor;
+            Position = rectangle.Location.ToVector2();
+            color = Color.White;
+            Size = rectangle.Size;
+            Kinematic = true;
         }
+
+        bool spaceDown;
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            base.Update(gameTime, deltaTime);
-            // TODO: Insert update code here.
+            KeyboardState keyboardState = Keyboard.GetState();
+            Vector2 velocity = (keyboardState.IsKeyDown(Keys.W)) ? new Vector2(0, -2) : Vector2.Zero;
+            velocity += (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(2, 0) : Vector2.Zero;
+            velocity += (keyboardState.IsKeyDown(Keys.S)) ? new Vector2(0, 2) : Vector2.Zero;
+            velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-2, 0) : Vector2.Zero;
+
+            Position += velocity;
+
+            if (keyboardState.IsKeyDown(Keys.Space) && !spaceDown)
+            {
+                Position -= new Vector2(0, 1);
+                Velocity += new Vector2(0, -5);
+            }
+
+            spaceDown = keyboardState.IsKeyDown(Keys.Space);
+
+            Console.WriteLine(Intersects(TestObject.worldObjectThing));
         }
     }
 }

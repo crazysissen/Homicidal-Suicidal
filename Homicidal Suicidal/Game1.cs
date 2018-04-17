@@ -11,13 +11,15 @@ namespace HomicidalSuicidal
 {
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager graphics;
         static SpriteBatch spriteBatch;
 
         public static SpriteBatch MainSpriteBatch { get => spriteBatch; }
 
-        static Dictionary<string, Texture2D> allSprites;
+        public static Dictionary<string, Texture2D> allSprites;
         string[] _loadTags = new string[] { "Square" };
+
+
 
         Player player;
 
@@ -26,8 +28,8 @@ namespace HomicidalSuicidal
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 1920;
-
+            graphics.PreferredBackBufferWidth = 1919;
+            graphics.PreferredBackBufferHeight = 1079;
         }
 
         protected override void Initialize()
@@ -38,7 +40,7 @@ namespace HomicidalSuicidal
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
             new TestObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
-            new TestPlayer("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
+            new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
         }
 
         protected override void LoadContent()
@@ -67,6 +69,8 @@ namespace HomicidalSuicidal
             WorldObject.UpdateAllPhysics(gameTime);
             WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
+
+            Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 20);
 
             // TODO: Add your update logic here
 
