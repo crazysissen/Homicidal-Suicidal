@@ -26,6 +26,8 @@ namespace HomicidalSuicidal
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
+        bool spaceDown;
+
         public TestPlayer(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
             sprite = texture;
@@ -38,12 +40,20 @@ namespace HomicidalSuicidal
         protected override void Update(GameTime gameTime, float deltaTime)
         {
             KeyboardState keyboardState = Keyboard.GetState();
-            Vector2 velocity = (keyboardState.IsKeyDown(Keys.W)) ? new Vector2(0, -1) : Vector2.Zero;
-            velocity += (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(1, 0) : Vector2.Zero;
-            velocity += (keyboardState.IsKeyDown(Keys.S)) ? new Vector2(0, 1) : Vector2.Zero;
-            velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-1, 0) : Vector2.Zero;
+            Vector2 velocity = (keyboardState.IsKeyDown(Keys.W)) ? new Vector2(0, -2) : Vector2.Zero;
+            velocity += (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(2, 0) : Vector2.Zero;
+            velocity += (keyboardState.IsKeyDown(Keys.S)) ? new Vector2(0, 2) : Vector2.Zero;
+            velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-2, 0) : Vector2.Zero;
 
             Position += velocity;
+
+            if (keyboardState.IsKeyDown(Keys.Space) && !spaceDown)
+            {
+                Position -= new Vector2(0, 1);
+                Velocity += new Vector2(0, -5);
+            }
+
+            spaceDown = keyboardState.IsKeyDown(Keys.Space);
 
             Console.WriteLine(Intersects(TestObject.worldObjectThing));
         }

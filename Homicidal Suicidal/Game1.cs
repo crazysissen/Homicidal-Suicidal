@@ -25,6 +25,9 @@ namespace HomicidalSuicidal
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferWidth = 1920;
+
         }
 
         protected override void Initialize()
@@ -34,7 +37,7 @@ namespace HomicidalSuicidal
             WorldObject.InitializeClass();
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            new TestObject("Test", new Rectangle(0, 200, 20, 20), allSprites["Square"]);
+            new TestObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
             new TestPlayer("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
         }
 

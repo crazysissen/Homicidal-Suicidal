@@ -37,8 +37,13 @@ namespace HomicidalSuicidal
 
         #endregion
 
+        public static Player MainPlayer { get; private set; }
+
         public Player(string name, Texture2D texture, Color textureColor, Rectangle rectangle) : base(Vector2.Zero, 1, name, rectangle)
         {
+            //if (player != null && player != this)
+            MainPlayer = this;    
+
             sprite = texture;
             color = textureColor;
         }
