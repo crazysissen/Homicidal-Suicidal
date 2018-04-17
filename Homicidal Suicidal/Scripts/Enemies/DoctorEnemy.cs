@@ -45,7 +45,7 @@ namespace HomicidalSuicidal
         float syringeHealing, syringeSpeed;
 
         float health, healing, attackSpeed = 1, attackTimer, attackRange;
-        float distanceToPlayer;
+        float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
 
         public DoctorEnemy(string doctorName, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
         {
@@ -68,8 +68,6 @@ namespace HomicidalSuicidal
         {
             base.Update(gameTime, deltaTime);
 
-            distanceToPlayer = (Player.MainPlayer.CenterPosition - CenterPosition).Length();
-
             StateCheck();
 
             if (attackTimer > 0)
@@ -87,7 +85,7 @@ namespace HomicidalSuicidal
                 states = States.Dying;
             }
             // If the player is within radius of the doctors attack range
-            else if (distanceToPlayer <= attackRange)
+            else if (DistanceToPlayer <= attackRange)
             {
                 states = States.Attack;
             }
