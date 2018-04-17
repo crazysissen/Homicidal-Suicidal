@@ -149,7 +149,7 @@ namespace HomicidalSuicidal
 
                     foreach (KeyValuePair<string, WorldObject> subject in WorldObjects)
                     {
-                        if (!calculated[i, j] && subject.Value.PhysObject != null)
+                        if (!calculated[i, j] && subject.Value.PhysObject != null && pair.Value != subject.Value)
                         {
                             if (pair.Value.Intersects(subject.Value))
                             {

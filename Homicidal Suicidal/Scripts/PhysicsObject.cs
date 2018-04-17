@@ -46,7 +46,6 @@ namespace HomicidalSuicidal
                 physicsObject.Position -= closestOffset * 0.5f;
             }
 
-            Console.WriteLine("Nullifying");
             Velocity *= closestOffset.VelocityNullifier();
             physicsObject.Velocity *= closestOffset.VelocityNullifier();
         }
