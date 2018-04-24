@@ -256,5 +256,10 @@ namespace HomicidalSuicidal
         {
             return;
         }
+
+        public void DestroyObject()
+        {
+            WorldObjects.Remove(name);
+        }
     }
 }

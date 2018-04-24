@@ -20,7 +20,12 @@ namespace HomicidalSuicidal
         public static SpriteBatch MainSpriteBatch { get => spriteBatch; }
         public static Dictionary<string, Texture2D> allSprites;
 
-        string[] _loadTags = new string[] { "Square" };
+        string[] _loadTags = new string[] 
+        {
+            "Square", "Floor",
+            "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
+            "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing"
+        };
         Song inGameSong;
 
         public Game1()
@@ -44,7 +49,7 @@ namespace HomicidalSuicidal
             new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
             new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
             new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
-            new DoctorEnemy("Doctor1", allSprites["Square"], Color.White, new Point(50, 50), new Vector2(300, 0), 100, 50, 9999, 9999);
+            new DoctorEnemy("Doctor1", allSprites["Floor"], Color.White, new Point(50, 50), new Vector2(300, 0), 100, 50, 9999, 9999);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);
@@ -89,7 +94,7 @@ namespace HomicidalSuicidal
         {
             GraphicsDevice.Clear(Color.DeepSkyBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             Renderer.RenderAll(spriteBatch);
 
