@@ -48,6 +48,7 @@
     <Compile Include="Scripts\Bullet.cs" />
     <Compile Include="Scripts\Constants.cs" />
     <Compile Include="Scripts\Debug\TestObject.cs" />
+    <Compile Include="Scripts\Enemies\Enemy.cs" />
     <Compile Include="Scripts\Particle.cs" />
     <Compile Include="Scripts\UsefulTypes.cs" />
     <Compile Include="Scripts\Enemies\DoctorEnemy.cs" />
