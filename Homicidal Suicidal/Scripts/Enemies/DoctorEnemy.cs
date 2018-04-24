@@ -99,7 +99,7 @@ namespace HomicidalSuicidal
         {
             attackTimer = attackSpeed;
             // Temp bullet creation
-            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), healing, 0, 9999, "Player");
+            // Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), healing, 0, 9999, "Player");
         }
     }
 }
