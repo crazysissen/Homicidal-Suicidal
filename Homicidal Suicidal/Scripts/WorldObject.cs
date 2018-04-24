@@ -41,7 +41,7 @@ namespace HomicidalSuicidal
         public Point Size { get; set; } 
         public Vector2 Position { get; set; }
         public Vector2 Offset => new Vector2((float)Size.X / 2, (float)Size.Y / 2);
-        public Vector2 CenterPosition => Position + Offset; 
+        public Vector2 CenterPosition { get => Position + Offset; set => Position = value - Offset; }
         public Rectangle Rect => new Rectangle(Position.ToPoint(), Size); 
 
         public virtual PhysicsObject PhysObject => null;

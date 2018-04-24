@@ -49,19 +49,22 @@ namespace HomicidalSuicidal
 
         bool alive;
 
-        public Bullet(string bulletName, string bulletTag, Owner bulletOwner, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletHealing, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName, bulletRectangle)
+        public Bullet(string bulletName, string bulletTag, Owner bulletOwner, Vector2 initialPosition, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Point bulletSize, float bulletDamage, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName)
         {
             Name = bulletName;
             layer = bulletLayer;
             sprite = bulletSprite;
             color = bulletColor;
-            damage = bulletHealing;
+            damage = bulletDamage;
             rotation = bulletRotation;
             targetTag = bulletTargetTag;
             Velocity = initialVelocity;
             Tags.Add(bulletTag);
             alive = true;
             owner = bulletOwner;
+
+            Size = bulletSize;
+            CenterPosition = initialPosition;
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
@@ -78,32 +81,35 @@ namespace HomicidalSuicidal
             NurseEnemy nurse = physicsObject.GetComponent<NurseEnemy>(out successes[2]);
             SurgeonEnemy surgeon = physicsObject.GetComponent<SurgeonEnemy>(out successes[3]);
 
-            if (successes[0]) // Player
+            if (successes[0] && targetTag == "Player") // Player
             {
-                
-
-                return;
-            }
-            
-            if (successes[1]) // Doctor
-            {
-                
+                Player.MainPlayer.Health += damage;
 
                 return;
             }
 
-            if (successes[2]) // Nurse
+            if (targetTag == "Enemy")
             {
-                
+                if (successes[1]) // Doctor
+                {
+                    doctor.health -= damage;
 
-                return;
-            }
+                    return;
+                }
 
-            if (successes[3]) // Surgeon
-            {
-                
+                if (successes[2]) // Nurse
+                {
+                    // nurse.health -= damage;
 
-                return;
+                    return;
+                }
+
+                if (successes[3]) // Surgeon
+                {
+                    // surgeon.health -= damage;
+
+                    return;
+                }
             }
         }
     }
