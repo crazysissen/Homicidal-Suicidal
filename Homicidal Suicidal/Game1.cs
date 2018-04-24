@@ -20,7 +20,12 @@ namespace HomicidalSuicidal
         public static SpriteBatch MainSpriteBatch { get => spriteBatch; }
         public static Dictionary<string, Texture2D> allSprites;
 
-        string[] _loadTags = new string[] { "Square" };
+        string[] _loadTags = new string[] 
+        {
+            "Square", "Floor",
+            "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
+            "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing"
+        };
         Song inGameSong;
 
         public Game1()
@@ -89,7 +94,7 @@ namespace HomicidalSuicidal
         {
             GraphicsDevice.Clear(Color.DeepSkyBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             Renderer.RenderAll(spriteBatch);
 
