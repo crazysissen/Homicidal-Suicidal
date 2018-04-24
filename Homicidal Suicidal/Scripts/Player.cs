@@ -77,7 +77,7 @@ namespace HomicidalSuicidal
 
             spaceDown = keyboardState.IsKeyDown(Keys.Space);
 
-            Console.WriteLine(Intersects(TestObject.worldObjectThing));
+            Console.WriteLine(Intersects(StaticObject.worldObjectThing));
         }
     }
 }
