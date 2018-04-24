@@ -46,12 +46,14 @@ namespace HomicidalSuicidal
 
         protected States states;
 
+        public bool hostile;
+
         public float syringeSpeed;
 
         public float health, healing, attackSpeed = 1, attackTimer, attackRange;
         public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
 
-        public DoctorEnemy(string doctorName, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
+        public DoctorEnemy(string doctorName, bool doctorHostile, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
         {
             Name = doctorName;
             Size = doctorSize;
@@ -62,7 +64,8 @@ namespace HomicidalSuicidal
             healing = doctorHealing;
             attackRange = doctorRange;
             health = doctorHealth;
-
+            hostile = doctorHostile;
+            
             attackTimer = attackSpeed;
 
             Tags.Add("Enemy");
@@ -76,7 +79,10 @@ namespace HomicidalSuicidal
                 attackTimer -= deltaTime;
 
             if (states == States.Attack && attackTimer <= 0)
+            {
                 ThrowNeedle();
+                attackTimer = attackSpeed;
+            }
         }
 
         void StateCheck()
@@ -85,7 +91,7 @@ namespace HomicidalSuicidal
             {
                 states = States.Dying;
             }
-            else if (DistanceToPlayer <= attackRange)
+            else if (DistanceToPlayer <= attackRange && hostile)
             {
                 states = States.Attack;
             }
@@ -97,7 +103,7 @@ namespace HomicidalSuicidal
 
         void ThrowNeedle()
         {
-            attackTimer = attackSpeed;
+            Console.WriteLine("Bulletspawn");
             // Temp bullet creation
             // Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), healing, 0, 9999, "Player");
         }
