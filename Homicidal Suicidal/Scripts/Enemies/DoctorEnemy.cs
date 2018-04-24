@@ -13,6 +13,8 @@ namespace HomicidalSuicidal
 
     class DoctorEnemy : WorldObject, IRenderable
     {
+        object ThisScript => this;
+
         #region Renderable Implementation
 
         // Make sure to inherit from either WorldObject or PhysicsObject and from the IRenderable interface.

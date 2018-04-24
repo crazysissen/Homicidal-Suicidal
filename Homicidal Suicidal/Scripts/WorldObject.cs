@@ -48,6 +48,10 @@ namespace HomicidalSuicidal
 
         public virtual IRenderable Renderable => null;
 
+        protected virtual object Component { get; }
+        
+        public T GetComponent<T>() => (T)Component;
+
         public static WorldObject Get(string name) => WorldObjects[name];
 
         public WorldObject(string name)
