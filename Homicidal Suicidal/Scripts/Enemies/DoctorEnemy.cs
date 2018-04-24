@@ -11,13 +11,11 @@ namespace HomicidalSuicidal
 {
     public enum States { Idle, Attack, Dying }
 
-    class DoctorEnemy : WorldObject, IRenderable, IEnemy
+    class DoctorEnemy : WorldObject, IRenderable
     {
         protected override object Component => this;
 
         object ThisScript => this;
-
-        EnemyType IEnemy.ThisEnemyType => EnemyType.Doctor;
 
         #region Renderable Implementation
 
