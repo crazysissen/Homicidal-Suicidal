@@ -131,46 +131,50 @@ namespace HomicidalSuicidal
 
         public static void UpdateAllPhysics(GameTime gameTime)
         {
-            foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
-                if (pair.Value.PhysObject != null)
-                    pair.Value.PhysObject.UpdateMovement(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            for (int i = 0; i < WorldObjects.Count; ++i)
+            {
+                if (WorldObjects.ElementAt(i).Value.PhysObject != null)
+                    WorldObjects.ElementAt(i).Value.PhysObject.UpdateMovement(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
         }
 
         public static void UpdateAllDerived(GameTime gameTime)
         {
-            foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
-                pair.Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            for (int i = 0; i < WorldObjects.Count; ++i)
+            {
+                WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i).Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
         }
 
         public static void UpdateAllCollision()
         {
             bool[,] calculated = new bool[WorldObjects.Count, WorldObjects.Count];
-            int i = 0, j = 0;
 
-            foreach (KeyValuePair<string, WorldObject> pair in WorldObjects)
+            for (int i = 0; i < WorldObjects.Count; ++i)
             {
-                if (pair.Value.PhysObject != null)
+                if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i).Value.PhysObject != null)
                 {
-                    j = 0;
-
-                    foreach (KeyValuePair<string, WorldObject> subject in WorldObjects)
+                    for (int j = 0; j < WorldObjects.Count; ++j)
                     {
-                        if (!calculated[i, j] && subject.Value.PhysObject != null && pair.Value != subject.Value)
+                        if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j).Value.PhysObject != null)
                         {
-                            if (pair.Value.Intersects(subject.Value))
+                            KeyValuePair<string, WorldObject> pair = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i);
+                            KeyValuePair<string, WorldObject> subject = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j);
+
+                            if (!calculated[i, j] && subject.Value.PhysObject != null && pair.Value != subject.Value)
                             {
-                                pair.Value.PhysObject.Collide(subject.Value.PhysObject);
+                                if (pair.Value.Intersects(subject.Value))
+                                {
+                                    pair.Value.PhysObject.Collide(subject.Value.PhysObject);
 
+                                }
                             }
-                        }
 
-                        calculated[i, j] = true;
-                        calculated[j, i] = true;
-                        ++j;
+                            calculated[i, j] = true;
+                            calculated[j, i] = true;
+                        }
                     }
                 }
-
-                ++i;
             }
         }
 
