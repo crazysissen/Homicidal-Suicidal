@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HomicidalSuicidal
 {
-    abstract class PhysicsObject : WorldObject
+    public abstract class PhysicsObject : WorldObject
     {
         public Vector2 Velocity { get; protected set; }
         public float GravityMultiplier { get; protected set; }
@@ -17,6 +17,8 @@ namespace HomicidalSuicidal
         public override PhysicsObject PhysObject => this;
 
         public virtual void OnCollision(PhysicsObject physicsObject) { }
+
+        public Action<int> CallAction;
 
         public void UpdateMovement(GameTime gameTime, float deltaTime)
         {
