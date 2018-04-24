@@ -40,20 +40,39 @@ namespace HomicidalSuicidal
 
         #endregion
 
+        public enum Owner { Player, Enemy };
+        Owner owner;
+
+        string targetTag;
+
         float damage;
 
-        string targetTag; 
+        bool alive;
 
-        public Bullet(string bulletName, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName, bulletRectangle)
+        public Bullet(string bulletName, string bulletTag, Owner bulletOwner, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletHealing, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName, bulletRectangle)
         {
             Name = bulletName;
             layer = bulletLayer;
             sprite = bulletSprite;
             color = bulletColor;
-            damage = bulletDamage;
+            damage = bulletHealing;
             rotation = bulletRotation;
             targetTag = bulletTargetTag;
             Velocity = initialVelocity;
+            Tags.Add(bulletTag);
+            alive = true;
+            owner = bulletOwner;
+        }
+
+        protected override void Update(GameTime gameTime, float deltaTime)
+        {
+            base.Update(gameTime, deltaTime);
+
+        }
+
+        public override void OnCollision(PhysicsObject physicsObject)
+        {
+
         }
     }
 }
