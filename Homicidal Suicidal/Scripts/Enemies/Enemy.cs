@@ -10,4 +10,5 @@ namespace HomicidalSuicidal
     {
         EnemyType ThisEnemyType { get; }
     }
+
 }
