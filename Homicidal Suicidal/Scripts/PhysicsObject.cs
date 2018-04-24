@@ -18,8 +18,6 @@ namespace HomicidalSuicidal
 
         public virtual void OnCollision(PhysicsObject physicsObject) { }
 
-        public Action<int> CallAction;
-
         public void UpdateMovement(GameTime gameTime, float deltaTime)
         {
             Velocity += new Vector2(0, 1) * Constants.gravity * deltaTime * GravityMultiplier;

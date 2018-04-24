@@ -56,7 +56,6 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            base.Update(gameTime, deltaTime);
 
         }
     }
