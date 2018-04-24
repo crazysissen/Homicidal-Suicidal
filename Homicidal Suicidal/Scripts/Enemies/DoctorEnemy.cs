@@ -13,6 +13,10 @@ namespace HomicidalSuicidal
 
     class DoctorEnemy : WorldObject, IRenderable
     {
+        protected override object Component => this;
+
+        object ThisScript => this;
+
         #region Renderable Implementation
 
         // Make sure to inherit from either WorldObject or PhysicsObject and from the IRenderable interface.
@@ -42,10 +46,10 @@ namespace HomicidalSuicidal
 
         protected States states;
 
-        float syringeHealing, syringeSpeed;
+        public float syringeSpeed;
 
-        float health, healing, attackSpeed = 1, attackTimer, attackRange;
-        float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
+        public float health, healing, attackSpeed = 1, attackTimer, attackRange;
+        public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
 
         public DoctorEnemy(string doctorName, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
         {
@@ -66,8 +70,6 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            base.Update(gameTime, deltaTime);
-
             StateCheck();
 
             if (attackTimer > 0)
@@ -79,28 +81,25 @@ namespace HomicidalSuicidal
 
         void StateCheck()
         {
-            // The doctor died this frame
             if (health <= 0)
             {
                 states = States.Dying;
             }
-            // If the player is within radius of the doctors attack range
             else if (DistanceToPlayer <= attackRange)
             {
                 states = States.Attack;
             }
-            // If he's not attacking or dying he idles
-            else
+            else if (DistanceToPlayer > attackRange && health > 0)
             {
                 states = States.Idle;
             }
         }
 
-        // He attac
         void ThrowNeedle()
         {
             attackTimer = attackSpeed;
-            Bullet bullet = new Bullet("Syringe", new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), syringeHealing, 0, 9999, "Player");
+            // Temp bullet creation
+            // Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), healing, 0, 9999, "Player");
         }
     }
 }

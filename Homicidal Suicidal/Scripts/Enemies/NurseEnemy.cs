@@ -11,6 +11,8 @@ namespace HomicidalSuicidal
 {
     class NurseEnemy : WorldObject, IRenderable
     {
+        protected override object Component => this;
+
         #region Renderable Implementation
 
         // Make sure to inherit from either WorldObject or PhysicsObject and from the IRenderable interface.
@@ -54,7 +56,6 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            base.Update(gameTime, deltaTime);
 
         }
     }

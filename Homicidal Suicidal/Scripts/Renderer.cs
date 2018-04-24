@@ -12,7 +12,7 @@ namespace HomicidalSuicidal
     static class Renderer
     {
         public static Vector2 camera;
-        public static Vector2 offset = new Vector2(20, 0);
+        public static Vector2 offset = new Vector2(500, 0);
 
         static Vector2 CameraScreenPosition => camera + offset - new Vector2((float)Game1.graphics.PreferredBackBufferWidth * 0.5f, (float)Game1.graphics.PreferredBackBufferWidth * 0.5f);
 

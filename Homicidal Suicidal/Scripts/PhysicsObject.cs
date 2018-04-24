@@ -9,14 +9,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HomicidalSuicidal
 {
-    abstract class PhysicsObject : WorldObject
+    public abstract class PhysicsObject : WorldObject
     {
         public Vector2 Velocity { get; protected set; }
         public float GravityMultiplier { get; protected set; }
         public bool Kinematic { get; protected set; }
         public override PhysicsObject PhysObject => this;
 
-        public virtual void OnCollision(string[] tags) { }
+        public virtual void OnCollision(PhysicsObject physicsObject) { }
 
         public void UpdateMovement(GameTime gameTime, float deltaTime)
         {
@@ -26,8 +26,8 @@ namespace HomicidalSuicidal
 
         public void Collide(PhysicsObject physicsObject)
         {
-            OnCollision(physicsObject.Tags.ToArray());
-            physicsObject.OnCollision(Tags.ToArray());
+            OnCollision(physicsObject);
+            physicsObject.OnCollision(this);
 
             if (!Kinematic && !physicsObject.Kinematic)
                 return;

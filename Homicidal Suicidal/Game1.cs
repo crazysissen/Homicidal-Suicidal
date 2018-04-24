@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace HomicidalSuicidal
 {
     public class Game1 : Game
     {
+        // These variables will never be more than one, static is appropriate
         public static GraphicsDeviceManager graphics;
-        static SpriteBatch spriteBatch;
-
+        public static SpriteBatch spriteBatch;
+        public static Player player;
         public static SpriteBatch MainSpriteBatch { get => spriteBatch; }
-
         public static Dictionary<string, Texture2D> allSprites;
+
         string[] _loadTags = new string[] { "Square" };
-
-
-
-        Player player;
+        Song inGameSong;
 
         public Game1()
         {
@@ -30,6 +30,8 @@ namespace HomicidalSuicidal
 
             graphics.PreferredBackBufferWidth = 1919;
             graphics.PreferredBackBufferHeight = 1079;
+
+            
         }
 
         protected override void Initialize()
@@ -39,14 +41,20 @@ namespace HomicidalSuicidal
             WorldObject.InitializeClass();
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            new TestObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
+            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
+            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
             new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
+            new DoctorEnemy("Doctor1", allSprites["Square"], Color.White, new Point(50, 50), new Vector2(300, 0), 100, 50, 9999, 9999);
+
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(inGameSong);
         }
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            inGameSong = Content.Load<Song>("Suicidal Dash");
 
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             allSprites = new Dictionary<string, Texture2D>();
 
             foreach (string name in _loadTags)
@@ -70,9 +78,9 @@ namespace HomicidalSuicidal
             WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
 
-            Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 20);
+            Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 500);
 
-            // TODO: Add your update logic here
+            Miscellanious.Update();
 
             base.Update(gameTime);
         }

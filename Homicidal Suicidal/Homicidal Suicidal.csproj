@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Bullet.cs" />
     <Compile Include="Scripts\Constants.cs" />
-    <Compile Include="Scripts\Debug\TestObject.cs" />
+    <Compile Include="Scripts\StaticObject.cs" />
     <Compile Include="Scripts\Particle.cs" />
     <Compile Include="Scripts\UsefulTypes.cs" />
     <Compile Include="Scripts\Enemies\DoctorEnemy.cs" />
@@ -58,6 +58,7 @@
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\Renderer.cs" />
     <Compile Include="Scripts\Debug\TestPlayer.cs" />
+    <Compile Include="Scripts\World.cs" />
     <Compile Include="Scripts\WorldObject.cs" />
   </ItemGroup>
   <ItemGroup>

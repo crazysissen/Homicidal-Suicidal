@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace HomicidalSuicidal
 {
-    abstract class WorldObject
+    public abstract class WorldObject
     {
         public static Dictionary<string, WorldObject> WorldObjects { get; private set; }
 
@@ -48,6 +48,14 @@ namespace HomicidalSuicidal
 
         public virtual IRenderable Renderable => null;
 
+        protected abstract object Component { get; }
+        
+        public T GetComponent<T>(out bool successful)
+        {
+            successful = (Component is T) ? true : false;
+            return (Component is T) ? (T)Component : default(T);
+        }
+
         public static WorldObject Get(string name) => WorldObjects[name];
 
         public WorldObject(string name)
@@ -60,6 +68,7 @@ namespace HomicidalSuicidal
             if (!CheckNameAvaliability(name, out string tempName))
             {
                 Console.WriteLine("WorldObject name already taken, generating automatic name.");
+                
             }
 
             WorldObjects.Add(tempName, this);
@@ -118,10 +127,7 @@ namespace HomicidalSuicidal
             WorldObjects.Add(tempName, this);
         }
 
-        public static void InitializeClass()
-        {
-            WorldObjects = new Dictionary<string, WorldObject>();
-        }
+        public static void InitializeClass() => WorldObjects = new Dictionary<string, WorldObject>();
 
         public static void UpdateAllPhysics(GameTime gameTime)
         {
@@ -132,7 +138,8 @@ namespace HomicidalSuicidal
 
         public static void UpdateAllDerived(GameTime gameTime)
         {
-            foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
+            Dictionary<string, WorldObject> InstanceList = WorldObjects;
+            foreach (KeyValuePair<string, WorldObject> pair in InstanceList)
                 pair.Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
         }
 

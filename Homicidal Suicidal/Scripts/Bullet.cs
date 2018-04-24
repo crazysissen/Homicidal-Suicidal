@@ -11,6 +11,8 @@ namespace HomicidalSuicidal
 {
     class Bullet : PhysicsObject, IRenderable
     {
+        protected override object Component => this;
+
         #region Renderable Implementation
 
         // Make sure to inherit from either WorldObject or PhysicsObject and from the IRenderable interface.
@@ -38,20 +40,71 @@ namespace HomicidalSuicidal
 
         #endregion
 
+        public enum Owner { Player, Enemy };
+        Owner owner;
+
+        string targetTag;
+
         float damage;
 
-        string targetTag; 
+        bool alive;
 
-        public Bullet(string bulletName, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletDamage, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName, bulletRectangle)
+        public Bullet(string bulletName, string bulletTag, Owner bulletOwner, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Rectangle bulletRectangle, float bulletHealing, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName, bulletRectangle)
         {
             Name = bulletName;
             layer = bulletLayer;
             sprite = bulletSprite;
             color = bulletColor;
-            damage = bulletDamage;
+            damage = bulletHealing;
             rotation = bulletRotation;
             targetTag = bulletTargetTag;
             Velocity = initialVelocity;
+            Tags.Add(bulletTag);
+            alive = true;
+            owner = bulletOwner;
+        }
+
+        protected override void Update(GameTime gameTime, float deltaTime)
+        {
+
+        }
+
+        public override void OnCollision(PhysicsObject physicsObject)
+        {
+            bool[] successes = new bool[4];
+
+            Player player = physicsObject.GetComponent<Player>(out successes[0]);
+            DoctorEnemy doctor = physicsObject.GetComponent<DoctorEnemy>(out successes[1]);
+            NurseEnemy nurse = physicsObject.GetComponent<NurseEnemy>(out successes[2]);
+            SurgeonEnemy surgeon = physicsObject.GetComponent<SurgeonEnemy>(out successes[3]);
+
+            if (successes[0]) // Player
+            {
+                
+
+                return;
+            }
+            
+            if (successes[1]) // Doctor
+            {
+                
+
+                return;
+            }
+
+            if (successes[2]) // Nurse
+            {
+                
+
+                return;
+            }
+
+            if (successes[3]) // Surgeon
+            {
+                
+
+                return;
+            }
         }
     }
 }
