@@ -8,7 +8,14 @@ namespace HomicidalSuicidal
 {
     public static class World
     {
+        
+
         public static void Initialize()
+        {
+
+        }
+
+        public static void Update()
         {
 
         }

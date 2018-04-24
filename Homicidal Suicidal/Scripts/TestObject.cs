@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HomicidalSuicidal
 {
-    class TestObject : PhysicsObject, IRenderable
+    class StaticObject : PhysicsObject, IRenderable
     {
         protected override object Component => this;
 
@@ -31,7 +31,7 @@ namespace HomicidalSuicidal
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
-        public TestObject(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 0, name, rectangle)
+        public StaticObject(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 0, name, rectangle)
         {
             color = Color.Black;
             worldObjectThing = this;

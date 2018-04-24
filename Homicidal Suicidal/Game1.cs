@@ -41,7 +41,7 @@ namespace HomicidalSuicidal
             WorldObject.InitializeClass();
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            new TestObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
+            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
             new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
             new DoctorEnemy("Doctor1", allSprites["Square"], Color.White, new Point(50, 50), new Vector2(300, 0), 100, 50, 9999, 9999);
 
