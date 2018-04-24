@@ -68,10 +68,10 @@ namespace HomicidalSuicidal
             if (!CheckNameAvaliability(name, out string tempName))
             {
                 Console.WriteLine("WorldObject name already taken, generating automatic name.");
-                
             }
 
             WorldObjects.Add(tempName, this);
+            Name = name;
         }
 
         public WorldObject(string name, out string trueName)
@@ -88,6 +88,7 @@ namespace HomicidalSuicidal
 
             trueName = tempName;
             WorldObjects.Add(tempName, this);
+            Name = name;
         }
 
         public WorldObject(string name, Rectangle rectangle)
@@ -106,6 +107,7 @@ namespace HomicidalSuicidal
             Size = rectangle.Size;
 
             WorldObjects.Add(tempName, this);
+            Name = name;
         }
 
         public WorldObject(string name, out string trueName, Rectangle rectangle)
@@ -125,6 +127,7 @@ namespace HomicidalSuicidal
 
             trueName = tempName;
             WorldObjects.Add(tempName, this);
+            Name = name;
         }
 
         public static void InitializeClass() => WorldObjects = new Dictionary<string, WorldObject>();
