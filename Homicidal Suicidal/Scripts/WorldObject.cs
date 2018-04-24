@@ -71,7 +71,7 @@ namespace HomicidalSuicidal
             }
 
             WorldObjects.Add(tempName, this);
-            Name = name;
+            name = tempName;
         }
 
         public WorldObject(string name, out string trueName)
@@ -88,7 +88,7 @@ namespace HomicidalSuicidal
 
             trueName = tempName;
             WorldObjects.Add(tempName, this);
-            Name = name;
+            name = tempName;
         }
 
         public WorldObject(string name, Rectangle rectangle)
@@ -107,7 +107,7 @@ namespace HomicidalSuicidal
             Size = rectangle.Size;
 
             WorldObjects.Add(tempName, this);
-            Name = name;
+            name = tempName;
         }
 
         public WorldObject(string name, out string trueName, Rectangle rectangle)
@@ -127,7 +127,7 @@ namespace HomicidalSuicidal
 
             trueName = tempName;
             WorldObjects.Add(tempName, this);
-            Name = name;
+            name = tempName;
         }
 
         public static void InitializeClass() => WorldObjects = new Dictionary<string, WorldObject>();
