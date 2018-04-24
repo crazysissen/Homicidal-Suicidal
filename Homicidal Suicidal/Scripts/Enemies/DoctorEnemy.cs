@@ -53,7 +53,9 @@ namespace HomicidalSuicidal
         public float health, healing, attackSpeed = 1, attackTimer, attackRange;
         public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
 
-        public DoctorEnemy(string doctorName, bool doctorHostile, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
+        public Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - CenterPosition); 
+
+        public DoctorEnemy(string doctorName, bool doctorHostile, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorSyringeSpeed, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
         {
             Name = doctorName;
             Size = doctorSize;
@@ -65,6 +67,7 @@ namespace HomicidalSuicidal
             attackRange = doctorRange;
             health = doctorHealth;
             hostile = doctorHostile;
+            syringeSpeed = doctorSyringeSpeed;
             
             attackTimer = attackSpeed;
 
@@ -105,7 +108,7 @@ namespace HomicidalSuicidal
         {
             Console.WriteLine("Bulletspawn");
             // Temp bullet creation
-            // Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), healing, 0, 9999, "Player");
+            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, CenterPosition, DirectionToPlayer * syringeSpeed, Game1.allSprites["Square"], Color.White, new Point(10, 10), healing, 0, 9999, "Player");
         }
     }
 }
