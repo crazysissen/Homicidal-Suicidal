@@ -11,6 +11,8 @@ namespace HomicidalSuicidal
 {
     class Bullet : PhysicsObject, IRenderable
     {
+        protected override object Component => this;
+
         #region Renderable Implementation
 
         // Make sure to inherit from either WorldObject or PhysicsObject and from the IRenderable interface.

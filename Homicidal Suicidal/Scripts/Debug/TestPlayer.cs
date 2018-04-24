@@ -12,6 +12,8 @@ namespace HomicidalSuicidal
 {
     class TestPlayer : PhysicsObject, IRenderable
     {
+        protected override object Component => this;
+
         public override IRenderable Renderable => this;
 
         Rectangle IRenderable.Rect { get => Rect; }

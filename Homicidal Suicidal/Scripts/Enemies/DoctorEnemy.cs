@@ -13,6 +13,8 @@ namespace HomicidalSuicidal
 
     class DoctorEnemy : WorldObject, IRenderable
     {
+        protected override object Component => this;
+
         object ThisScript => this;
 
         #region Renderable Implementation

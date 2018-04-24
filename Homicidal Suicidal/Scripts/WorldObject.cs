@@ -48,7 +48,7 @@ namespace HomicidalSuicidal
 
         public virtual IRenderable Renderable => null;
 
-        protected virtual object Component { get; }
+        protected abstract object Component { get; }
         
         public T GetComponent<T>() => (T)Component;
 

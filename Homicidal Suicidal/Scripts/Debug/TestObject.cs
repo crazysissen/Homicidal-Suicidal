@@ -11,6 +11,8 @@ namespace HomicidalSuicidal
 {
     class TestObject : PhysicsObject, IRenderable
     {
+        protected override object Component => this;
+
         public static WorldObject worldObjectThing;
 
         public override IRenderable Renderable => this;
