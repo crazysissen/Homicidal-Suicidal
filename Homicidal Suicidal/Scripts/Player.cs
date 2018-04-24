@@ -11,6 +11,8 @@ namespace HomicidalSuicidal
 {
     public class Player : PhysicsObject, IRenderable
     {
+        protected override object Component => this;
+
         #region Renderable Implementation
 
         // Make sure to inherit from either WorldObject or PhysicsObject and from the IRenderable interface.
@@ -42,6 +44,8 @@ namespace HomicidalSuicidal
 
         const float speed = 5,
                     jumpPower = 7;
+
+        public float Health { get; set; }
 
         public Player(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
