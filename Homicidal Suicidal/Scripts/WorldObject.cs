@@ -136,7 +136,8 @@ namespace HomicidalSuicidal
 
         public static void UpdateAllDerived(GameTime gameTime)
         {
-            foreach(KeyValuePair<string, WorldObject> pair in WorldObjects)
+            Dictionary<string, WorldObject> InstanceList = WorldObjects;
+            foreach (KeyValuePair<string, WorldObject> pair in InstanceList)
                 pair.Value.Update(gameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
         }
 
