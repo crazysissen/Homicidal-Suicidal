@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HomicidalSuicidal
 {
-    class Player : PhysicsObject, IRenderable
+    public class Player : PhysicsObject, IRenderable
     {
         #region Renderable Implementation
 
@@ -40,6 +40,9 @@ namespace HomicidalSuicidal
 
         public static Player MainPlayer { get; private set; }
 
+        const float speed = 5,
+                    jumpPower = 7;
+
         public Player(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
             //if (player != null && player != this)
@@ -57,17 +60,15 @@ namespace HomicidalSuicidal
         protected override void Update(GameTime gameTime, float deltaTime)
         {
             KeyboardState keyboardState = Keyboard.GetState();
-            Vector2 velocity = (keyboardState.IsKeyDown(Keys.W)) ? new Vector2(0, -2) : Vector2.Zero;
-            velocity += (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(2, 0) : Vector2.Zero;
-            velocity += (keyboardState.IsKeyDown(Keys.S)) ? new Vector2(0, 2) : Vector2.Zero;
-            velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-2, 0) : Vector2.Zero;
+            Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
+            velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;
 
             Position += velocity;
 
             if (keyboardState.IsKeyDown(Keys.Space) && !spaceDown)
             {
                 Position -= new Vector2(0, 1);
-                Velocity += new Vector2(0, -5);
+                Velocity += new Vector2(0, -jumpPower);
             }
 
             spaceDown = keyboardState.IsKeyDown(Keys.Space);

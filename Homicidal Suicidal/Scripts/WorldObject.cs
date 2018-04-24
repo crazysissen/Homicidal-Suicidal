@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace HomicidalSuicidal
 {
-    abstract class WorldObject
+    public abstract class WorldObject
     {
         public static Dictionary<string, WorldObject> WorldObjects { get; private set; }
 
@@ -47,6 +47,10 @@ namespace HomicidalSuicidal
         public virtual PhysicsObject PhysObject => null;
 
         public virtual IRenderable Renderable => null;
+
+        protected virtual object Component { get; }
+        
+        public T GetComponent<T>() => (T)Component;
 
         public static WorldObject Get(string name) => WorldObjects[name];
 

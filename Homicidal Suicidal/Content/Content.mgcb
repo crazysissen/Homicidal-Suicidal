@@ -25,3 +25,9 @@
 /processorParam:TextureFormat=Color
 /build:Square.jpg
 
+#begin Suicidal Dash.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Suicidal Dash.wav
+

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HomicidalSuicidal
 {
-    interface IRenderable
+    public interface IRenderable
     {
         Rectangle Rect { get; }
 
