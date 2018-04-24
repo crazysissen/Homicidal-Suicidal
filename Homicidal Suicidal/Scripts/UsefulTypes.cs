@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HomicidalSuicidal
 {
+    public enum EnemyType { Doctor, Nurse, Surgeon }
+
     public enum Direction { Up, Down, Left, Right }
 
     public static class ExtensionMethods

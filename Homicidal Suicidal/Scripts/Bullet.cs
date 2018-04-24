@@ -72,7 +72,33 @@ namespace HomicidalSuicidal
 
         public override void OnCollision(PhysicsObject physicsObject)
         {
+            if (owner == Owner.Player)
+            {
+                Player player = physicsObject.GetComponent<Player>();
 
+                return;
+            }
+            
+            if (physicsObject.GetComponent<IEnemy>().ThisEnemyType == EnemyType.Doctor)
+            {
+                DoctorEnemy doctor = physicsObject.GetComponent<DoctorEnemy>();
+
+                return;
+            }
+
+            if (physicsObject.GetComponent<IEnemy>().ThisEnemyType == EnemyType.Nurse)
+            {
+                NurseEnemy nurse = physicsObject.GetComponent<NurseEnemy>();
+
+                return;
+            }
+
+            if (physicsObject.GetComponent<IEnemy>().ThisEnemyType == EnemyType.Surgeon)
+            {
+                SurgeonEnemy surgeon = physicsObject.GetComponent<SurgeonEnemy>();
+
+                return;
+            }
         }
     }
 }

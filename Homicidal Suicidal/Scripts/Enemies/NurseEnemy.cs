@@ -11,7 +11,7 @@ namespace HomicidalSuicidal
 {
     class NurseEnemy : WorldObject, IRenderable
     {
-        protected override object Component => this;
+
 
         #region Renderable Implementation
 

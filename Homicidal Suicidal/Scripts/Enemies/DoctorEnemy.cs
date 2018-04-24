@@ -11,11 +11,13 @@ namespace HomicidalSuicidal
 {
     public enum States { Idle, Attack, Dying }
 
-    class DoctorEnemy : WorldObject, IRenderable
+    class DoctorEnemy : WorldObject, IRenderable, IEnemy
     {
         protected override object Component => this;
 
         object ThisScript => this;
+
+        EnemyType IEnemy.ThisEnemyType => EnemyType.Doctor;
 
         #region Renderable Implementation
 
@@ -46,10 +48,10 @@ namespace HomicidalSuicidal
 
         protected States states;
 
-        float syringeSpeed;
+        public float syringeSpeed;
 
-        float health, healing, attackSpeed = 1, attackTimer, attackRange;
-        float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
+        public float health, healing, attackSpeed = 1, attackTimer, attackRange;
+        public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
 
         public DoctorEnemy(string doctorName, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
         {
@@ -70,8 +72,6 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            base.Update(gameTime, deltaTime);
-
             StateCheck();
 
             if (attackTimer > 0)
@@ -100,7 +100,8 @@ namespace HomicidalSuicidal
         void ThrowNeedle()
         {
             attackTimer = attackSpeed;
-            Bullet bullet = new Bullet("Syringe", "Syringe", new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), healing, 0, 9999, "Player");
+            // Temp bullet creation
+            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, new Vector2(1, 0), Game1.allSprites["Square"], Color.White, new Rectangle(), healing, 0, 9999, "Player");
         }
     }
 }
