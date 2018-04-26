@@ -49,7 +49,7 @@ namespace HomicidalSuicidal
             new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
             new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
             new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
-            new DoctorEnemy("Doctor1", true, allSprites["Square"], Color.White, new Point(50, 50), new Vector2(300, 0), 15, 100, 50, 9999, 9999);
+            new DoctorEnemy("Doctor1", true, allSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 9999);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);

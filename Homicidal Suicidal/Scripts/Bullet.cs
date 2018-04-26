@@ -43,6 +43,8 @@ namespace HomicidalSuicidal
         public enum Owner { Player, Enemy };
         Owner owner;
 
+        public Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - CenterPosition);
+
         string targetTag;
 
         float damage;
@@ -63,13 +65,24 @@ namespace HomicidalSuicidal
             alive = true;
             owner = bulletOwner;
 
+            Kinematic = true;
             Size = bulletSize;
             CenterPosition = initialPosition;
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
+            float bulletDir = Velocity.Length();
+            double bulletAngle = Math.Atan2(Velocity.Y, Velocity.X);
+            double directionToPlayerAngle = Math.Atan2(DirectionToPlayer.Y, DirectionToPlayer.X);
+            double newBulletAngle = bulletAngle - directionToPlayerAngle;
 
+            Console.WriteLine(bulletAngle);
+
+            if (Tags.Contains("Syringe"))
+            {
+                rotation = (float)-newBulletAngle;
+            }
         }
 
         public override void OnCollision(PhysicsObject physicsObject)
@@ -85,6 +98,7 @@ namespace HomicidalSuicidal
             {
                 Player.MainPlayer.Health += damage;
 
+                DestroyObject();
                 return;
             }
 
@@ -110,6 +124,8 @@ namespace HomicidalSuicidal
 
                     return;
                 }
+
+                DestroyObject();
             }
         }
     }

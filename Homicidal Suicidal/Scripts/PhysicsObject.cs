@@ -46,6 +46,9 @@ namespace HomicidalSuicidal
             //    physicsObject.Position -= closestOffset * 0.5f;
             //}
 
+            if (Kinematic && physicsObject.Kinematic)
+                return;
+
             Velocity *= closestOffset.VelocityNullifier();
             physicsObject.Velocity *= closestOffset.VelocityNullifier();
         }
