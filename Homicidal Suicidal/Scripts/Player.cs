@@ -56,26 +56,29 @@ namespace HomicidalSuicidal
             Position = rectangle.Location.ToVector2();
             color = Color.White;
             Size = rectangle.Size;
+            Health = 100;
             Kinematic = true;
         }
 
-        bool spaceDown;
-
         protected override void Update(GameTime gameTime, float deltaTime)
         {
+            // Die logic
+            if (Health <= 0)
+            {
+                Console.WriteLine("Should Die");
+            }
+
             KeyboardState keyboardState = Keyboard.GetState();
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
             velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;
 
             Position += velocity;
 
-            if (keyboardState.IsKeyDown(Keys.Space) && !spaceDown)
+            if (Methods.KeyDown(Keys.Space))
             {
                 Position -= new Vector2(0, 1);
                 Velocity += new Vector2(0, -jumpPower);
             }
-
-            spaceDown = keyboardState.IsKeyDown(Keys.Space);
 
             // Console.WriteLine(Intersects(StaticObject.worldObjectThing));
         }

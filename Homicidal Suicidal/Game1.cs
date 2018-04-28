@@ -45,10 +45,10 @@ namespace HomicidalSuicidal
             WorldObject.InitializeClass();
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            new StaticObject("Test", new Rectangle(0, 400, 1200, 100), AllSprites["Square"]);
-            new StaticObject("Test", new Rectangle(0, 200, 1500, 50), AllSprites["Square"]);
-            new Player("Test", new Rectangle(0, 0, 40, 40), AllSprites["Square"]);
-            new DoctorEnemy("Doctor1", true, AllSprites["Square"], Color.White, new Point(50, 50), new Vector2(300, 0), 15, 100, 50, 9999, 9999);
+            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
+            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
+            new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
+            new DoctorEnemy("Doctor1", true, allSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 9999);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);
