@@ -108,7 +108,7 @@ namespace HomicidalSuicidal
         {
             Console.WriteLine("Bulletspawn");
             // Temp bullet creation
-            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, CenterPosition, DirectionToPlayer * syringeSpeed, Game1.allSprites["Square"], Color.White, new Point(10, 10), healing, 0, 9999, "Player");
+            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, CenterPosition, DirectionToPlayer * syringeSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), healing, 0, 9999, "Player");
         }
     }
 }

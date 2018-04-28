@@ -14,11 +14,13 @@ namespace HomicidalSuicidal
     public class Game1 : Game
     {
         // These variables will never be more than one, static is appropriate
-        public static GraphicsDeviceManager graphics;
-        public static SpriteBatch spriteBatch;
-        public static Player player;
-        public static SpriteBatch MainSpriteBatch { get => spriteBatch; }
-        public static Dictionary<string, Texture2D> allSprites;
+        public static SpriteBatch MainSpriteBatch => spriteBatch;
+        public static Dictionary<string, Texture2D> AllSprites { get; set; }
+        public static Player Player { get; set; }
+        public static GraphicsDeviceManager Graphics { get; set; }
+
+        static SpriteBatch spriteBatch;
+        Song inGameSong;
 
         string[] _loadTags = new string[] 
         {
@@ -26,17 +28,14 @@ namespace HomicidalSuicidal
             "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
             "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing"
         };
-        Song inGameSong;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 1919;
-            graphics.PreferredBackBufferHeight = 1079;
-
-            
+            Graphics.PreferredBackBufferWidth = 1919;
+            Graphics.PreferredBackBufferHeight = 1079;
         }
 
         protected override void Initialize()
@@ -46,10 +45,10 @@ namespace HomicidalSuicidal
             WorldObject.InitializeClass();
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
-            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
-            new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
-            new DoctorEnemy("Doctor1", true, allSprites["Square"], Color.White, new Point(50, 50), new Vector2(300, 0), 15, 100, 50, 9999, 9999);
+            new StaticObject("Test", new Rectangle(0, 400, 1200, 100), AllSprites["Square"]);
+            new StaticObject("Test", new Rectangle(0, 200, 1500, 50), AllSprites["Square"]);
+            new Player("Test", new Rectangle(0, 0, 40, 40), AllSprites["Square"]);
+            new DoctorEnemy("Doctor1", true, AllSprites["Square"], Color.White, new Point(50, 50), new Vector2(300, 0), 15, 100, 50, 9999, 9999);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);
@@ -60,11 +59,11 @@ namespace HomicidalSuicidal
             inGameSong = Content.Load<Song>("Suicidal Dash");
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            allSprites = new Dictionary<string, Texture2D>();
+            AllSprites = new Dictionary<string, Texture2D>();
 
             foreach (string name in _loadTags)
                 if (Content.Load<Texture2D>(name) != null)
-                    allSprites.Add(name, Content.Load<Texture2D>(name));
+                    AllSprites.Add(name, Content.Load<Texture2D>(name));
         }
 
         protected override void UnloadContent()

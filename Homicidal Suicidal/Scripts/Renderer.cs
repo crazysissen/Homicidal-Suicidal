@@ -11,10 +11,10 @@ namespace HomicidalSuicidal
 {
     static class Renderer
     {
+        static Vector2 CameraScreenPosition => camera + offset - new Vector2(Game1.Graphics.PreferredBackBufferWidth * 0.5f, Game1.Graphics.PreferredBackBufferWidth * 0.5f);
+
         public static Vector2 camera;
         public static Vector2 offset = new Vector2(500, 0);
-
-        static Vector2 CameraScreenPosition => camera + offset - new Vector2(Game1.graphics.PreferredBackBufferWidth * 0.5f, Game1.graphics.PreferredBackBufferWidth * 0.5f);
 
         public static List<IRenderable> Renderables
         {
@@ -40,7 +40,6 @@ namespace HomicidalSuicidal
             foreach (IRenderable renderable in renderables)
             {
                 Render(renderable, Game1.MainSpriteBatch, CameraScreenPosition);
-                GraphicsDevice graphicsDevice;
             }
         }
 

@@ -60,6 +60,7 @@
     <Compile Include="Scripts\Debug\TestPlayer.cs" />
     <Compile Include="Scripts\World.cs" />
     <Compile Include="Scripts\WorldObject.cs" />
+    <Compile Include="Scripts\WorldZone.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
