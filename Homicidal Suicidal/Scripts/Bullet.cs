@@ -47,7 +47,7 @@ namespace HomicidalSuicidal
 
         string targetTag;
 
-        float damage;
+        float damage, balancedVariable = 4;
 
         bool alive;
 
@@ -77,11 +77,11 @@ namespace HomicidalSuicidal
             double directionToPlayerAngle = Math.Atan2(DirectionToPlayer.Y, DirectionToPlayer.X);
             double newBulletAngle = bulletAngle - directionToPlayerAngle;
 
-            Console.WriteLine(bulletAngle);
-
             if (Tags.Contains("Syringe"))
             {
                 rotation = (float)-newBulletAngle;
+
+                Velocity = Velocity += Game1.NormalizeThis((DirectionToPlayer/* - Velocity*/) / balancedVariable);
             }
         }
 
@@ -99,7 +99,6 @@ namespace HomicidalSuicidal
                 Player.MainPlayer.Health += damage;
 
                 DestroyObject();
-                return;
             }
 
             if (targetTag == "Enemy")
@@ -108,24 +107,24 @@ namespace HomicidalSuicidal
                 {
                     doctor.health -= damage;
 
-                    return;
+                    DestroyObject();
                 }
 
                 if (successes[2]) // Nurse
                 {
                     // nurse.health -= damage;
 
-                    return;
+                    DestroyObject();
                 }
 
                 if (successes[3]) // Surgeon
                 {
                     // surgeon.health -= damage;
 
-                    return;
+                    DestroyObject();
                 }
 
-                DestroyObject();
+                
             }
         }
     }

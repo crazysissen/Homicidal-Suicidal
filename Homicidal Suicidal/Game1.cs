@@ -30,7 +30,7 @@ namespace HomicidalSuicidal
 
         string[] _loadTags = new string[] 
         {
-            "Square", "Floor",
+            "Square", "Floor", "Syringe",
             "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
             "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing"
         };

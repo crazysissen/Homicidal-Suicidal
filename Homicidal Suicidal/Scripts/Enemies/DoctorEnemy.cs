@@ -11,7 +11,7 @@ namespace HomicidalSuicidal
 {
     public enum States { Idle, Attack, Dying }
 
-    class DoctorEnemy : WorldObject, IRenderable
+    class DoctorEnemy : PhysicsObject, IRenderable
     {
         protected override object Component => this;
 
@@ -51,7 +51,7 @@ namespace HomicidalSuicidal
         public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
         public Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - (Position + new Vector2(1, 0))); 
 
-        public DoctorEnemy(string doctorName, bool doctorHostile, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorSyringeSpeed, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(doctorName)
+        public DoctorEnemy(string doctorName, bool doctorHostile, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorSyringeSpeed, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(Vector2.Zero, 0, doctorName)
         {
             Name = doctorName;
             Size = doctorSize;
@@ -64,7 +64,7 @@ namespace HomicidalSuicidal
             health = doctorHealth;
             hostile = doctorHostile;
             syringeSpeed = doctorSyringeSpeed;
-            
+            Kinematic = true;
             attackTimer = attackSpeed;
 
             Tags.Add("Enemy");
@@ -103,7 +103,7 @@ namespace HomicidalSuicidal
         void ThrowNeedle()
         {
             // Temp bullet creation
-            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, Position + new Vector2(1, 0), DirectionToPlayer * syringeSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), healing, 0, 9999, "Player");
+            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, Position + new Vector2(1, 0), DirectionToPlayer * syringeSpeed, Game1.AllSprites["Syringe"], Color.White, new Point(10, 38), healing, 0, 9999, "Player");
         }
     }
 }
