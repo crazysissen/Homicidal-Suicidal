@@ -68,8 +68,8 @@ namespace HomicidalSuicidal
         {
             inGameSong = Content.Load<Song>("Suicidal Dash");
 
-            defaultFont = Content.Load<SpriteFont>("DefaultFont");
-            menuFont = Content.Load<SpriteFont>("MenuFont2D");
+            defaultFont = Content.Load<SpriteFont>("Fonts/DefaultFont");
+            menuFont = Content.Load<SpriteFont>("Fonts/MenuFont");
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             AllSprites = new Dictionary<string, Texture2D>();
