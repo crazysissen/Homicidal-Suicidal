@@ -139,20 +139,6 @@
 /processorParam:TextureFormat=Color
 /build:Nurse_Healing.png
 
-#begin DefaultFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:DefaultFont.spritefont
-
-#begin MenuFont2D.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:MenuFont2D.spritefont
-
 #begin Fonts/Neon.ttf
 /copy:Fonts/Neon.ttf
 
