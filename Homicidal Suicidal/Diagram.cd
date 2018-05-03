@@ -3,7 +3,7 @@
   <Class Name="HomicidalSuicidal.DoctorEnemy">
     <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gCQDAAAggAQiAEAABASAAAAAABAAAAKEAABABAASAAg=</HashCode>
+      <HashCode>gCQDAAAgAAQiAEAABASAAAAAIBAAAAKEAABABAASAAg=</HashCode>
       <FileName>Scripts\Enemies\DoctorEnemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -45,7 +45,7 @@
   <Class Name="HomicidalSuicidal.WorldObject">
     <Position X="14.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ICQACAAAABQAgMBgCBAiBAQAACAEAEAAAIBAAAAAgoA=</HashCode>
+      <HashCode>ICQACAAAABQAhMBgCBAiBAQAACAEAEAAAIBAAAAAgoA=</HashCode>
       <FileName>Scripts\WorldObject.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,34 +59,44 @@
   <Class Name="HomicidalSuicidal.Player">
     <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQBCAIAAAQgAAAACASAAAAAABAAAQCAAABABAASQAA=</HashCode>
+      <HashCode>AAQBCAIAAAQgAAAAAASAAAAAABAAAQCAAABABAASQAA=</HashCode>
       <FileName>Scripts\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.501" />
   </Class>
   <Class Name="HomicidalSuicidal.Renderer">
-    <Position X="18" Y="0.75" Width="1.5" />
+    <Position X="2.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAgAAAAAAIAAAAAIAAAAAAAAAABAAABAIAAA=</HashCode>
       <FileName>Scripts\Renderer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Constants">
-    <Position X="18" Y="5.75" Width="1.5" />
+    <Position X="2.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scripts\Constants.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Game1">
-    <Position X="2" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="HomicidalSuicidal.Game1.GameState">
+        <TypeIdentifier>
+          <NewMemberFileName>Game1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ABQAEEEAAAAAAwAAAAAAAAAAAABAAAgBAAAAAAAABAQ=</HashCode>
+      <HashCode>ABQIEElAAAAgAwAgAAAAAKAACABIAAAAAAAEASAAAAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Program">
-    <Position X="2" Y="4.75" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -101,38 +111,78 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HomicidalSuicidal.ExtensionMethods">
-    <Position X="18" Y="7" Width="1.5" />
+    <Position X="2.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HomicidalSuicidal.Miscellanious">
-    <Position X="18" Y="8.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Scripts\UsefulTypes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="HomicidalSuicidal.Methods">
-    <Position X="19.75" Y="7" Width="1.5" />
+    <Position X="2.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAIAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAgIAAAAYAAAAAAAAEAAAAAAAACAAAAAA=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.World">
-    <Position X="2" Y="7.25" Width="1.5" />
+    <Position X="0.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQQAAQAAAAAgYAAAAAAAAAAAAAAAAIAAAAEAAgABAA=</HashCode>
       <FileName>Scripts\World.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Particle">
-    <Position X="19.75" Y="6" Width="1.5" />
+    <Position X="2.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scripts\Particle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomicidalSuicidal.GUI">
+    <Position X="19.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Interface Name="HomicidalSuicidal.GUI.IGUIMember">
+        <TypeIdentifier>
+          <NewMemberFileName>Scripts\GUI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Struct Name="HomicidalSuicidal.GUI.Label">
+        <TypeIdentifier>
+          <NewMemberFileName>Scripts\GUI.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+      <Struct Name="HomicidalSuicidal.GUI.Texture">
+        <TypeIdentifier>
+          <NewMemberFileName>Scripts\GUI.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+      <Struct Name="HomicidalSuicidal.GUI.Button">
+        <NestedTypes>
+          <Delegate Name="HomicidalSuicidal.GUI.Button.Call" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>Scripts\GUI.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Delegate>
+          <Enum Name="HomicidalSuicidal.GUI.Button.GUIButtonState" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>Scripts\GUI.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Enum>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>Scripts\GUI.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAiAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\GUI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="HomicidalSuicidal.IRenderable">
@@ -143,14 +193,14 @@
     </TypeIdentifier>
   </Interface>
   <Enum Name="HomicidalSuicidal.EnemyType">
-    <Position X="19.75" Y="9" Width="1.5" />
+    <Position X="18" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAE=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="HomicidalSuicidal.Direction">
-    <Position X="18" Y="9.5" Width="1.5" />
+    <Position X="18" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>

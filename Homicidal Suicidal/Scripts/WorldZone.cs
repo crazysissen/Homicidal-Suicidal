@@ -11,11 +11,12 @@ namespace HomicidalSuicidal
     [Serializable]
     class WorldZone
     {
-        const int groundNumber = 16,
-                  minPlatforms = 1,
-                  maxPlatforms = 3,
-                  minEnemies = 1,
-                  maxEnemies = 2;
+        public const int 
+            groundNumber = 16,
+            minPlatforms = 1,
+            maxPlatforms = 3,
+            minEnemies = 1,
+            maxEnemies = 2;
 
         readonly Point groundSize = new Point(80, 80);
 
@@ -24,6 +25,11 @@ namespace HomicidalSuicidal
         public Vector2[] GroundPositions { get; private set; }
         public Vector2[] PlatformPositions { get; private set; }
         public object[] Enemies { get; private set; }
+
+        public WorldZone(int seed)
+        {
+            Generate(seed);
+        }
 
         public void Generate(int seed)
         {

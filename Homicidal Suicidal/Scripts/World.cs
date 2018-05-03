@@ -19,8 +19,13 @@ namespace HomicidalSuicidal
                                 wallSize = new Point(900, 900),
                                 platformSize = new Point(120, 30);
 
-        public static void Initialize()
+        static int currentSeed;
+
+        public static void Initialize(int initialSeed)
         {
+            Random tempRandom = new Random(initialSeed);
+            currentSeed = tempRandom.Next(0, (int)(0.5f * int.MaxValue));
+
 
         }
 

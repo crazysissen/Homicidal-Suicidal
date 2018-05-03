@@ -42,10 +42,13 @@ namespace HomicidalSuicidal
 
         public static Player MainPlayer { get; private set; }
 
-        const float speed = 5,
-                    jumpPower = 7;
+        const float health = 0,
+                    speed = 5,
+                    jumpPower = 7,
+                    deathRate = -0.02f;
 
         public float Health { get; set; }
+        public float MaxHealth { get => health; }
 
         public Player(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
@@ -56,7 +59,7 @@ namespace HomicidalSuicidal
             Position = rectangle.Location.ToVector2();
             color = Color.White;
             Size = rectangle.Size;
-            Health = 100;
+            Health = health;
             Kinematic = true;
         }
 
@@ -67,6 +70,9 @@ namespace HomicidalSuicidal
             {
                 Console.WriteLine("Should Die");
             }
+
+            // Dying logic
+            Health += deathRate;
 
             KeyboardState keyboardState = Keyboard.GetState();
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;

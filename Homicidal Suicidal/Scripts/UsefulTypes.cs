@@ -18,17 +18,25 @@ namespace HomicidalSuicidal
         public static Vector2 VelocityNullifier(this Vector2 vector) => new Vector2(vector.X == 0 ? 1 : 0, vector.Y == 0 ? 1 : 0);
     }
 
-    public static class Miscellanious
-    {
-        public static void Update() => Methods.UpdateMethods();
-    }
-
     public static class Methods
     {
         static KeyboardState previous;
+        static bool leftMousePressed, rightMousePressed;
 
-        internal static void UpdateMethods() => previous = Keyboard.GetState();
+        public static void UpdateMethods()
+        {
+            previous = Keyboard.GetState();
+
+            MouseState state = Mouse.GetState();
+            leftMousePressed = state.LeftButton == ButtonState.Pressed;
+            rightMousePressed = state.RightButton == ButtonState.Pressed;
+        }
 
         public static bool KeyDown(Keys key) => (!previous.IsKeyDown(key) && Keyboard.GetState().IsKeyDown(key));
+
+        public static bool LeftMouseDown() => Mouse.GetState().LeftButton == ButtonState.Pressed && !leftMousePressed;
+
+        public static bool RightMouseDown() => Mouse.GetState().RightButton == ButtonState.Pressed && !rightMousePressed;
+
     }
 }

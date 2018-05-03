@@ -19,6 +19,12 @@ namespace HomicidalSuicidal
         public static Player Player { get; set; }
         public static GraphicsDeviceManager Graphics { get; set; }
 
+        public enum GameState { MainMenu, InGame, Pause, Win, Lose }
+        public Stack<GameState> CurrentState { get; private set; }
+
+        GUI gui = new GUI();
+        SpriteFont menuFont, defaultFont;
+
         static SpriteBatch spriteBatch;
         Song inGameSong;
 
@@ -33,6 +39,7 @@ namespace HomicidalSuicidal
         {
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
 
             Graphics.PreferredBackBufferWidth = 1919;
             Graphics.PreferredBackBufferHeight = 1079;
@@ -45,18 +52,24 @@ namespace HomicidalSuicidal
             WorldObject.InitializeClass();
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
-            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), allSprites["Square"]);
-            new Player("Test", new Rectangle(0, 0, 40, 40), allSprites["Square"]);
-            new DoctorEnemy("Doctor1", true, allSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 9999);
+            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
+            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
+            new Player("Test", new Rectangle(0, 0, 40, 40), AllSprites["Square"]);
+            new DoctorEnemy("Doctor1", true, AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 20);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);
+
+            CurrentState = new Stack<GameState>();
+            CurrentState.Push(GameState.MainMenu);
         }
 
         protected override void LoadContent()
         {
             inGameSong = Content.Load<Song>("Suicidal Dash");
+
+            defaultFont = Content.Load<SpriteFont>("DefaultFont");
+            menuFont = Content.Load<SpriteFont>("MenuFont2D");
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             AllSprites = new Dictionary<string, Texture2D>();
@@ -73,20 +86,96 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            gui.New();
+
+            // Declaring bodies here is unnecessary, it makes things easier to see
+            switch (CurrentState.Peek())
+            {
+                case GameState.MainMenu:
+                    {
+                        MainMenuUpdate();
+                        break;
+                    }
+
+                case GameState.InGame:
+                    {
+                        InGameUpdate(gameTime);
+                        break;
+                    }
+
+                case GameState.Pause:
+                    {
+                        PauseUpdate();
+                        break;
+                    }
+
+                case GameState.Win:
+                    {
+                        break;
+                    }
+            }
+
+            base.Update(gameTime);
+
+            Methods.UpdateMethods();
+        }
+
+        void MainMenuUpdate()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+
+            gui.Add(
+                new GUI.Label("Homicidal Suicidal", 80, new Vector2(100, 100), menuFont, Color.White),
+                new GUI.Label("Start", 80, new Vector2(100, 480), defaultFont, Color.LightGray),
+                new GUI.Label("Quit", 80, new Vector2(100, 600), defaultFont, Color.LightGray),
+                new GUI.Button(new Rectangle(100, 480, 500, 80), StartButton),
+                new GUI.Button(new Rectangle(100, 600, 500, 80), ExitButton)
+                );
+        }
+
+        void PauseUpdate()
+        {
+            Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+
+            gui.Add(
+                new GUI.Texture(new Rectangle(-1, -1, screenSize.X + 2, screenSize.Y + 2), new Color(0, 0, 0, 0.7f)),
+                new GUI.Label("Paused", 80, new Vector2(100, 100), menuFont, Color.White),
+                new GUI.Label("Resume", 80, new Vector2(100, 480), defaultFont, Color.LightGray),
+                new GUI.Label("Quit", 80, new Vector2(100, 600), defaultFont, Color.LightGray),
+                new GUI.Button(new Rectangle(100, 480, 500, 80), ResumeButton),
+                new GUI.Button(new Rectangle(100, 600, 500, 80), ExitButton)
+                );
+        }
+
+        void ResumeButton()
+        {
+            CurrentState.Pop();
+        }
+
+        void StartButton()
+        {
+            CurrentState.Push(GameState.InGame);
+        }
+
+        void ExitButton()
+        {
+            Exit();
+        }
+
+        void InGameUpdate(GameTime gameTime)
+        {
             // In order: All movement, all updates, all collision
+            if (Methods.KeyDown(Keys.Escape))
+                CurrentState.Push(GameState.Pause);
 
             WorldObject.UpdateAllPhysics(gameTime);
             WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
 
             Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 500);
-
-            Miscellanious.Update();
-
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -95,7 +184,11 @@ namespace HomicidalSuicidal
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
-            Renderer.RenderAll(spriteBatch);
+            if (CurrentState.Peek() == GameState.InGame || CurrentState.Peek() == GameState.Pause)
+                Renderer.RenderAll(spriteBatch);
+
+            gui.Draw(spriteBatch);
+            //spriteBatch.DrawString(defaultFont, "Hello", new Vector2(100, 100), Color.White, 0, Vector2.One, 12, SpriteEffects.None);
 
             spriteBatch.End();
 
