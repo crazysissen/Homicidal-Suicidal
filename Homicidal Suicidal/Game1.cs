@@ -52,10 +52,11 @@ namespace HomicidalSuicidal
             WorldObject.InitializeClass();
 
             //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
-            new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
-            new Player("Test", new Rectangle(0, 0, 40, 40), AllSprites["Square"]);
-            new DoctorEnemy("Doctor1", true, AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 20);
+            //new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
+            //new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
+            new Player("Test", new Rectangle(0, -540, 40, 40), AllSprites["Square"]);
+            WorldZone testZone = new WorldZone(1, 0);
+            //new DoctorEnemy("Doctor1", true, AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 20);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);
@@ -117,6 +118,8 @@ namespace HomicidalSuicidal
 
             base.Update(gameTime);
 
+            Console.WriteLine(Graphics.PreferredBackBufferHeight);
+
             Methods.UpdateMethods();
         }
 
@@ -138,6 +141,9 @@ namespace HomicidalSuicidal
 
         void PauseUpdate()
         {
+            if (Methods.KeyDown(Keys.Escape))
+                CurrentState.Pop();
+
             Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
 
             gui.Add(
@@ -150,20 +156,11 @@ namespace HomicidalSuicidal
                 );
         }
 
-        void ResumeButton()
-        {
-            CurrentState.Pop();
-        }
+        void ResumeButton() => CurrentState.Pop();
 
-        void StartButton()
-        {
-            CurrentState.Push(GameState.InGame);
-        }
+        void StartButton() => CurrentState.Push(GameState.InGame);
 
-        void ExitButton()
-        {
-            Exit();
-        }
+        void ExitButton() => Exit();
 
         void InGameUpdate(GameTime gameTime)
         {
@@ -175,7 +172,7 @@ namespace HomicidalSuicidal
             WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
 
-            Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 500);
+            Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 0);
         }
 
         protected override void Draw(GameTime gameTime)

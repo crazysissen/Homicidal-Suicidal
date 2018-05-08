@@ -15,7 +15,13 @@ namespace HomicidalSuicidal
 
     public static class ExtensionMethods
     {
-        public static Vector2 VelocityNullifier(this Vector2 vector) => new Vector2(vector.X == 0 ? 1 : 0, vector.Y == 0 ? 1 : 0);
+        public static Vector2 VelocityNullifier(this Vector2 movement, Vector2 offset)
+        {
+            if ((offset.X > 0 && movement.X > 0) || (offset.Y > 0 && movement.Y > 0) || (offset.X < 0 && movement.X < 0) || (offset.Y < 0 && movement.Y < 0))
+                return Vector2.One;
+
+            return new Vector2(movement.X == 0 ? 1 : 0, movement.Y == 0 ? 1 : 0);
+        }
     }
 
     public static class Methods

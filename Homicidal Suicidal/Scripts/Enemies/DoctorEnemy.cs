@@ -22,7 +22,7 @@ namespace HomicidalSuicidal
 
         public override IRenderable Renderable => this;
 
-        Rectangle IRenderable.Rect { get => Rect; }
+        WorldObject IRenderable.Object { get => this; }
 
         Texture2D IRenderable.Sprite { get => sprite; }
         Texture2D sprite;

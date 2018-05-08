@@ -11,7 +11,7 @@
   <Class Name="HomicidalSuicidal.NurseEnemy">
     <Position X="12.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACQBAAAAAAQgAAAAAASAAAAAABAAAACAAABABAASAAg=</HashCode>
+      <HashCode>ACQBAAAAAAQwAAAAAASAAAAAABAAAACAAABABAACAAg=</HashCode>
       <FileName>Scripts\Enemies\NurseEnemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -19,7 +19,7 @@
   <Class Name="HomicidalSuicidal.SurgeonEnemy">
     <Position X="14.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACQBAAAAAAQgAAAAAASAAAAAABAAAACAAABABAASAAg=</HashCode>
+      <HashCode>ACQBAAAAAAQwAAAAAASAAAAAABAAAACAAABABAACAAg=</HashCode>
       <FileName>Scripts\Enemies\SurgeonEnemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -59,7 +59,7 @@
   <Class Name="HomicidalSuicidal.Player">
     <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQBCAIAAAQgAAAAAASAAAAAABAAAQCAAABABAASQAA=</HashCode>
+      <HashCode>AAQBCAIAAAQwCAAAAASAAAAAABAAAQCAAABABAECQAg=</HashCode>
       <FileName>Scripts\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.501" />
@@ -91,7 +91,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ABQIEElAAAAgAwAgAAAAAKAACABIAAAAAAAEASAAAAQ=</HashCode>
+      <HashCode>ABQIEMlAAAAgAwAgAAAAAKAACABIAAAAAAAEASAAAEQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -105,7 +105,7 @@
   <Class Name="HomicidalSuicidal.StaticObject">
     <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAQgIAAAAASAAAAAABAAAACAAABABAASAAA=</HashCode>
+      <HashCode>AAABAAAAAAQwIAAAAASAAAAAABAAAACAAABABAACAAA=</HashCode>
       <FileName>Scripts\StaticObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -125,9 +125,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.World">
-    <Position X="0.5" Y="8.5" Width="1.5" />
+    <Position X="0.5" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQQAAQAAAAAgYAAAAAAAAAAAAAAAAIAAAAEAAgABAA=</HashCode>
+      <HashCode>AAQQAAQAAAAAkYAAAAAAAABAIAAAEAIAAAAEAAkABAA=</HashCode>
       <FileName>Scripts\World.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -188,7 +188,7 @@
   <Interface Name="HomicidalSuicidal.IRenderable">
     <Position X="18" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAIAAAAAAAAAAACAAAAAUAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAIAgAAAAAAAAAAAAAAAUAAAAAAAAAAA=</HashCode>
       <FileName>Scripts\IRenderable.cs</FileName>
     </TypeIdentifier>
   </Interface>
