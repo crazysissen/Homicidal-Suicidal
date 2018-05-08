@@ -1,0 +1,14 @@
+﻿Doctor
+Res: 48x29 
+Scale: 5 (240, 145)
+Apparent Center: (12, 12)
+
+Nurse
+Res: 48x36 
+Scale: 5 (240, 180)
+Apparent Center: (15, 19)
+
+Surgeon
+Res: 28x27 
+Scale:
+Apparent Center: (15, 14)

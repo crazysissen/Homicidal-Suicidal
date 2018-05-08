@@ -55,6 +55,7 @@ namespace HomicidalSuicidal
             //new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
             //new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
             new Player("Test", new Rectangle(0, -540, 40, 40), AllSprites["Square"]);
+            new NurseEnemy("Nurse", true, AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), new Vector2(300, 0), 0.05f, 100, 999);
             WorldZone testZone = new WorldZone(1, 0);
             //new DoctorEnemy("Doctor1", true, AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 20);
 

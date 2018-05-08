@@ -9,8 +9,12 @@ using Microsoft.Xna;
 
 namespace HomicidalSuicidal
 {
-    class NurseEnemy : WorldObject, IRenderable
+    public enum States { Idle, Attack, Dying }
+
+    class NurseEnemy : PhysicsObject, IRenderable
     {
+        protected States states;
+
         protected override object Component => this;
 
         #region Renderable Implementation
@@ -40,9 +44,16 @@ namespace HomicidalSuicidal
 
         #endregion
 
-        float health, healing;
+        public const float maxHealth = 100;
 
-        public NurseEnemy(string nurseName, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseHealth, float nurseHealing, float nurseLayer) : base(nurseName)
+        public bool hostile;
+
+        Vector2 apparentOffset = new Vector2(15, 19);
+        public Vector2 ApparentCenter => (Position + apparentOffset);
+        public float health, auraRadius, healingMultiplier;
+        public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
+
+        public NurseEnemy(string nurseName, bool nurseHostile, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseMaxHealthAuraHealingMultiplier, float nurseAuraRadius, float nurseLayer) : base(Vector2.Zero, 0, nurseName)
         {
             Name = nurseName;
             Size = nurseSize;
@@ -50,13 +61,37 @@ namespace HomicidalSuicidal
             sprite = nurseTexture;
             color = nurseColor;
             Position = nurseStartPos;
-            healing = nurseHealing;
-            health = nurseHealth;
+            auraRadius = nurseAuraRadius;
+            health = maxHealth;
+            healingMultiplier = nurseMaxHealthAuraHealingMultiplier;
+            hostile = nurseHostile;
+
+            Kinematic = true;
+            Tags.Add("Enemy");
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
+            StateCheck();
 
+            if (DistanceToPlayer <= auraRadius && hostile)
+            {
+                Player.MainPlayer.Heal(Player.maxHealth * healingMultiplier * deltaTime);
+            }
+        }
+
+        void StateCheck()
+        {
+            // Die logic
+            if (health <= 0)
+            {
+                states = States.Dying;
+                DestroyObject();
+            }
+            else if (health > 0)
+            {
+                states = States.Attack;
+            }
         }
     }
 }

@@ -9,8 +9,6 @@ using Microsoft.Xna;
 
 namespace HomicidalSuicidal
 {
-    public enum States { Idle, Attack, Dying }
-
     class DoctorEnemy : PhysicsObject, IRenderable
     {
         protected override object Component => this;
@@ -45,10 +43,11 @@ namespace HomicidalSuicidal
         protected States states;
 
         public bool hostile;
-        public float syringeSpeed;
-        public float health, healing, attackSpeed = 1, attackTimer, attackRange;
+        public float health, healing, attackSpeed = 1, attackTimer, attackRange, syringeSpeed;
 
-        public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - CenterPosition).Length();
+        Vector2 apparentOffset = new Vector2(12, 12);
+        public Vector2 ApparentCenter => (Position + apparentOffset);
+        public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
         public Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - (Position + new Vector2(1, 0))); 
 
         public DoctorEnemy(string doctorName, bool doctorHostile, Texture2D doctorTexture, Color doctorColor, Point doctorSize, Vector2 doctorStartPos, float doctorSyringeSpeed, float doctorHealth, float doctorHealing, float doctorRange, float doctorLayer) : base(Vector2.Zero, 0, doctorName)

@@ -42,15 +42,17 @@ namespace HomicidalSuicidal
 
         public static Player MainPlayer { get; private set; }
 
-        const float maxHealth = 1,
-                    speed = 5,
-                    jumpPower = 7,
-                    attackSpeed = .3f,
-                    bulletSpeed = 5,
-                    deathRate = -0.002f;
+        //Vector2 apparentOffset = new Vector2(, );
+        //public Vector2 ApparentCenter => (Position + apparentOffset);
+
+        public const float maxHealth = 100,
+                           speed = 5,
+                           jumpPower = 7,
+                           attackSpeed = .3f,
+                           bulletSpeed = 5,
+                           deathRate = 0.01f;
 
         bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
-
 
         Vector2 mousePos;
 
@@ -68,13 +70,13 @@ namespace HomicidalSuicidal
             Position = rectangle.Location.ToVector2();
             color = Color.White;
             Size = rectangle.Size;
-            Health = maxHealth;
+            Health = maxHealth * 0.5f;
             Kinematic = true;
         }
 
-        public void Heal(float ammount)
+        public void Heal(float amount)
         {
-            Health += ammount;
+            Health += amount;
             if (Health > maxHealth)
                 Health = maxHealth;
         }
@@ -88,15 +90,15 @@ namespace HomicidalSuicidal
 
             Attack(mousePos, deltaTime);
 
+            Dying(deathRate, deltaTime);
+            Console.WriteLine("Health: " + Health);
+
             // Die logic
-            if (Health <= 0)
+            if (Health >= Player.maxHealth)
             {
                 //Console.WriteLine("Should Die");
                 DestroyObject();
             }
-
-            // Dying logic
-            //Health += deathRate;
 
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
             velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;
@@ -126,9 +128,10 @@ namespace HomicidalSuicidal
             }
         }
 
-        void Dying(float maxHealthMultiplier)
+        void Dying(float maxHealthMultiplier, float deltaTime)
         {
-            Health -= maxHealthMultiplier * MaxHealth;
+            if (Health > 0)
+                Health -= maxHealthMultiplier * maxHealth * deltaTime;
         }
     }
 }

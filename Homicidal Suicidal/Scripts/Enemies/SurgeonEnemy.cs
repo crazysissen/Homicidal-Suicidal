@@ -9,9 +9,11 @@ using Microsoft.Xna;
 
 namespace HomicidalSuicidal
 {
-    class SurgeonEnemy : WorldObject, IRenderable
+    class SurgeonEnemy : PhysicsObject, IRenderable
     {
         protected override object Component => this;
+
+        protected States states;
 
         #region Renderable Implementation
 
@@ -40,11 +42,18 @@ namespace HomicidalSuicidal
 
         #endregion
 
-        float health, healing;
+        Vector2 apparentOffset = new Vector2(15, 14);
+        public Vector2 ApparentCenter => (Position + apparentOffset);
+        float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
+                
+        float health, healing, syringeSpeed, range, attackSpeed = 1, attackTimer, attackRange;
 
-        public SurgeonEnemy(string surgeonName, Texture2D surgeonTexture, Color surgeonColor, Point surgeonSize, Vector2 surgeonStartPos, float surgeonHealth, float surgeonHealing, float surgeonLayer) : base(surgeonName)
+        public bool hostile;
+
+        public SurgeonEnemy(string surgeonName, bool surgeonHostile, Texture2D surgeonTexture, Color surgeonColor, Point surgeonSize, Vector2 surgeonStartPos, float surgeonSyringeSpeed, float surgeonHealth, float surgeonHealing, float surgeonRange, float surgeonLayer) : base(Vector2.Zero, 0, surgeonName)
         {
             Name = surgeonName;
+            hostile = surgeonHostile;
             Size = surgeonSize;
             layer = surgeonLayer;
             sprite = surgeonTexture;
@@ -52,9 +61,37 @@ namespace HomicidalSuicidal
             Position = surgeonStartPos;
             healing = surgeonHealing;
             health = surgeonHealth;
+            syringeSpeed = surgeonSyringeSpeed;
+            range = surgeonRange;
+
+            Kinematic = true;
+            Tags.Add("Enemy");
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
+        {
+            StateCheck();
+        }
+
+        void StateCheck()
+        {
+            // Die logic
+            if (health <= 0)
+            {
+                states = States.Dying;
+                DestroyObject();
+            }
+            else if (DistanceToPlayer <= attackRange && hostile)
+            {
+                states = States.Attack;
+            }
+            else if (DistanceToPlayer > attackRange && health > 0 || !hostile)
+            {
+                states = States.Idle;
+            }
+        }
+
+        void ThrowNeedles()
         {
 
         }
