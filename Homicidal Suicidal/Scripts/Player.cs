@@ -45,7 +45,16 @@ namespace HomicidalSuicidal
         const float maxHealth = 1,
                     speed = 5,
                     jumpPower = 7,
-                    deathRate = -0.02f;
+                    attackSpeed = .3f,
+                    bulletSpeed = 5,
+                    deathRate = -0.002f;
+
+        bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
+
+
+        Vector2 mousePos;
+
+        float attackTimer;
 
         public float Health { get; set; }
 
@@ -53,6 +62,7 @@ namespace HomicidalSuicidal
         {
             //if (player != null && player != this)
             MainPlayer = this;
+            attackTimer = attackSpeed;
 
             sprite = texture;
             Position = rectangle.Location.ToVector2();
@@ -71,16 +81,23 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
+            KeyboardState keyboardState = Keyboard.GetState();
+            MouseState mouseState = Mouse.GetState();
+
+            mousePos = new Vector2(mouseState.X, mouseState.Y) + Renderer.CameraScreenPosition;
+
+            Attack(mousePos, deltaTime);
+
             // Die logic
             if (Health <= 0)
             {
-                Console.WriteLine("Should Die");
+                //Console.WriteLine("Should Die");
+                DestroyObject();
             }
 
             // Dying logic
             Health += deathRate;
 
-            KeyboardState keyboardState = Keyboard.GetState();
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
             velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;
 
@@ -93,6 +110,25 @@ namespace HomicidalSuicidal
             }
 
             // Console.WriteLine(Intersects(StaticObject.worldObjectThing));
+        }
+
+        void Attack(Vector2 mousePos, float deltaTime)
+        {
+            attackTimer -= deltaTime;
+
+            if (LeftMousePressed && attackTimer <= 0)
+            {
+                new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 10, 0, 9999, "Enemy");
+
+                Console.WriteLine("Bullet fired");
+
+                attackTimer = attackSpeed;
+            }
+        }
+
+        void Dying(float maxHealthMultiplier)
+        {
+            Health -= maxHealthMultiplier * MaxHealth;
         }
     }
 }
