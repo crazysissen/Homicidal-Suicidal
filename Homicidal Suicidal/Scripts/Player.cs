@@ -90,7 +90,7 @@ namespace HomicidalSuicidal
             }
 
             // Dying logic
-            Health += deathRate;
+            //Health += deathRate;
 
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
             velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;
