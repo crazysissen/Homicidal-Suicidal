@@ -47,17 +47,17 @@ namespace HomicidalSuicidal
 
         string targetTag;
 
-        float damage, balancedVariable = 4;
+        float healing, balancedVariable = 4;
 
         bool alive;
 
-        public Bullet(string bulletName, string bulletTag, Owner bulletOwner, Vector2 initialPosition, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Point bulletSize, float bulletDamage, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName)
+        public Bullet(string bulletName, string bulletTag, Owner bulletOwner, Vector2 initialPosition, Vector2 initialVelocity, Texture2D bulletSprite, Color bulletColor, Point bulletSize, float bulletHealing, float bulletRotation, float bulletLayer, string bulletTargetTag) : base(initialVelocity, 0, bulletName)
         {
             Name = bulletName;
             layer = bulletLayer;
             sprite = bulletSprite;
             color = bulletColor;
-            damage = bulletDamage;
+            healing = bulletHealing;
             rotation = bulletRotation;
             targetTag = bulletTargetTag;
             Velocity = initialVelocity;
@@ -69,19 +69,41 @@ namespace HomicidalSuicidal
             Size = bulletSize;
             CenterPosition = initialPosition;
         }
-
+        
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            float bulletDir = Velocity.Length();
-            double bulletAngle = Math.Atan2(Velocity.Y, Velocity.X);
-            double directionToPlayerAngle = Math.Atan2(DirectionToPlayer.Y, DirectionToPlayer.X);
-            double newBulletAngle = bulletAngle - directionToPlayerAngle;
+            //double bulletAngle = Math.Atan2(Velocity.Y, Velocity.X);
+
+            //// Top Right Quadrant
+            //if (Velocity.X >= 0 && Velocity.Y >= 0)
+            //{
+            //    rotation = (float)((Math.PI * 0.5f) - (Math.Atan2(Velocity.Y, Velocity.X)));
+            //}
+            //// Bottom Right Quadrant
+            //else if (Velocity.X >= 0 && Velocity.Y < 0)
+            //{
+            //    rotation = (float)(Math.PI - Math.Atan2(-Velocity.Y, Velocity.X));
+            //}
+            //// Bottom Left Quadrant
+            //else if (Velocity.X < 0 && Velocity.Y < 0)
+            //{
+            //    rotation = (float)(Math.PI + Math.Atan2(-Velocity.Y, -Velocity.X));
+            //}
+            //// Top Left Quadrant
+            //else if (Velocity.X < 0 && Velocity.Y >= 0)
+            //{
+            //    rotation = (float)((Math.PI * 1.5f) - (Math.Atan2(Velocity.Y, -Velocity.X)));
+            //}
 
             if (Tags.Contains("Syringe"))
             {
-                rotation = (float)-newBulletAngle;
+                //rotation = (float)-newBulletAngle;
 
-                Velocity = Velocity += Game1.NormalizeThis((DirectionToPlayer/* - Velocity*/) / balancedVariable);
+                // AIMLOCK ON PLAYER VERSION
+                Velocity = Game1.NormalizeThis(Player.MainPlayer.CenterPosition - Position) * balancedVariable;
+
+                // SWARM VERSION
+                //Velocity += Game1.NormalizeThis(Player.MainPlayer.CenterPosition - CenterPosition) / 4;
             }
         }
 
@@ -96,7 +118,7 @@ namespace HomicidalSuicidal
 
             if (successes[0] && targetTag == "Player") // Player
             {
-                Player.MainPlayer.Health += damage;
+                Player.MainPlayer.Health -= healing;
 
                 DestroyObject();
             }
@@ -105,7 +127,7 @@ namespace HomicidalSuicidal
             {
                 if (successes[1]) // Doctor
                 {
-                    doctor.health -= damage;
+                    doctor.health -= healing;
 
                     DestroyObject();
                 }

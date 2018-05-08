@@ -124,6 +124,8 @@ namespace HomicidalSuicidal
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                CurrentState.Push(GameState.InGame);
 
             Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
 

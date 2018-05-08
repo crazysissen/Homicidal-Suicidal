@@ -47,7 +47,7 @@ namespace HomicidalSuicidal
                     jumpPower = 7,
                     attackSpeed = .3f,
                     bulletSpeed = 5,
-                    deathRate = -0.02f;
+                    deathRate = -0.002f;
 
         bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
 
@@ -86,6 +86,7 @@ namespace HomicidalSuicidal
             if (Health <= 0)
             {
                 //Console.WriteLine("Should Die");
+                DestroyObject();
             }
 
             // Dying logic
@@ -117,6 +118,11 @@ namespace HomicidalSuicidal
 
                 attackTimer = attackSpeed;
             }
+        }
+
+        void Dying(float maxHealthMultiplier)
+        {
+            Health -= maxHealthMultiplier * MaxHealth;
         }
     }
 }
