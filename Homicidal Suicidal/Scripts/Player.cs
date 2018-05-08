@@ -128,7 +128,7 @@ namespace HomicidalSuicidal
 
         void Dying(float maxHealthMultiplier)
         {
-            Health -= maxHealthMultiplier * MaxHealth;
+            Health -= maxHealthMultiplier * maxHealth;
         }
     }
 }

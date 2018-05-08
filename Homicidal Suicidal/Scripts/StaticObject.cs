@@ -33,7 +33,7 @@ namespace HomicidalSuicidal
 
         public StaticObject(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 0, name, rectangle)
         {
-            color = Color.Black;
+            color = Color.White;
             worldObjectThing = this;
             sprite = texture;
             Position = rectangle.Location.ToVector2();
