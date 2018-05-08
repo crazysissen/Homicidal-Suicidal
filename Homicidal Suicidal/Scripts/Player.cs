@@ -81,9 +81,6 @@ namespace HomicidalSuicidal
             Health = maxHealth * 0.5f;
             Kinematic = true;
 
-            // Rad2Deg
-            // tempBulletAngle *= (float)(360 / (2 * Math.PI));
-
             // Calculation of 2nd and 3rd bullet
             float cos = (float)Math.Cos(tempBulletAngle);
             float sin = (float)Math.Sin(tempBulletAngle);
