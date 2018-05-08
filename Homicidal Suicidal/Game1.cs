@@ -30,7 +30,7 @@ namespace HomicidalSuicidal
 
         string[] _loadTags = new string[] 
         {
-            "Square", "Floor", "Syringe",
+            "Square", "Floor", "Syringe", "Button",
             "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
             "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing"
         };
@@ -90,6 +90,8 @@ namespace HomicidalSuicidal
         {
             gui.New();
 
+            Animator.UpdateAll((float)gameTime.ElapsedGameTime.TotalSeconds);
+
             // Declaring bodies here is unnecessary, it makes things easier to see
             switch (CurrentState.Peek())
             {
@@ -119,8 +121,6 @@ namespace HomicidalSuicidal
 
             base.Update(gameTime);
 
-            Console.WriteLine(Graphics.PreferredBackBufferHeight);
-
             Methods.UpdateMethods();
         }
 
@@ -134,11 +134,11 @@ namespace HomicidalSuicidal
             Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
 
             gui.Add(
-                new GUI.Label("Homicidal Suicidal", 80, new Vector2(100, 100), menuFont, Color.White),
-                new GUI.Label("Start", 80, new Vector2(100, 480), defaultFont, Color.LightGray),
-                new GUI.Label("Quit", 80, new Vector2(100, 600), defaultFont, Color.LightGray),
-                new GUI.Button(new Rectangle(100, 480, 500, 80), StartButton),
-                new GUI.Button(new Rectangle(100, 600, 500, 80), ExitButton)
+                new GUI.Label("Homicidal Suicidal", 140, new Vector2(100, 100), menuFont, Color.White),
+                new GUI.Button(new Rectangle(100, 660, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, StartButton),
+                new GUI.Button(new Rectangle(100, 830, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, ExitButton),
+                new GUI.Label("Start", 80, new Vector2(140, 670), defaultFont, Color.Black),
+                new GUI.Label("Quit", 80, new Vector2(140, 840), defaultFont, Color.Black)
                 );
         }
 
@@ -152,8 +152,8 @@ namespace HomicidalSuicidal
             gui.Add(
                 new GUI.Texture(new Rectangle(-1, -1, screenSize.X + 2, screenSize.Y + 2), new Color(0, 0, 0, 0.7f)),
                 new GUI.Label("Paused", 80, new Vector2(100, 100), menuFont, Color.White),
-                new GUI.Label("Resume", 80, new Vector2(100, 480), defaultFont, Color.LightGray),
-                new GUI.Label("Quit", 80, new Vector2(100, 600), defaultFont, Color.LightGray),
+                new GUI.Label("Resume", 80, new Vector2(100, 470), defaultFont, Color.LightGray),
+                new GUI.Label("Quit", 80, new Vector2(100, 590), defaultFont, Color.LightGray),
                 new GUI.Button(new Rectangle(100, 480, 500, 80), ResumeButton),
                 new GUI.Button(new Rectangle(100, 600, 500, 80), ExitButton)
                 );
@@ -174,6 +174,7 @@ namespace HomicidalSuicidal
             WorldObject.UpdateAllPhysics(gameTime);
             WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
+
 
             Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 0);
         }

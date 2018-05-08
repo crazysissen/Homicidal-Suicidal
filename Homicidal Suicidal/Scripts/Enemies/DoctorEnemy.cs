@@ -22,8 +22,8 @@ namespace HomicidalSuicidal
 
         WorldObject IRenderable.Object { get => this; }
 
-        Texture2D IRenderable.Sprite { get => sprite; }
-        Texture2D sprite;
+        Texture2D IRenderable.Sprite { get => animator.GetTexture(); }
+        //Texture2D sprite;
 
         float IRenderable.Rotation { get => rotation; }
         float rotation;
@@ -40,6 +40,8 @@ namespace HomicidalSuicidal
 
         #endregion
 
+        Animator animator;
+
         protected States states;
 
         public bool hostile;
@@ -55,7 +57,7 @@ namespace HomicidalSuicidal
             Name = doctorName;
             Size = doctorSize;
             layer = doctorLayer;
-            sprite = doctorTexture;
+            //sprite = doctorTexture;
             color = doctorColor;
             Position = doctorStartPos;
             healing = doctorHealing;
@@ -65,6 +67,12 @@ namespace HomicidalSuicidal
             syringeSpeed = doctorSyringeSpeed;
             Kinematic = true;
             attackTimer = attackSpeed;
+
+            animator = new Animator(
+                new Animation(1, -1, new Animation.AnimationState(Game1.AllSprites["Doctor_Idle"], 0)),     // State 0: Idle
+                new Animation(0.1f , 0, new Animation.AnimationState(Game1.AllSprites["Doctor_Attack"], 0)),// State 1: Attack
+                new Animation(100, -1, new Animation.AnimationState(Game1.AllSprites["Doctor_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Doctor_Dead"], 0.8f)) // State 2: Death
+                );
 
             Tags.Add("Enemy");
         }
@@ -80,6 +88,11 @@ namespace HomicidalSuicidal
             {
                 ThrowNeedle();
                 attackTimer = attackSpeed;
+            }
+
+            if (states == States.Dying && animator.CurrentState != 2)
+            {
+                animator.SetState(2);
             }
         }
 
@@ -103,6 +116,7 @@ namespace HomicidalSuicidal
         {
             // Temp bullet creation
             Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, Position + new Vector2(1, 0), DirectionToPlayer * syringeSpeed, Game1.AllSprites["Syringe"], Color.White, new Point(10, 38), healing, 0, 9999, "Player");
+            animator.SetState(1);
         }
     }
 }
