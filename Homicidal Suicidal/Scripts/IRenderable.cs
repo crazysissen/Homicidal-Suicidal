@@ -5,7 +5,7 @@ namespace HomicidalSuicidal
 {
     public interface IRenderable
     {
-        Rectangle Rect { get; }
+        WorldObject Object { get; }
 
         Texture2D Sprite { get; }
 

@@ -20,7 +20,7 @@ namespace HomicidalSuicidal
 
         public override IRenderable Renderable => this;
 
-        Rectangle IRenderable.Rect { get => Rect; }
+        WorldObject IRenderable.Object { get => this; }
 
         Texture2D IRenderable.Sprite { get => sprite; }
         Texture2D sprite;
@@ -42,7 +42,7 @@ namespace HomicidalSuicidal
 
         public static Player MainPlayer { get; private set; }
 
-        const float health = .5f,
+        const float maxHealth = 1,
                     speed = 5,
                     jumpPower = 7,
                     attackSpeed = .3f,
@@ -57,7 +57,6 @@ namespace HomicidalSuicidal
         float attackTimer;
 
         public float Health { get; set; }
-        public float MaxHealth { get => health; }
 
         public Player(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
@@ -69,8 +68,15 @@ namespace HomicidalSuicidal
             Position = rectangle.Location.ToVector2();
             color = Color.White;
             Size = rectangle.Size;
-            Health = health;
+            Health = maxHealth;
             Kinematic = true;
+        }
+
+        public void Heal(float ammount)
+        {
+            Health += ammount;
+            if (Health > maxHealth)
+                Health = maxHealth;
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)

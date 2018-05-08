@@ -49,8 +49,8 @@ namespace HomicidalSuicidal
             if (Kinematic && physicsObject.Kinematic)
                 return;
 
-            Velocity *= closestOffset.VelocityNullifier();
-            physicsObject.Velocity *= closestOffset.VelocityNullifier();
+            Velocity *= Velocity.VelocityNullifier(closestOffset);
+            physicsObject.Velocity *= physicsObject.Velocity.VelocityNullifier(-closestOffset);
         }
 
         public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name) : base(name)

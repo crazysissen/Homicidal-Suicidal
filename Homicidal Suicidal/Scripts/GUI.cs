@@ -60,10 +60,7 @@ namespace HomicidalSuicidal
                 this.color = color;
             }
 
-            void IGUIMember.Draw(SpriteBatch spriteBatch, int order)
-            {
-                spriteBatch.DrawString(font, text, position, color, 0, Vector2.Zero, (float)fontSize / fontSizeComparator, SpriteEffects.None, 0.9f + 0.0001f * order);
-            }
+            void IGUIMember.Draw(SpriteBatch spriteBatch, int order) => spriteBatch.DrawString(font, text, position, color, 0, Vector2.Zero, (float)fontSize / fontSizeComparator, SpriteEffects.None, 0.9f + 0.0001f * order);
         }
 
         public struct Texture : IGUIMember
