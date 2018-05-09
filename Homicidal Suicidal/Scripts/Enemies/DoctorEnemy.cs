@@ -86,7 +86,7 @@ namespace HomicidalSuicidal
 
             if (states == States.Attack && attackTimer <= 0)
             {
-                ThrowNeedle();
+                ThrowSyringe();
                 attackTimer = attackSpeed;
             }
 
@@ -112,7 +112,7 @@ namespace HomicidalSuicidal
             }
         }
 
-        void ThrowNeedle()
+        void ThrowSyringe()
         {
             // Temp bullet creation
             Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, Position + new Vector2(1, 0), DirectionToPlayer * syringeSpeed, Game1.AllSprites["Syringe"], Color.White, new Point(10, 38), healing, 0, 1, "Player");

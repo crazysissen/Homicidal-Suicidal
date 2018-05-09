@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -97,7 +98,7 @@ namespace HomicidalSuicidal
 
             Attack(mousePos, deltaTime);
             Dying(deathRate, deltaTime);
-            Console.WriteLine("Health: " + Health);
+            //Console.WriteLine("Health: " + Health);
 
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
             velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;
@@ -122,7 +123,6 @@ namespace HomicidalSuicidal
                 new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 10, 0, 9999, "Enemy");
 
                 Console.WriteLine("Bullet fired");
-
                 attackTimer = attackSpeed;
             }
         }
