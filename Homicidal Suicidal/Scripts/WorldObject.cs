@@ -152,33 +152,68 @@ namespace HomicidalSuicidal
         public static void UpdateAllCollision()
         {
             bool[,] calculated = new bool[WorldObjects.Count, WorldObjects.Count];
+            List<WorldObject[]> toCollide = new List<WorldObject[]>();
 
-            for (int i = 0; i < WorldObjects.Count; ++i)
+            int i = 0, j = 0;
+
+            foreach (KeyValuePair<string, WorldObject> pair in WorldObjects)
             {
-                if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i).Value.PhysObject != null)
+                if (pair.Value.PhysObject != null)
                 {
-                    for (int j = 0; j < WorldObjects.Count; ++j)
+                    foreach (KeyValuePair<string, WorldObject> subject in WorldObjects)
                     {
-                        if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j).Value.PhysObject != null)
+                        if (subject.Value.PhysObject != null)
                         {
-                            KeyValuePair<string, WorldObject> pair = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i);
-                            KeyValuePair<string, WorldObject> subject = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j);
-
-                            if (!calculated[i, j] && subject.Value.PhysObject != null && pair.Value != subject.Value)
+                            if (!calculated[i, j] && !calculated[j, i] && j != i)
                             {
                                 if (pair.Value.Intersects(subject.Value))
                                 {
-                                    pair.Value.PhysObject.Collide(subject.Value.PhysObject);
-
+                                    toCollide.Add(new WorldObject[] { pair.Value, subject.Value });
                                 }
                             }
-
-                            calculated[i, j] = true;
-                            calculated[j, i] = true;
                         }
+
+                        calculated[i, j] = true;
+                        calculated[j, i] = true;
+
+                        ++j;
                     }
                 }
+
+                j = 0;
+                ++i;
             }
+
+            for (int k = 0; k < toCollide.Count; ++k)
+            {
+                toCollide[k][0].PhysObject.Collide(toCollide[k][1].PhysObject);
+            }
+
+            //for (int i = 0; i < WorldObjects.Count; ++i)
+            //{
+            //    if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i).Value.PhysObject != null)
+            //    {
+            //        for (int j = 0; j < WorldObjects.Count; ++j)
+            //        {
+            //            if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j).Value.PhysObject != null)
+            //            {
+            //                KeyValuePair<string, WorldObject> pair = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i);
+            //                KeyValuePair<string, WorldObject> subject = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j);
+
+            //                if (!calculated[i, j] && !calculated[j, i] && j != i)
+            //                {
+            //                    if (pair.Value.Intersects(subject.Value))
+            //                    {
+            //                        pair.Value.PhysObject.Collide(subject.Value.PhysObject);
+            //                    }
+            //                }
+
+            //                calculated[i, j] = true;
+            //                calculated[j, i] = true;
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         public bool Intersects(WorldObject worldObject)

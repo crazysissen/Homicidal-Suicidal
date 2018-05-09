@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace HomicidalSuicidal
 {
-    class StaticObject : PhysicsObject, IRenderable
+    class RenderedObject : WorldObject, IRenderable
     {
         protected override object Component => this;
 
@@ -31,15 +30,11 @@ namespace HomicidalSuicidal
         Color IRenderable.SpriteColor { get => color; }
         Color color;
 
-        public StaticObject(string name, Rectangle rectangle, Texture2D texture, float layer = 0.5f) : base(Vector2.Zero, 0, name, rectangle)
+        public RenderedObject(string name, Rectangle rectangle, Texture2D texture, Color color, float layer = 0.1f) : base(name, rectangle)
         {
-            color = Color.White;
-            worldObjectThing = this;
             sprite = texture;
-            Position = rectangle.Location.ToVector2();
-            Size = rectangle.Size;
             this.layer = layer;
+            this.color = color;
         }
-
     }
 }
