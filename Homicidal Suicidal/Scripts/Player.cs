@@ -55,13 +55,6 @@ namespace HomicidalSuicidal
 
         bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
 
-        // Temporary Angles for the 2nd and 3rd bullet
-        float tempBulletAngle = (float)Math.Atan2(1, 2);
-        float tempBulletAngle2 = -(float)Math.Atan2(1, 2);
-
-        // Temporary Main Bullet Vector
-        Vector2 tempVector = new Vector2(1, 1);
-    
         Vector2 mousePos;
 
         float attackTimer;
@@ -80,26 +73,6 @@ namespace HomicidalSuicidal
             Size = rectangle.Size;
             Health = maxHealth * 0.5f;
             Kinematic = true;
-
-            // Calculation of 2nd and 3rd bullet
-            float cos = (float)Math.Cos(tempBulletAngle);
-            float sin = (float)Math.Sin(tempBulletAngle);
-            float cos2 = (float)Math.Cos(tempBulletAngle2);
-            float sin2 = (float)Math.Sin(tempBulletAngle2);
-
-            float x = tempVector.X * cos - tempVector.Y * sin;
-            float y = tempVector.X * sin + tempVector.Y * cos;
-            float x2 = tempVector.X * cos2 - tempVector.Y * sin2;
-            float y2 = tempVector.X * sin2 + tempVector.Y * cos2;
-
-            Vector2 newVector = new Vector2(x, y);
-            Vector2 newVector2 = new Vector2(x2, y2);
-
-            Console.WriteLine("Bullet Angle 1: " + tempBulletAngle);
-            Console.WriteLine("Bullet Angle 2: " + tempBulletAngle2);
-            Console.WriteLine("Vector 1: " + newVector);
-            Console.WriteLine("Vector 2: " + newVector2);
-            //
         }
 
         public void Heal(float amount)
@@ -151,7 +124,6 @@ namespace HomicidalSuicidal
                 new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 10, 0, 9999, "Enemy");
 
                 Console.WriteLine("Bullet fired");
-
                 attackTimer = attackSpeed;
             }
         }
