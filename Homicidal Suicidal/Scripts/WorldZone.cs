@@ -46,7 +46,13 @@ namespace HomicidalSuicidal
             GroundTiles = new StaticObject[groundNumber];
             Platforms = new StaticObject[r.Next(minPlatforms, maxPlatforms + 1)];
             Enemies = new WorldObject[r.Next(minEnemies, maxEnemies + 1)];
-                
+
+            int wallWidth = (groundSize.X * groundNumber) / wallCount;
+            for (int i = 0; i < wallCount; ++i)
+            {
+                RenderedObject wall = new RenderedObject("Wall[" + NewIndex() + "]", new Rectangle(i * wallWidth, -minGroundHeight - wallWidth, wallWidth, wallWidth), Game1.AllSprites["Wall"], Color.DarkGray, 0);
+            }
+
             for (int i = 0; i < GroundTiles.Length; ++i)
             {
                 GroundTiles[i] = new StaticObject("GroundTile[" + NewIndex() + "]", new Rectangle(groundSize.X * i + xDislocation, r.Next(minGroundHeight, maxGroundHeight), groundSize.X, groundSize.Y), Game1.AllSprites["Floor"], 1);
@@ -85,13 +91,6 @@ namespace HomicidalSuicidal
 
                 possibleEnemyPositions.RemoveAt(positionIndex);
             }
-
-            int wallWidth = (groundSize.X * groundNumber) / wallCount;
-
-            //for (int i = 0; i < wallCount; ++i)
-            //{
-            //    RenderedObject wall = new RenderedObject("Wall[" + NewIndex() + "]", new Rectangle(i * wallWidth, -minGroundHeight - wallWidth, wallWidth, wallWidth), Game1.AllSprites["Wall"], Color.DarkGray, 0);
-            //}
         }
 
         public void Initialize()
