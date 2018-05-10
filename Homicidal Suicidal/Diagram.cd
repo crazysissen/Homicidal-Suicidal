@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="HomicidalSuicidal.DoctorEnemy">
-    <Position X="11" Y="0.5" Width="1.5" />
+    <Position X="13.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>hCQDAAAgAAQyAEAABASAAAAAYBAAAAKEAABABAACCAg=</HashCode>
+      <HashCode>BCQDCAAgAAQyAEAABASAAAAQYBAAAAKEAABABAACCAA=</HashCode>
       <FileName>Scripts\Enemies\DoctorEnemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HomicidalSuicidal.NurseEnemy">
-    <Position X="12.75" Y="0.5" Width="1.5" />
+    <Position X="15.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQBAAAIAAQwAEAAAASAAAAAYBgAAAKEAADABAACCAg=</HashCode>
+      <HashCode>AAQBCAAIAAQwAEAAAASAAAAAYBgAAAKEAADABAACCAA=</HashCode>
       <FileName>Scripts\Enemies\NurseEnemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HomicidalSuicidal.SurgeonEnemy">
-    <Position X="14.5" Y="0.5" Width="1.5" />
+    <Position X="17.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gCQDAAAoAAQyAEAABASAAAAAYBAAAAKEAABABAACCAg=</HashCode>
+      <HashCode>BCQDCAEIAAwyAEQgQASAAQAAexAAAAKEAABoBAACCAA=</HashCode>
       <FileName>Scripts\Enemies\SurgeonEnemy.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.619" />
   </Class>
   <Class Name="HomicidalSuicidal.Bullet">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+    <Position X="12" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -37,27 +37,27 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ACQBEAAAAAQwgABAAASAAAAABBAAAACAIABABAACAAA=</HashCode>
+      <HashCode>ECRBEAAAAAQwgAhAAASAAAAABBAAAACAIABABAACAAA=</HashCode>
       <FileName>Scripts\Bullet.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HomicidalSuicidal.WorldObject">
-    <Position X="14" Y="8.25" Width="1.5" />
+    <Position X="14" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ICQACAAAABQAhMBgCBAiBAQAACAEAEAAAIBAAAAAgoA=</HashCode>
       <FileName>Scripts\WorldObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.PhysicsObject">
-    <Position X="12" Y="8.25" Width="1.5" />
+    <Position X="12" Y="10" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAICAAAAAAAAAAAAAAAQEAAAAAAAAIAAAAAAEAAA=</HashCode>
+      <HashCode>IAAAAISAAAAAAAAAAAAAAAQEAAAAAAAAIAAAAAAEAAA=</HashCode>
       <FileName>Scripts\PhysicsObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Player">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQDCAIIAAQyAADAAATAAAAAAJAAAUCAAABABAECQAA=</HashCode>
       <FileName>Scripts\Player.cs</FileName>
@@ -74,7 +74,7 @@
   <Class Name="HomicidalSuicidal.Constants">
     <Position X="2.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Scripts\Constants.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -103,7 +103,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.StaticObject">
-    <Position X="5" Y="0.5" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAQwIAAAAASAAAAAABAAAACAAABABAACAAA=</HashCode>
       <FileName>Scripts\StaticObject.cs</FileName>
@@ -111,14 +111,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HomicidalSuicidal.ExtensionMethods">
-    <Position X="2.25" Y="6" Width="1.5" />
+    <Position X="2.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Methods">
-    <Position X="2.25" Y="7.25" Width="1.5" />
+    <Position X="2.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAgIAAAAYAAAAAAAAEAAAAAAAACAAAAAA=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>
@@ -139,7 +139,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.GUI">
-    <Position X="19.75" Y="0.5" Width="1.5" />
+    <Position X="24.5" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -186,14 +186,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Animator">
-    <Position X="21.5" Y="0.5" Width="1.5" />
+    <Position X="26.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQABAACAAAABAAAAAAAACAAAAAAmAAAAAAEAAAAAAA=</HashCode>
       <FileName>Scripts\Animator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Animation">
-    <Position X="21.5" Y="4" Width="1.5" />
+    <Position X="26.25" Y="4" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -210,28 +210,52 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.WorldZone">
-    <Position X="2.25" Y="10" Width="1.5" />
+    <Position X="2.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAQgoAGAgQAFBAAAAAAEACECCAAACAAgAEAABAA=</HashCode>
+      <HashCode>QAAAAAQgoAGAgQAFBAAAAAAEACECCQAACAAgAEAABAA=</HashCode>
       <FileName>Scripts\WorldZone.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="HomicidalSuicidal.RenderedObject">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAQwIAAAAASAAAAAABAAAACAAABABAACAAA=</HashCode>
+      <FileName>Scripts\RenderedObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.74" />
+  </Class>
+  <Class Name="HomicidalSuicidal.Ambulance">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="HomicidalSuicidal.PhysicsObject" FixedFromPoint="true">
+      <Path>
+        <Point X="12.75" Y="10" />
+        <Point X="12.75" Y="9.625" />
+        <Point X="7.5" Y="9.625" />
+        <Point X="7.5" Y="5.905" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>BAQBAAAAAIQwAAAAAASAAABBAAABAAaAIABABAACAAA=</HashCode>
+      <FileName>Scripts\Ambulance.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="HomicidalSuicidal.IRenderable">
-    <Position X="18" Y="3.75" Width="1.5" />
+    <Position X="22.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAIAgAAAAAAAAAAAAAAAUAAAAAAAAAAA=</HashCode>
       <FileName>Scripts\IRenderable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="HomicidalSuicidal.EnemyType">
-    <Position X="18" Y="2.25" Width="1.5" />
+    <Position X="22.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAE=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="HomicidalSuicidal.Direction">
-    <Position X="18" Y="0.5" Width="1.5" />
+    <Position X="22.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
       <FileName>Scripts\UsefulTypes.cs</FileName>
