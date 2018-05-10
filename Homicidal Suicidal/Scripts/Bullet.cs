@@ -82,11 +82,9 @@ namespace HomicidalSuicidal
                 DestroyObject();
             }
 
-            if (Tags.Contains("Syringe") || Tags.Contains("Scalpel"))
+            if (Tags.Contains("Syringe") || Tags.Contains("Scalpel") || Tags.Contains("Player Bullet"))
             {
-                vectorSum = (vectorOrigin.X * Player.MainPlayer.CenterPosition.X) + (vectorOrigin.Y * Player.MainPlayer.CenterPosition.Y);
-                bulletAngle = (float)Math.Acos(vectorSum / (vectorOrigin.Length() * Player.MainPlayer.CenterPosition.Length()));
-                rotation = bulletAngle * 360 / (float)Math.PI;
+                rotation = (float)Math.Atan2(Velocity.Y, Velocity.X) + (float)Math.PI / 2;
 
                 // AIMLOCK ON PLAYER VERSION
                 // Velocity = Game1.NormalizeThis(Player.MainPlayer.CenterPosition - Position) * balancedVariable;
