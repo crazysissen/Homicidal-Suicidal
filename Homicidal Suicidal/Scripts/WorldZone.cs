@@ -55,7 +55,7 @@ namespace HomicidalSuicidal
 
             for (int i = 0; i < Platforms.Length; ++i)
             {
-                Platforms[i] = new StaticObject("Platform[" + NewIndex() + "]", new Rectangle(r.Next(groundSize.X, groundSize.X * (groundNumber - 1) + 1), -r.Next(minPlatformHeight, maxPlatformHeight + 1), platformSize.X, platformSize.Y), /*TODO*/ Game1.AllSprites["Square"]);
+                Platforms[i] = new StaticObject("Platform[" + NewIndex() + "]", new Rectangle(r.Next(groundSize.X, groundSize.X * (groundNumber - 1) + 1) + xDislocation, -r.Next(minPlatformHeight, maxPlatformHeight + 1), platformSize.X, platformSize.Y), /*TODO*/ Game1.AllSprites["Square"]);
                 possibleEnemyPositions.Add(Platforms[i].CenterPosition + new Vector2(r.Next(-maxEnemyOffset, maxEnemyOffset + 1), -Platforms[i].Offset.Y * 0.5f));
             }
 
@@ -63,18 +63,23 @@ namespace HomicidalSuicidal
             for (int i = 0; i < Enemies.Length; ++i)
             {
                 int positionIndex = r.Next(0, possibleEnemyPositions.Count);
-                int enemyType = r.Next(0, 2); // TODO
+                int enemyType = r.Next(0, 3);
 
                 if (enemyType == 0)
                 {
                     // Default template for DoctorEnemy
-                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 3, 100, 50, 600, 1);
+                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 3, 100, 10, 600, 1);
                     //Enemies[i].CenterPosition = possibleEnemyPositions[positionIndex] - Enemies[i].Offset;
                 }
 
                 if (enemyType == 1)
                 {
-                    Enemies[i] = new NurseEnemy("Nurse", true, Game1.AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), new Vector2(300, 0), 0.05f, 100, 1);
+                    Enemies[i] = new NurseEnemy("Nurse[" + NewIndex() + "]", true, Game1.AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), possibleEnemyPositions[positionIndex] - new Vector2(120, 180), 0.05f, 250, 1);
+                }
+
+                if (enemyType == 2)
+                {
+                    Enemies[i] = new SurgeonEnemy("Surgeon[" + NewIndex() + "]", true, Game1.AllSprites["Surgeon_Idle"], Color.White, new Point(140, 135), possibleEnemyPositions[positionIndex] - new Vector2(70, 135), 5, 100, 15, 600, 1);
                 }
 
                 possibleEnemyPositions.RemoveAt(positionIndex);

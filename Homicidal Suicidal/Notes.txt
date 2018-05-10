@@ -10,5 +10,5 @@ Apparent Center: (15, 19)
 
 Surgeon
 Res: 28x27 
-Scale:
+Scale: 5 (140, 135)
 Apparent Center: (15, 14)
