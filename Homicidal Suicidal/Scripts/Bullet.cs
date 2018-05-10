@@ -68,6 +68,8 @@ namespace HomicidalSuicidal
             Kinematic = true;
             Size = bulletSize;
             CenterPosition = initialPosition;
+
+            IgnoreCollision = new string[] { "Ground" };
         }
         
         protected override void Update(GameTime gameTime, float deltaTime)

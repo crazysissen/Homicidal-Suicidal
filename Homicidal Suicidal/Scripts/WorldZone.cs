@@ -50,6 +50,7 @@ namespace HomicidalSuicidal
             for (int i = 0; i < GroundTiles.Length; ++i)
             {
                 GroundTiles[i] = new StaticObject("GroundTile[" + NewIndex() + "]", new Rectangle(groundSize.X * i + xDislocation, r.Next(minGroundHeight, maxGroundHeight), groundSize.X, groundSize.Y), Game1.AllSprites["Floor"], 1);
+                GroundTiles[i].Tags.Add("Ground");
                 possibleEnemyPositions.Add(GroundTiles[i].CenterPosition + new Vector2(r.Next(-maxEnemyOffset, maxEnemyOffset + 1), -GroundTiles[i].Offset.Y * 0.5f));
             }
 
