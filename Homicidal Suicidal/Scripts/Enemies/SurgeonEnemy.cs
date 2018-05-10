@@ -132,7 +132,7 @@ namespace HomicidalSuicidal
         {
             animator.SetState(1);
 
-            Bullet surgeonBullet = new Bullet("Scalpel", "scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, DirectionToPlayer * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 0.1f, "Player");
+            Bullet surgeonBullet = new Bullet("Scalpel", "Scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, DirectionToPlayer * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 0.1f, "Player");
             surgeonBullet.Tags.Add("Bullet");
 
             x = DirectionToPlayer.X * cos - DirectionToPlayer.Y * sin;
