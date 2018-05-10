@@ -24,8 +24,8 @@ namespace HomicidalSuicidal
 
         WorldObject IRenderable.Object { get => this; }
 
-        Texture2D IRenderable.Sprite { get => sprite; }
-        Texture2D sprite;
+        Texture2D IRenderable.Sprite { get => animator.GetTexture(); }
+        Animator animator;
 
         float IRenderable.Rotation { get => rotation; }
         float rotation;
@@ -56,7 +56,8 @@ namespace HomicidalSuicidal
         float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
         Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - ApparentCenter);
 
-        float health, healing, scalpelSpeed, range, attackSpeed = 1, attackTimer;
+        float healing, scalpelSpeed, range, attackSpeed = 1, attackTimer;
+        public float Health { get; set; }
 
         public bool hostile;
 
@@ -66,11 +67,10 @@ namespace HomicidalSuicidal
             hostile = surgeonHostile;
             Size = surgeonSize;
             layer = surgeonLayer;
-            sprite = surgeonTexture;
             color = surgeonColor;
             Position = surgeonStartPos;
             healing = surgeonHealing;
-            health = surgeonHealth;
+            Health = surgeonHealth;
             scalpelSpeed = surgeonscalpelSpeed;
             range = surgeonRange;
             attackTimer = attackSpeed;
@@ -82,6 +82,12 @@ namespace HomicidalSuicidal
             sin = (float)Math.Sin(tempBulletAngle);
             cos2 = (float)Math.Cos(tempBulletAngle2);
             sin2 = (float)Math.Sin(tempBulletAngle2);
+
+            animator = new Animator(
+                new Animation(1, -1, new Animation.AnimationState(Game1.AllSprites["Surgeon_Idle"], 0)),     // State 0: Idle
+                new Animation(0.1f, 0, new Animation.AnimationState(Game1.AllSprites["Surgeon_Attack"], 0)),// State 1: Attack
+                new Animation(100, -1, new Animation.AnimationState(Game1.AllSprites["Surgeon_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Surgeon_Dead"], 0.8f)) // State 2: Death
+                );
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
@@ -101,16 +107,18 @@ namespace HomicidalSuicidal
         void StateCheck()
         {
             // Die logic
-            if (health <= 0)
+            if (Health <= 0)
             {
                 states = States.Dying;
                 //DestroyObject();
+                if (animator.CurrentState != 2)
+                    animator.SetState(2);
             }
             else if (DistanceToPlayer <= range && hostile)
             {
                 states = States.Attack;
             }
-            else if (DistanceToPlayer > range && health > 0 || !hostile)
+            else if (DistanceToPlayer > range && Health > 0 || !hostile)
             {
                 states = States.Idle;
             }
@@ -118,7 +126,9 @@ namespace HomicidalSuicidal
 
         void ThrowScalpels()
         {
-            Bullet surgeonBullet = new Bullet("Scalpel", "scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, DirectionToPlayer * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
+            animator.SetState(1);
+
+            Bullet surgeonBullet = new Bullet("Scalpel", "scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, DirectionToPlayer * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 0, "Player");
 
             x = DirectionToPlayer.X * cos - DirectionToPlayer.Y * sin;
             y = DirectionToPlayer.X * sin + DirectionToPlayer.Y * cos;
@@ -128,8 +138,8 @@ namespace HomicidalSuicidal
             Vector2 bullet1Vector = new Vector2(x, y);
             Vector2 bullet2Vector = new Vector2(x2, y2);
 
-            new Bullet("Scalpel1", "Scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet1Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
-            new Bullet("Scalpel2", "Scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet2Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
+            new Bullet("Scalpel1", "Scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet1Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 0, "Player");
+            new Bullet("Scalpel2", "Scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet2Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 0, "Player");
         }
     }
 }

@@ -40,7 +40,7 @@ namespace HomicidalSuicidal
 
         public Point Size { get; set; } 
         public Vector2 Position { get; set; }
-        public Vector2 Offset => new Vector2((float)Size.X / 2, (float)Size.Y / 2);
+        public Vector2 Offset => new Vector2((float)Size.X * 0.5f, (float)Size.Y * 0.5f);
         public Vector2 CenterPosition { get => Position + Offset; set => Position = value - Offset; }
         public Rectangle Rect => new Rectangle(Position.ToPoint(), Size); 
 
@@ -163,15 +163,10 @@ namespace HomicidalSuicidal
                     foreach (KeyValuePair<string, WorldObject> subject in WorldObjects)
                     {
                         if (subject.Value.PhysObject != null)
-                        {
-                            if (!calculated[i, j] && !calculated[j, i] && j != i && !pair.Value.PhysObject.Ignores(subject.Value) && !subject.Value.PhysObject.Ignores(pair.Value))
-                            {
-                                if (pair.Value.Intersects(subject.Value))
-                                {
-                                    toCollide.Add(new WorldObject[] { pair.Value, subject.Value });
-                                }
-                            }
-                        }
+                            if ((subject.Value.CenterPosition - pair.Value.CenterPosition).Length() < Constants.collisionIgnoreDistance)
+                                if (!calculated[i, j] && !calculated[j, i] && j != i && !pair.Value.PhysObject.Ignores(subject.Value) && !subject.Value.PhysObject.Ignores(pair.Value))
+                                    if (pair.Value.Intersects(subject.Value))
+                                        toCollide.Add(new WorldObject[] { pair.Value, subject.Value });
 
                         calculated[i, j] = true;
                         calculated[j, i] = true;

@@ -113,21 +113,21 @@ namespace HomicidalSuicidal
             {
                 if (successes[1]) // Doctor
                 {
-                    doctor.health -= healing;
+                    doctor.Health -= healing;
 
                     DestroyObject();
                 }
 
                 if (successes[2]) // Nurse
                 {
-                    // nurse.health -= damage;
+                    nurse.Health -= healing;
 
                     DestroyObject();
                 }
 
                 if (successes[3]) // Surgeon
                 {
-                    // surgeon.health -= damage;
+                    surgeon.Health -= healing;
 
                     DestroyObject();
                 }

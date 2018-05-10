@@ -60,7 +60,7 @@ namespace HomicidalSuicidal
                 this.color = color;
             }
 
-            void IGUIMember.Draw(SpriteBatch spriteBatch, int order) => spriteBatch.DrawString(font, text, position, color, 0, Vector2.Zero, (float)fontSize / fontSizeComparator, SpriteEffects.None, 0.9f + 0.0001f * order);
+            void IGUIMember.Draw(SpriteBatch spriteBatch, int order) => spriteBatch.DrawString(font, text, position, color, 0, Vector2.Zero, (float)fontSize / fontSizeComparator, SpriteEffects.None, 0.2f - 0.0001f * order);
         }
 
         public struct Texture : IGUIMember
@@ -86,7 +86,7 @@ namespace HomicidalSuicidal
                 this.color = color;
             }
 
-            void IGUIMember.Draw(SpriteBatch spriteBatch, int order) => spriteBatch.Draw(texture, rectangle, null, color, 0, Vector2.Zero, SpriteEffects.None, 0.9f + 0.0001f * order);
+            void IGUIMember.Draw(SpriteBatch spriteBatch, int order) => spriteBatch.Draw(texture, rectangle, null, color, 0, Vector2.Zero, SpriteEffects.None, 0.2f - 0.0001f * order);
         }
 
         public struct Button : IGUIMember
@@ -150,7 +150,7 @@ namespace HomicidalSuicidal
             void IGUIMember.Draw(SpriteBatch spriteBatch, int order)
             {
                 if (textured)
-                    spriteBatch.Draw(texture, rectangle, null, colors[(int)currentState], 0, Vector2.Zero, SpriteEffects.None, 0.9f + 0.0001f * order);
+                    spriteBatch.Draw(texture, rectangle, null, colors[(int)currentState], 0, Vector2.Zero, SpriteEffects.None, 0.2f - 0.0001f * order);
             }
         }
     }

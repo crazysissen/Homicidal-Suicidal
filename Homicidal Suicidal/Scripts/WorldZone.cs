@@ -50,19 +50,19 @@ namespace HomicidalSuicidal
             int wallWidth = (groundSize.X * groundNumber) / wallCount;
             for (int i = 0; i < wallCount; ++i)
             {
-                RenderedObject wall = new RenderedObject("Wall[" + NewIndex() + "]", new Rectangle(i * wallWidth, -minGroundHeight - wallWidth, wallWidth, wallWidth), Game1.AllSprites["Wall"], Color.DarkGray, 0);
+                RenderedObject wall = new RenderedObject("Wall[" + NewIndex() + "]", new Rectangle(xDislocation + i * wallWidth, -minGroundHeight - wallWidth, wallWidth, wallWidth), Game1.AllSprites["Wall"], Color.DarkGray, 1);
             }
 
             for (int i = 0; i < GroundTiles.Length; ++i)
             {
-                GroundTiles[i] = new StaticObject("GroundTile[" + NewIndex() + "]", new Rectangle(groundSize.X * i + xDislocation, r.Next(minGroundHeight, maxGroundHeight), groundSize.X, groundSize.Y), Game1.AllSprites["Floor"], 1);
+                GroundTiles[i] = new StaticObject("GroundTile[" + NewIndex() + "]", new Rectangle(groundSize.X * i + xDislocation, r.Next(minGroundHeight, maxGroundHeight), groundSize.X, groundSize.Y), Game1.AllSprites["Floor"], 0.5f);
                 GroundTiles[i].Tags.Add("Ground");
                 possibleEnemyPositions.Add(GroundTiles[i].CenterPosition + new Vector2(r.Next(-maxEnemyOffset, maxEnemyOffset + 1), -GroundTiles[i].Offset.Y * 0.5f));
             }
 
             for (int i = 0; i < Platforms.Length; ++i)
             {
-                Platforms[i] = new StaticObject("Platform[" + NewIndex() + "]", new Rectangle(r.Next(groundSize.X, groundSize.X * (groundNumber - 1) + 1) + xDislocation, -r.Next(minPlatformHeight, maxPlatformHeight + 1), platformSize.X, platformSize.Y), /*TODO*/ Game1.AllSprites["Square"]);
+                Platforms[i] = new StaticObject("Platform[" + NewIndex() + "]", new Rectangle(r.Next(groundSize.X, groundSize.X * (groundNumber - 1) + 1) + xDislocation, -r.Next(minPlatformHeight, maxPlatformHeight + 1), platformSize.X, platformSize.Y), /*TODO*/ Game1.AllSprites["Square"], 0.5f);
                 possibleEnemyPositions.Add(Platforms[i].CenterPosition + new Vector2(r.Next(-maxEnemyOffset, maxEnemyOffset + 1), -Platforms[i].Offset.Y * 0.5f));
             }
 
@@ -75,18 +75,18 @@ namespace HomicidalSuicidal
                 if (enemyType == 0)
                 {
                     // Default template for DoctorEnemy
-                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 3, 100, 10, 600, 1);
+                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 3, 100, 10, 600, 0);
                     //Enemies[i].CenterPosition = possibleEnemyPositions[positionIndex] - Enemies[i].Offset;
                 }
 
                 if (enemyType == 1)
                 {
-                    Enemies[i] = new NurseEnemy("Nurse[" + NewIndex() + "]", true, Game1.AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), possibleEnemyPositions[positionIndex] - new Vector2(120, 180), 0.05f, 250, 1);
+                    Enemies[i] = new NurseEnemy("Nurse[" + NewIndex() + "]", true, Game1.AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), possibleEnemyPositions[positionIndex] - new Vector2(120, 180), 0.05f, 250, 0);
                 }
 
                 if (enemyType == 2)
                 {
-                    Enemies[i] = new SurgeonEnemy("Surgeon[" + NewIndex() + "]", true, Game1.AllSprites["Surgeon_Idle"], Color.White, new Point(140, 135), possibleEnemyPositions[positionIndex] - new Vector2(70, 135), 5, 100, 15, 600, 1);
+                    Enemies[i] = new SurgeonEnemy("Surgeon[" + NewIndex() + "]", true, Game1.AllSprites["Surgeon_Idle"], Color.White, new Point(140, 135), possibleEnemyPositions[positionIndex] - new Vector2(70, 135), 5, 100, 15, 600, 0);
                 }
 
                 possibleEnemyPositions.RemoveAt(positionIndex);

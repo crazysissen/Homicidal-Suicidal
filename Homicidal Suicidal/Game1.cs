@@ -54,7 +54,7 @@ namespace HomicidalSuicidal
 
             World.Initialize((new Random()).Next(0, 10000));
 
-            new Player("Test", new Rectangle(0, -540, 40, 40), AllSprites["Square"]);
+            new Player("Test", new Rectangle(1000, -540, 40, 40), AllSprites["Square"]);
             //new NurseEnemy("Nurse", true, AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), new Vector2(300, 0), 0.05f, 100, 999);
             //WorldZone testZone = new WorldZone(1, 0);
 
@@ -188,7 +188,7 @@ namespace HomicidalSuicidal
         {
             GraphicsDevice.Clear(Color.DeepSkyBlue);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             if (CurrentState.Peek() == GameState.InGame || CurrentState.Peek() == GameState.Pause)
                 Renderer.RenderAll(spriteBatch);
