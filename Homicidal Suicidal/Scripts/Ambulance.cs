@@ -52,6 +52,8 @@ namespace HomicidalSuicidal
         {
             color = Color.White;
 
+            IgnoreCollision = new string[] { "Ground", "Bullet", "Enemy" };
+
             animator = new Animator(new Animation(1, -1, 
                 new Animation.AnimationState(Game1.AllSprites["Square"] /*TODO*/, 0), 
                 new Animation.AnimationState(Game1.AllSprites["Square"] /*TODO*/, 0.5f)));
