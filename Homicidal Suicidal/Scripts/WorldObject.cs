@@ -164,7 +164,7 @@ namespace HomicidalSuicidal
                     {
                         if (subject.Value.PhysObject != null)
                         {
-                            if (!calculated[i, j] && !calculated[j, i] && j != i)
+                            if (!calculated[i, j] && !calculated[j, i] && j != i && !pair.Value.PhysObject.Ignores(subject.Value) && !subject.Value.PhysObject.Ignores(pair.Value))
                             {
                                 if (pair.Value.Intersects(subject.Value))
                                 {
@@ -188,32 +188,6 @@ namespace HomicidalSuicidal
             {
                 toCollide[k][0].PhysObject.Collide(toCollide[k][1].PhysObject);
             }
-
-            //for (int i = 0; i < WorldObjects.Count; ++i)
-            //{
-            //    if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i).Value.PhysObject != null)
-            //    {
-            //        for (int j = 0; j < WorldObjects.Count; ++j)
-            //        {
-            //            if (WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j).Value.PhysObject != null)
-            //            {
-            //                KeyValuePair<string, WorldObject> pair = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(i);
-            //                KeyValuePair<string, WorldObject> subject = WorldObjects.ElementAt<KeyValuePair<string, WorldObject>>(j);
-
-            //                if (!calculated[i, j] && !calculated[j, i] && j != i)
-            //                {
-            //                    if (pair.Value.Intersects(subject.Value))
-            //                    {
-            //                        pair.Value.PhysObject.Collide(subject.Value.PhysObject);
-            //                    }
-            //                }
-
-            //                calculated[i, j] = true;
-            //                calculated[j, i] = true;
-            //            }
-            //        }
-            //    }
-            //}
         }
 
         public bool Intersects(WorldObject worldObject)

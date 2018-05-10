@@ -14,6 +14,7 @@ namespace HomicidalSuicidal
         public Vector2 Velocity { get; protected set; }
         public float GravityMultiplier { get; protected set; }
         public bool Kinematic { get; protected set; }
+        public string[] IgnoreCollision { get; protected set; }
         public override PhysicsObject PhysObject => this;
 
         public virtual void OnCollision(PhysicsObject physicsObject) { }
