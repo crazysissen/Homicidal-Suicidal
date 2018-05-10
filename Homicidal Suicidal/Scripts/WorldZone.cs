@@ -68,7 +68,7 @@ namespace HomicidalSuicidal
                 if (enemyType == 0)
                 {
                     // Default template for DoctorEnemy
-                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 3, 100, 10, 600, 1);
+                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 6, 100, 10, 600, 1);
                     //Enemies[i].CenterPosition = possibleEnemyPositions[positionIndex] - Enemies[i].Offset;
                 }
 
