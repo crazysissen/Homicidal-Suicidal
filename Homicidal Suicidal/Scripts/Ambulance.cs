@@ -41,10 +41,12 @@ namespace HomicidalSuicidal
         public const float
             heal = 50,
             layer = 0,
-            defaultSpeed = 5,
-            distancePerSpeedStep = 100;
+            defaultSpeed = 2,
+            acceleration = 2.2f,
+            distancePerSpeedStep = 150;
 
-        float Speed => 0; // TODO
+        float Speed => defaultSpeed + acceleration * (0.2f * ((DistanceToPlayer / distancePerSpeedStep) * (DistanceToPlayer / distancePerSpeedStep))); // TODO
+        float DistanceToPlayer => Player.MainPlayer.Position.X - Position.X - Offset.X * 2;
 
         public Ambulance(Rectangle rectangle) : base(Vector2.Zero, 0, "Ambulance", rectangle)
         {
@@ -57,7 +59,16 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
+            Velocity = new Vector2(Speed, 0);
+        }
 
+        public override void OnCollision(PhysicsObject physicsObject)
+        {
+            if (physicsObject.Tags.Contains("Player"))
+            {
+                Player player = physicsObject.GetComponent<Player>(out bool successful);
+                player.Heal(Player.maxHealth);
+            }
         }
     }
 }

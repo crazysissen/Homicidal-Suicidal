@@ -73,6 +73,8 @@ namespace HomicidalSuicidal
             Size = rectangle.Size;
             Health = maxHealth * 0.5f;
             Kinematic = true;
+
+            Tags.Add("Player");
         }
 
         public void Heal(float amount)
