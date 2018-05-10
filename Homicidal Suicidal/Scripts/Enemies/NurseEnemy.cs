@@ -87,6 +87,7 @@ namespace HomicidalSuicidal
             if (Health <= 0)
             {
                 states = States.Dying;
+                hostile = false;
                 //DestroyObject();
             }
             else if (Health > 0)

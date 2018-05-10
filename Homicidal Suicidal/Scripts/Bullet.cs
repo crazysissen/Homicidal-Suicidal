@@ -83,10 +83,8 @@ namespace HomicidalSuicidal
 
             if (Tags.Contains("Syringe"))
             {
-                //rotation = (float)-newBulletAngle;
-
                 // AIMLOCK ON PLAYER VERSION
-                Velocity = Game1.NormalizeThis(Player.MainPlayer.CenterPosition - Position) * balancedVariable;
+                // Velocity = Game1.NormalizeThis(Player.MainPlayer.CenterPosition - Position) * balancedVariable;
 
                 // SWARM VERSION
                 // Velocity += Game1.NormalizeThis(Player.MainPlayer.CenterPosition - CenterPosition) / 4;
