@@ -58,24 +58,28 @@ namespace HomicidalSuicidal
         {
             GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
+            IgnoreCollision = new string[0];
         }
 
         public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name, out string trueName) : base(name, out trueName)
         {
             GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
+            IgnoreCollision = new string[0];
         }
 
         public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name, Rectangle rectangle) : base(name, rectangle)
         {
             GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
+            IgnoreCollision = new string[0];
         }
 
         public PhysicsObject(Vector2 initialVelocity, float gravityMultiplier, string name, out string trueName, Rectangle rectangle) : base(name, out trueName, rectangle)
         {
             GravityMultiplier = gravityMultiplier;
             Velocity = initialVelocity;
+            IgnoreCollision = new string[0];
         }
     }
 }
