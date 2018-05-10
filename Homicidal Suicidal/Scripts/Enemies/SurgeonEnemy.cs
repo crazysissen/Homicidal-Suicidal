@@ -112,7 +112,11 @@ namespace HomicidalSuicidal
                 states = States.Dying;
                 //DestroyObject();
                 if (animator.CurrentState != 2)
+                {
+                    Tags.Remove("Enemy");
+                    Tags.Add("Ground");
                     animator.SetState(2);
+                }
             }
             else if (DistanceToPlayer <= range && hostile)
             {
