@@ -63,6 +63,7 @@ namespace HomicidalSuicidal
             for (int i = 0; i < Platforms.Length; ++i)
             {
                 Platforms[i] = new StaticObject("Platform[" + NewIndex() + "]", new Rectangle(r.Next(groundSize.X, groundSize.X * (groundNumber - 1) + 1) + xDislocation, -r.Next(minPlatformHeight, maxPlatformHeight + 1), platformSize.X, platformSize.Y), Game1.AllSprites["Platform"], 0.5f);
+                Platforms[i].Tags.Add("Ground");
                 possibleEnemyPositions.Add(Platforms[i].CenterPosition + new Vector2(r.Next(-maxEnemyOffset, maxEnemyOffset + 1), -Platforms[i].Offset.Y * 0.5f));
             }
 

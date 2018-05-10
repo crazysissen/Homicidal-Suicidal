@@ -40,7 +40,9 @@ namespace HomicidalSuicidal
 
         public const float
             heal = 50,
-            layer = 0;
+            layer = 0,
+            defaultSpeed = 5,
+            distancePerSpeedStep = 100;
 
         float Speed => 0; // TODO
 
