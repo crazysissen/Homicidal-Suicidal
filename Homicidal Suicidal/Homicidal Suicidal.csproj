@@ -60,7 +60,6 @@
     <Compile Include="Scripts\PhysicsObject.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\Renderer.cs" />
-    <Compile Include="Scripts\Debug\TestPlayer.cs" />
     <Compile Include="Scripts\World.cs" />
     <Compile Include="Scripts\WorldObject.cs" />
     <Compile Include="Scripts\WorldZone.cs" />

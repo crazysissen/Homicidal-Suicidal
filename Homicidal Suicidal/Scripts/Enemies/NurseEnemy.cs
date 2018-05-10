@@ -50,7 +50,8 @@ namespace HomicidalSuicidal
 
         Vector2 apparentOffset = new Vector2(15, 19);
         public Vector2 ApparentCenter => (Position + apparentOffset);
-        public float health, auraRadius, healingMultiplier;
+        float auraRadius, healingMultiplier;
+        public float Health { get; set; }
         public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
 
         public NurseEnemy(string nurseName, bool nurseHostile, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseMaxHealthAuraHealingMultiplier, float nurseAuraRadius, float nurseLayer) : base(Vector2.Zero, 0, nurseName)
@@ -62,7 +63,7 @@ namespace HomicidalSuicidal
             color = nurseColor;
             Position = nurseStartPos;
             auraRadius = nurseAuraRadius;
-            health = maxHealth;
+            Health = maxHealth;
             healingMultiplier = nurseMaxHealthAuraHealingMultiplier;
             hostile = nurseHostile;
 
@@ -83,13 +84,13 @@ namespace HomicidalSuicidal
         void StateCheck()
         {
             // Die logic
-            if (health <= 0)
+            if (Health <= 0)
             {
                 states = States.Dying;
                 hostile = false;
                 //DestroyObject();
             }
-            else if (health > 0)
+            else if (Health > 0)
             {
                 states = States.Attack;
             }
