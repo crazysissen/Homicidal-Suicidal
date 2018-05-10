@@ -30,7 +30,7 @@ namespace HomicidalSuicidal
 
         string[] _loadTags = new string[] 
         {
-            "Square", "Floor", "Syringe", "Button",
+            "Square", "Floor", "Syringe", "Button", "Wall", "Scalpel",
             "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
             "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing",
             "Surgeon_Attack", "Surgeon_Dead", "Surgeon_Dying", "Surgeon_Idle"
@@ -52,13 +52,11 @@ namespace HomicidalSuicidal
 
             WorldObject.InitializeClass();
 
-            //player = new Player("Hellothere", allSprites["Square"], Color.White, new Rectangle(0, 0, 20, 20));
-            //new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
-            //new StaticObject("Test", new Rectangle(0, 400, 1500, 100), AllSprites["Square"]);
+            World.Initialize((new Random()).Next(0, 10000));
+
             new Player("Test", new Rectangle(0, -540, 40, 40), AllSprites["Square"]);
-            new NurseEnemy("Nurse", true, AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), new Vector2(300, 0), 0.05f, 100, 999);
-            WorldZone testZone = new WorldZone(1, 0);
-            //new DoctorEnemy("Doctor1", true, AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), new Vector2(300, 0), 3, 100, 50, 9999, 20);
+            //new NurseEnemy("Nurse", true, AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), new Vector2(300, 0), 0.05f, 100, 999);
+            //WorldZone testZone = new WorldZone(1, 0);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);
@@ -168,6 +166,8 @@ namespace HomicidalSuicidal
 
         void InGameUpdate(GameTime gameTime)
         {
+            World.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+
             // In order: All movement, all updates, all collision
             if (Methods.KeyDown(Keys.Escape))
                 CurrentState.Push(GameState.Pause);
@@ -176,6 +176,10 @@ namespace HomicidalSuicidal
             WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
 
+            gui.Add(
+                new GUI.Texture(new Rectangle(90, 970, 220, 70), Color.SlateGray),
+                new GUI.Texture(new Rectangle(100, 980, (int)(Player.MainPlayer.Health / Player.maxHealth * 200), 50), Color.Lime)
+                );
 
             Renderer.camera = new Vector2(Player.MainPlayer.CenterPosition.X, 0);
         }

@@ -47,7 +47,7 @@ namespace HomicidalSuicidal
         //    => RenderAll(spriteBatch, Point.Zero);
 
         public static void Render(IRenderable renderable, SpriteBatch spriteBatch, Vector2 camera)
-            => spriteBatch.Draw(renderable.Sprite, renderable.Object.Position /* + renderable.Object.Offset*/ - camera, null, renderable.SpriteColor, renderable.Rotation, Vector2.Zero /*renderable.Object.Offset*/, renderable.Object.Size.ToVector2() / new Vector2(renderable.Sprite.Width, renderable.Sprite.Height), SpriteEffects.None, renderable.Layer * 0.00001f);
+            => spriteBatch.Draw(renderable.Sprite, renderable.Object.Position /* + renderable.Object.Offset*/ - camera, null, renderable.SpriteColor, renderable.Rotation, Vector2.Zero /*renderable.Object.Offset*/, renderable.Object.Size.ToVector2() / new Vector2(renderable.Sprite.Width, renderable.Sprite.Height), SpriteEffects.None, renderable.Layer);
 
         public static void RenderThis(this IRenderable renderable, SpriteBatch spriteBatch, Vector2 camera)
             => Render(renderable, spriteBatch, camera);

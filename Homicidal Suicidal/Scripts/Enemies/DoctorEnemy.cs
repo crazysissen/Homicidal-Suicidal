@@ -47,7 +47,7 @@ namespace HomicidalSuicidal
         public bool hostile;
         public float health, healing, attackSpeed = 1, attackTimer, attackRange, syringeSpeed;
 
-        Vector2 apparentOffset = new Vector2(12, 12);
+        readonly Vector2 apparentOffset = new Vector2(12, 12);
         public Vector2 ApparentCenter => (Position + apparentOffset);
         public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
         public Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - (Position + new Vector2(1, 0))); 
@@ -114,8 +114,8 @@ namespace HomicidalSuicidal
 
         void ThrowSyringe()
         {
-            // Bullet creation
-            Bullet doctorSyringe = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, Position + new Vector2(1, 0), DirectionToPlayer * syringeSpeed, Game1.AllSprites["Syringe"], Color.White, new Point(10, 38), healing, 0, 9999, "Player");
+            // Temp bullet creation
+            Bullet bullet = new Bullet("Syringe", "Syringe", Bullet.Owner.Enemy, Position + new Vector2(1, 0), DirectionToPlayer * syringeSpeed, Game1.AllSprites["Syringe"], Color.White, new Point(10, 38), healing, 0, 1, "Player");
             animator.SetState(1);
         }
     }

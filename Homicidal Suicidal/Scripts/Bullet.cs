@@ -102,7 +102,7 @@ namespace HomicidalSuicidal
 
             if (successes[0] && targetTag == "Player") // Player
             {
-                //Player.MainPlayer.Health -= healing;
+                Player.MainPlayer.Heal(healing);
 
                 DestroyObject();
             }

@@ -55,8 +55,8 @@ namespace HomicidalSuicidal
         public Vector2 ApparentCenter => (Position + apparentOffset);
         float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
         Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - ApparentCenter);
-                
-        float health, healing, scalpelSpeed, range, attackSpeed = 1, attackTimer, attackRange;
+
+        float health, healing, scalpelSpeed, range, attackSpeed = 1, attackTimer;
 
         public bool hostile;
 
@@ -106,11 +106,11 @@ namespace HomicidalSuicidal
                 states = States.Dying;
                 //DestroyObject();
             }
-            else if (DistanceToPlayer <= attackRange && hostile)
+            else if (DistanceToPlayer <= range && hostile)
             {
                 states = States.Attack;
             }
-            else if (DistanceToPlayer > attackRange && health > 0 || !hostile)
+            else if (DistanceToPlayer > range && health > 0 || !hostile)
             {
                 states = States.Idle;
             }
@@ -118,7 +118,7 @@ namespace HomicidalSuicidal
 
         void ThrowScalpels()
         {
-            Bullet surgeonBullet = new Bullet("scalpel", "scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, DirectionToPlayer * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
+            Bullet surgeonBullet = new Bullet("Scalpel", "scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, DirectionToPlayer * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
 
             x = DirectionToPlayer.X * cos - DirectionToPlayer.Y * sin;
             y = DirectionToPlayer.X * sin + DirectionToPlayer.Y * cos;
@@ -128,8 +128,8 @@ namespace HomicidalSuicidal
             Vector2 bullet1Vector = new Vector2(x, y);
             Vector2 bullet2Vector = new Vector2(x2, y2);
 
-            Bullet surgeonBullet1 = new Bullet("scalpel1", "scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet1Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
-            Bullet surgeonBullet2 = new Bullet("scalpel2", "scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet2Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
+            new Bullet("Scalpel1", "Scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet1Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
+            new Bullet("Scalpel2", "Scalpel", Bullet.Owner.Enemy, Position + bulletStartPos, bullet2Vector * scalpelSpeed, Game1.AllSprites["Scalpel"], Color.White, new Point(5, 20), healing, 0, 1, "Player");
         }
     }
 }

@@ -19,40 +19,42 @@ namespace HomicidalSuicidal
 
         static Texture2D ground, wall, platform;
 
-        static float nextZoneLoad;
         static int nextZoneIndex, currentSeed;
 
         static WorldZone[] currentZones;
 
         public static void Initialize(int initialSeed)
         {
+            currentZones = new WorldZone[3];
             Random tempRandom = new Random(initialSeed);
             currentSeed = tempRandom.Next(0, (int)(0.5f * int.MaxValue));
 
-            LoadZone(0);
-            LoadZone(1);
+            currentZones[1] = LoadZone(0);
+            currentZones[2] = LoadZone(1);
 
-            nextZoneLoad = WorldZone.groundNumber * groundSize.X; 
+            nextZoneIndex = 2;
         }
 
-        static void LoadZone(int index)
+        static WorldZone LoadZone(int zoneIndex) => new WorldZone(++currentSeed, zoneIndex * WorldZone.groundNumber * WorldZone.groundSize.X);
+
+        static void Proceed()
         {
+            if (currentZones[0] != null)
+                currentZones[0].DestroyZone();
 
+            currentZones[0] = currentZones[1];
+            currentZones[1] = currentZones[2];
+            currentZones[2] = LoadZone(nextZoneIndex);
 
-            nextZoneLoad += WorldZone.groundNumber * groundSize.X;
             ++nextZoneIndex;
         }
 
-        static void MoveZoneArray()
+        public static void Update(float deltaTime)
         {
-            currentZones[0].DestroyZone();
-            currentZones[0] = currentZones[1];
-            currentZones[1] = currentZones[2];
-        }
-
-        public static void Update()
-        {
-
+            if (Player.MainPlayer.Position.X > WorldZone.groundNumber * WorldZone.groundSize.X * (nextZoneIndex - 1))
+            {
+                Proceed();
+            }
         }
     }
 }

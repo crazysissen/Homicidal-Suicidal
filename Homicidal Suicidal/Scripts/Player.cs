@@ -97,7 +97,6 @@ namespace HomicidalSuicidal
             mousePos = new Vector2(mouseState.X, mouseState.Y) + Renderer.CameraScreenPosition;
 
             Attack(mousePos, deltaTime);
-
             Dying(deathRate, deltaTime);
             //Console.WriteLine("Health: " + Health);
 
@@ -121,7 +120,7 @@ namespace HomicidalSuicidal
 
             if (LeftMousePressed && attackTimer <= 0)
             {
-                new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 10, 0, 9999, "Enemy");
+                new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 10, 0, 1, "Enemy");
 
                 Console.WriteLine("Bullet fired");
                 attackTimer = attackSpeed;

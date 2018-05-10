@@ -17,10 +17,23 @@ namespace HomicidalSuicidal
     {
         public static Vector2 VelocityNullifier(this Vector2 movement, Vector2 offset)
         {
-            if ((offset.X > 0 && movement.X > 0) || (offset.Y > 0 && movement.Y > 0) || (offset.X < 0 && movement.X < 0) || (offset.Y < 0 && movement.Y < 0))
-                return Vector2.One;
+            return new Vector2(
+                ((movement.X > 0 && offset.X < 0) || (movement.X < 0 && offset.X > 0)) ? 0 : 1,
+                ((movement.Y > 0 && offset.Y < 0) || (movement.Y < 0 && offset.Y > 0)) ? 0 : 1);
+        }
 
-            return new Vector2(movement.X == 0 ? 1 : 0, movement.Y == 0 ? 1 : 0);
+        public static bool Ignores(this PhysicsObject physicsObject, WorldObject subject)
+        {
+            foreach (string tag in physicsObject.IgnoreCollision)
+            {
+                foreach (string compareTag in subject.Tags)
+                {
+                    if (tag == compareTag)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 
