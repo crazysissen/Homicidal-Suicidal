@@ -43,8 +43,8 @@ namespace HomicidalSuicidal
         #endregion
 
         // Temporary Angles for the 2nd and 3rd bullet
-        readonly float tempBulletAngle = (float)Math.Atan2(1, 2);
-        readonly float tempBulletAngle2 = -(float)Math.Atan2(1, 2);
+        readonly float tempBulletAngle = (float)Math.Atan2(1.5f, 2);
+        readonly float tempBulletAngle2 = -(float)Math.Atan2(1.5f, 2);
 
         float sin, cos, sin2, cos2;
         float x, y, x2, y2;
