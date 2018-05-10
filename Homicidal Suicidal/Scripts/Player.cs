@@ -84,6 +84,13 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
+            // Die logic
+            if (Health >= Player.maxHealth)
+            {
+                //Console.WriteLine("Should Die");
+                DestroyObject();
+            }
+
             KeyboardState keyboardState = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
 
@@ -93,13 +100,6 @@ namespace HomicidalSuicidal
 
             Dying(deathRate, deltaTime);
             //Console.WriteLine("Health: " + Health);
-
-            // Die logic
-            if (Health >= Player.maxHealth)
-            {
-                //Console.WriteLine("Should Die");
-                DestroyObject();
-            }
 
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
             velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;

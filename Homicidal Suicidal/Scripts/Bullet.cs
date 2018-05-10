@@ -72,28 +72,12 @@ namespace HomicidalSuicidal
         
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            //double bulletAngle = Math.Atan2(Velocity.Y, Velocity.X);
-
-            //// Top Right Quadrant
-            //if (Velocity.X >= 0 && Velocity.Y >= 0)
-            //{
-            //    rotation = (float)((Math.PI * 0.5f) - (Math.Atan2(Velocity.Y, Velocity.X)));
-            //}
-            //// Bottom Right Quadrant
-            //else if (Velocity.X >= 0 && Velocity.Y < 0)
-            //{
-            //    rotation = (float)(Math.PI - Math.Atan2(-Velocity.Y, Velocity.X));
-            //}
-            //// Bottom Left Quadrant
-            //else if (Velocity.X < 0 && Velocity.Y < 0)
-            //{
-            //    rotation = (float)(Math.PI + Math.Atan2(-Velocity.Y, -Velocity.X));
-            //}
-            //// Top Left Quadrant
-            //else if (Velocity.X < 0 && Velocity.Y >= 0)
-            //{
-            //    rotation = (float)((Math.PI * 1.5f) - (Math.Atan2(Velocity.Y, -Velocity.X)));
-            //}
+            // Destroys bullets with a bigger absolute distance away from the player than the screen's dimensions
+            if (Math.Abs(Position.X - Player.MainPlayer.Position.X) > Game1.Graphics.GraphicsDevice.Viewport.Width || Math.Abs(Position.Y - Player.MainPlayer.Position.Y) > Game1.Graphics.GraphicsDevice.Viewport.Height)
+            {
+                Console.WriteLine("Bullet out of screen");
+                DestroyObject();
+            }
 
             if (Tags.Contains("Syringe"))
             {
@@ -103,7 +87,7 @@ namespace HomicidalSuicidal
                 Velocity = Game1.NormalizeThis(Player.MainPlayer.CenterPosition - Position) * balancedVariable;
 
                 // SWARM VERSION
-                //Velocity += Game1.NormalizeThis(Player.MainPlayer.CenterPosition - CenterPosition) / 4;
+                // Velocity += Game1.NormalizeThis(Player.MainPlayer.CenterPosition - CenterPosition) / 4;
             }
         }
 
@@ -145,8 +129,6 @@ namespace HomicidalSuicidal
 
                     DestroyObject();
                 }
-
-                
             }
         }
     }
