@@ -93,6 +93,8 @@ namespace HomicidalSuicidal
 
             if (states == States.Dying && animator.CurrentState != 2)
             {
+                Tags.Remove("Enemy");
+                Tags.Add("Ground");
                 animator.SetState(2);
             }
         }

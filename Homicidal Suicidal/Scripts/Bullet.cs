@@ -44,10 +44,11 @@ namespace HomicidalSuicidal
         Owner owner;
 
         public Vector2 DirectionToPlayer => Game1.NormalizeThis(Player.MainPlayer.CenterPosition - CenterPosition);
+        Vector2 vectorOrigin = new Vector2(0, 1);
 
         string targetTag;
 
-        float healing, balancedVariable = 4;
+        float healing, balancedVariable = 4, vectorSum, bulletAngle;
 
         bool alive;
 
@@ -81,8 +82,12 @@ namespace HomicidalSuicidal
                 DestroyObject();
             }
 
-            if (Tags.Contains("Syringe"))
+            if (Tags.Contains("Syringe") || Tags.Contains("Scalpel"))
             {
+                vectorSum = (vectorOrigin.X * Player.MainPlayer.CenterPosition.X) + (vectorOrigin.Y * Player.MainPlayer.CenterPosition.Y);
+                bulletAngle = (float)Math.Acos(vectorSum / (vectorOrigin.Length() * Player.MainPlayer.CenterPosition.Length()));
+                rotation = bulletAngle * 360 / (float)Math.PI;
+
                 // AIMLOCK ON PLAYER VERSION
                 // Velocity = Game1.NormalizeThis(Player.MainPlayer.CenterPosition - Position) * balancedVariable;
 
