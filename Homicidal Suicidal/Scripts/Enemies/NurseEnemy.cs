@@ -73,7 +73,7 @@ namespace HomicidalSuicidal
             Tags.Add("Enemy");
 
             animator = new Animator(
-                new Animation(1, -1, false, new Animation.AnimationState(Game1.AllSprites["Nurse_Healing"], 0)),// State 1: Attack
+                new Animation(1, -1, false, new Animation.AnimationState(Game1.AllSprites["Nurse_Healing"], 0)), // State 1: Attack
                 new Animation(100, -1, false, new Animation.AnimationState(Game1.AllSprites["Nurse_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Nurse_Dead"], 0.8f)) // State 2: Death
                 );
 

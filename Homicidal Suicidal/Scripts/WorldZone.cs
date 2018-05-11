@@ -88,7 +88,7 @@ namespace HomicidalSuicidal
 
                 if (enemyType == 2)
                 {
-                    Enemies[i] = new SurgeonEnemy("Surgeon[" + NewIndex() + "]", true, Game1.AllSprites["Surgeon_Idle"], Color.White, new Point(140, 135), possibleEnemyPositions[positionIndex] - new Vector2(70, 135), 5, 100, 8, 600, 0.4f);
+                    Enemies[i] = new SurgeonEnemy("Surgeon[" + NewIndex() + "]", true, Game1.AllSprites["Surgeon_Idle"], Color.White, new Point(140, 135), possibleEnemyPositions[positionIndex] - new Vector2(70, 135), 5, 100, 5, 600, 0.4f);
                     Enemies[i].Tags.Add("Enemy");
                 }
 
