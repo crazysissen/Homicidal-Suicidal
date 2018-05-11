@@ -51,7 +51,7 @@ namespace HomicidalSuicidal
                            jumpPower = 7,
                            attackSpeed = .3f,
                            bulletSpeed = 20,
-                           deathRate = 0.04f;
+                           deathRate = 0.02f;
 
         bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
 

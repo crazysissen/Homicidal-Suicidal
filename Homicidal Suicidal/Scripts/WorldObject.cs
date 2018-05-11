@@ -274,5 +274,13 @@ namespace HomicidalSuicidal
                 }
             }
         }
+
+        public static void DestroyAllObjects()
+        {
+            for (int i = WorldObjects.Count - 1; i >= 0; --i)
+            {
+                WorldObjects[i].DestroyObject();
+            }
+        }
     }
 }

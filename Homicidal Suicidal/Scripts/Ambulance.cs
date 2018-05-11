@@ -41,8 +41,8 @@ namespace HomicidalSuicidal
         public const float
             heal = 50,
             layer = 0,
-            defaultSpeed = 2,
-            acceleration = 4.2f,
+            defaultSpeed = 3.5f,
+            acceleration = 3.5f,
             distancePerSpeedStep = 350;
 
         float Speed => defaultSpeed + acceleration * (0.2f * ((DistanceToPlayer / distancePerSpeedStep) * (DistanceToPlayer / distancePerSpeedStep))); // TODO

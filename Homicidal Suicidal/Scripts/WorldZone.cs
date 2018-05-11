@@ -13,10 +13,10 @@ namespace HomicidalSuicidal
     {
         public const int
             groundNumber = 16,
-            minPlatforms = 3,
-            maxPlatforms = 8,
-            minEnemies = 3,
-            maxEnemies = 5,
+            minPlatforms = 6,
+            maxPlatforms = 12,
+            minEnemies = 5,
+            maxEnemies = 8,
             minGroundHeight = -40,
             maxGroundHeight = 40,
             maxEnemyOffset = 30,
