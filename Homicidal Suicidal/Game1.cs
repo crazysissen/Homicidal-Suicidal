@@ -139,14 +139,16 @@ namespace HomicidalSuicidal
 
             Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
 
-            //gui.Add(
-            //    new GUI.Texture(new Rectangle(-1, -1, screenSize.X + 2, screenSize.Y + 2), new Color(0, 0, 0, 0.7f)),
-            //    new GUI.Label("You Died! Congrats!", 140, new Vector2(100, 100), menuFont, Color.White),
-            //    new GUI.Button(new Rectangle(100, 660, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, PlayAgainButton),
-            //    new GUI.Button(new Rectangle(100, 830, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, ExitButton),
-            //    new GUI.Label("Play Again", 46, new Vector2(120, 685), defaultFont, Color.Black),
-            //    new GUI.Label("Quit", 80, new Vector2(158, 840), defaultFont, Color.Black)
-            //    );
+            gui.Add(
+                new GUI.Texture(new Rectangle(-1, -1, screenSize.X + 2, screenSize.Y + 2), new Color(0, 0, 0, 0.7f)),
+                new GUI.Label("The latest health control claims that", 60, new Vector2(100, 100), menuFont, Color.White),
+                new GUI.Label("you are healthy and ready to go home.", 60, new Vector2(100, 200), menuFont, Color.White),
+                new GUI.Label("You've failed your mission...", 60, new Vector2(100, 350), menuFont, Color.White),
+                new GUI.Button(new Rectangle(100, 660, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, PlayAgainButton),
+                new GUI.Button(new Rectangle(100, 830, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, ExitButton),
+                new GUI.Label("Retry", 70, new Vector2(158, 672), defaultFont, Color.Black),
+                new GUI.Label("Quit", 80, new Vector2(158, 840), defaultFont, Color.Black)
+                );
         }
 
         void WinUpdate()
