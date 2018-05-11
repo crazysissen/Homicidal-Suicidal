@@ -18,14 +18,6 @@
   </Class>
   <Class Name="HomicidalSuicidal.SurgeonEnemy">
     <Position X="17.25" Y="0.5" Width="1.5" />
-    <InheritanceLine Type="HomicidalSuicidal.PhysicsObject" ManuallyRouted="true">
-      <Path>
-        <Point X="12.75" Y="12.5" />
-        <Point X="12.75" Y="12.185" />
-        <Point X="18" Y="12.185" />
-        <Point X="18" Y="9.367" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>BCQDCAEIAAwyAEQgQASAAQAAexAAAAKEAABoBAACCAA=</HashCode>
       <FileName>Scripts\Enemies\SurgeonEnemy.cs</FileName>
@@ -51,14 +43,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HomicidalSuicidal.WorldObject">
-    <Position X="19" Y="12.5" Width="1.5" />
+    <Position X="14" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ISQACAAAQBQAhMBgCBAiBAQAQSAEAEAAAIBAAAAAgoA=</HashCode>
       <FileName>Scripts\WorldObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.PhysicsObject">
-    <Position X="12" Y="12.5" Width="1.5" />
+    <Position X="12" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAISAAAAAAAAAAAAAAAQEAAAAAAAAIAAAAAAEAAA=</HashCode>
       <FileName>Scripts\PhysicsObject.cs</FileName>
@@ -133,7 +125,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.World">
-    <Position X="0.5" Y="9.75" Width="1.5" />
+    <Position X="0.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQQAAQAAAAAkZAAAAAAAABAAAAAAAIAAAAEAAkABAA=</HashCode>
       <FileName>Scripts\World.cs</FileName>
@@ -201,7 +193,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomicidalSuicidal.Animation">
-    <Position X="26.25" Y="4.5" Width="1.5" />
+    <Position X="26.25" Y="4" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -226,14 +218,6 @@
   </Class>
   <Class Name="HomicidalSuicidal.RenderedObject">
     <Position X="19" Y="0.5" Width="1.5" />
-    <InheritanceLine Type="HomicidalSuicidal.WorldObject" ManuallyRouted="true">
-      <Path>
-        <Point X="19.75" Y="12.5" />
-        <Point X="19.75" Y="12.147" />
-        <Point X="19.75" Y="12.147" />
-        <Point X="19.75" Y="4.559" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAABAAAAAAQwIAAAAASAAAAAABAAAACAAABABAACAAA=</HashCode>
       <FileName>Scripts\RenderedObject.cs</FileName>
@@ -244,10 +228,15 @@
     <Position X="6.75" Y="0.5" Width="1.5" />
     <InheritanceLine Type="HomicidalSuicidal.PhysicsObject" FixedFromPoint="true">
       <Path>
-        <Point X="12.625" Y="12.5" />
-        <Point X="12.625" Y="12.125" />
-        <Point X="7.5" Y="12.125" />
-        <Point X="7.5" Y="5.905" />
+        <Point X="12.75" Y="10" />
+        <Point X="12.75" Y="9.625" />
+        <Point X="11.832" Y="9.625" />
+        <Point X="11.832" Y="0.418" />
+        <Point X="10.123" Y="0.418" />
+        <Point X="10.123" Y="4.641" />
+        <Point X="8.373" Y="4.641" />
+        <Point X="8.373" Y="3.203" />
+        <Point X="8.25" Y="3.203" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
