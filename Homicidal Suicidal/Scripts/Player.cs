@@ -65,6 +65,7 @@ namespace HomicidalSuicidal
 
         bool airJumped;
 
+
         string[]
             runningTexturesImport = new string[] { "Player_Run_1&7", "Player_Run_2", "Player_Run_3", "Player_Run_4", "Player_Run_5", "Player_Run_6", "Player_Run_1&7", "Player_Run_8", "Player_Run_9", "Player_Run_10", "Player_Run_11", "Player_Run_12" },
             shootingTexturesImport = new string[] { "Player_Run_1&7_Shoot", "Player_Run_2_Shoot", "Player_Run_3_Shoot", "Player_Run_4_Shoot", "Player_Run_5_Shoot", "Player_Run_6_Shoot", "Player_Run_1&7_Shoot", "Player_Run_8_Shoot", "Player_Run_9_Shoot", "Player_Run_10_Shoot", "Player_Run_11_Shoot", "Player_Run_12_Shoot" },

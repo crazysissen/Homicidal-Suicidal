@@ -89,6 +89,7 @@ namespace HomicidalSuicidal
             name = tempName;
         }
 
+
         public WorldObject(string name, Rectangle rectangle)
         {
             Tags = new List<string>();
