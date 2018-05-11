@@ -166,6 +166,19 @@ namespace HomicidalSuicidal
                 return;
             }
 
+            RenderedObject tempCollisionObject = new RenderedObject("Temp Object", new Rectangle(0, 0, Size.X, 1), Game1.AllSprites["Square"], Color.Transparent);
+            tempCollisionObject.Position = Position + new Vector2(0, Offset.Y * 2);
+
+            if (tempCollisionObject.IntersectTags().Contains("Ground"))
+            {
+                grounded = true;
+                airJumped = false;
+            }
+            else // Sixtens only "else"
+            {
+                grounded = false;
+            }
+
             // Live logic
             if (Health >= Player.maxHealth)
             {
@@ -196,13 +209,13 @@ namespace HomicidalSuicidal
             if (Methods.KeyDown(Keys.Space) && airJumped == false)
             {
                 Velocity = new Vector2(Velocity.X, -jumpPower);
-                airJumped = true;
+
+                if (!grounded)
+                    airJumped = true;
             }
 
             if (!overAnimating)
                 Animate(deltaTime);
-
-            grounded = false;
         }
 
         void Animate(float deltaTime)
@@ -237,17 +250,6 @@ namespace HomicidalSuicidal
 
             if (animator.CurrentState == 4 && shootAnimationCountdown > 0)
                 animator.SetState(5);
-        }
-
-        public override void OnCollision(PhysicsObject physicsObject)
-        {
-            Console.WriteLine("Touch Ground");
-
-            if (physicsObject.Tags.Contains("Ground"))
-            {
-                airJumped = false;
-                grounded = true;
-            }
         }
 
         void Attack(Vector2 mousePos, float deltaTime)

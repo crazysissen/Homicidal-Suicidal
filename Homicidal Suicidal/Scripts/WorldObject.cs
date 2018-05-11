@@ -130,6 +130,20 @@ namespace HomicidalSuicidal
 
         public static void InitializeClass() => WorldObjects = new Dictionary<string, WorldObject>();
 
+        public List<string> IntersectTags()
+        {
+            List<string> returnList = new List<string>();
+
+            foreach (KeyValuePair<string, WorldObject> subject in WorldObjects)
+            {
+                if ((subject.Value.CenterPosition - CenterPosition).Length() < Constants.collisionIgnoreDistance)
+                    if (Intersects(subject.Value))
+                        returnList.AddRange(subject.Value.Tags);
+            }
+
+            return returnList;
+        }
+
         public static void UpdateAllPhysics(GameTime gameTime)
         {
             for (int i = 0; i < WorldObjects.Count; ++i)

@@ -96,11 +96,6 @@ namespace HomicidalSuicidal
             }
         }
 
-        public void Initialize()
-        {
-
-        }
-
         int NewIndex()
         {
             ++worldIndex;
