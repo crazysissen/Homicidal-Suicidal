@@ -54,9 +54,11 @@ namespace HomicidalSuicidal
 
             IgnoreCollision = new string[] { "Ground", "Bullet", "Enemy" };
 
-            animator = new Animator(new Animation(1, -1, false,
-                new Animation.AnimationState(Game1.AllSprites["Square"] /*TODO*/, 0), 
-                new Animation.AnimationState(Game1.AllSprites["Square"] /*TODO*/, 0.5f)));
+            animator = new Animator(new Animation(1.5f, -1, false,
+                new Animation.AnimationState(Game1.AllSprites["Ambulance_1"] /*TODO*/, 0), 
+                new Animation.AnimationState(Game1.AllSprites["Ambulance_2"] /*TODO*/, 0.75f)));
+
+            hitboxUpInset = 10;
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)

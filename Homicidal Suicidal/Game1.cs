@@ -31,6 +31,7 @@ namespace HomicidalSuicidal
         string[] _loadTags = new string[] 
         {
             "Square", "Floor", "Syringe", "Button", "Wall", "Scalpel", "Platform", "Bullet",
+            "Ambulance_1", "Ambulance_2",
             "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
             "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing",
             "Surgeon_Attack", "Surgeon_Dead", "Surgeon_Dying", "Surgeon_Idle"
@@ -60,7 +61,7 @@ namespace HomicidalSuicidal
 
             CurrentState = new Stack<GameState>();
             CurrentState.Push(GameState.MainMenu);
-            Ambulance ambulance = new Ambulance(new Rectangle(0, -900, 200, 1200)); 
+            Ambulance ambulance = new Ambulance(new Rectangle(0, -470, 489, 600)); 
         }
 
         protected override void LoadContent()
