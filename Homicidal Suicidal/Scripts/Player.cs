@@ -49,9 +49,9 @@ namespace HomicidalSuicidal
         public const float maxHealth = 100,
                            speed = 5,
                            jumpPower = 7,
-                           attackSpeed = .3f,
+                           attackSpeed = 0.3f,
                            bulletSpeed = 20,
-                           deathRate = 1f;
+                           deathRate = 0.02f;
 
         bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
 
@@ -60,6 +60,8 @@ namespace HomicidalSuicidal
         float attackTimer;
 
         public float Health { get; set; }
+
+        bool airJumped;
 
         public Player(string name, Rectangle rectangle, Texture2D texture) : base(Vector2.Zero, 1, name, rectangle)
         {
@@ -111,13 +113,23 @@ namespace HomicidalSuicidal
 
             Position += velocity;
 
-            if (Methods.KeyDown(Keys.Space))
+            if (Methods.KeyDown(Keys.Space) && airJumped == false)
             {
-                Position -= new Vector2(0, 1);
-                Velocity += new Vector2(0, -jumpPower);
+                Velocity = new Vector2(Velocity.X, -jumpPower);
+                airJumped = true;
             }
 
             // Console.WriteLine(Intersects(StaticObject.worldObjectThing));
+        }
+
+        public override void OnCollision(PhysicsObject physicsObject)
+        {
+            Console.WriteLine("Touch Ground");
+
+            if (physicsObject.Tags.Contains("Ground"))
+            {
+                airJumped = false;
+            }
         }
 
         void Attack(Vector2 mousePos, float deltaTime)

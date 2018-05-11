@@ -27,7 +27,6 @@ namespace HomicidalSuicidal
             {
                 if (WorldObjects.ContainsKey(value))
                 {
-                    Console.WriteLine("Tried to change name to one that already exists, aborting.");
                     return;
                 }
 
@@ -65,10 +64,7 @@ namespace HomicidalSuicidal
             if (WorldObjects == null)
                 WorldObjects = new Dictionary<string, WorldObject>();
 
-            if (!CheckNameAvaliability(name, out string tempName))
-            {
-                Console.WriteLine("WorldObject name already taken, generating automatic name.");
-            }
+            CheckNameAvaliability(name, out string tempName);
 
             WorldObjects.Add(tempName, this);
             name = tempName;
