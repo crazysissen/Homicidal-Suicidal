@@ -11,7 +11,7 @@
   <Class Name="HomicidalSuicidal.NurseEnemy">
     <Position X="15.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQBCAAIAAQwAEAAAASAAAAAYBgAAAKEAADABAACCAA=</HashCode>
+      <HashCode>BAQBCAAIAAQwAEAAAASAAAAAYQgAAAKEAADABAACCAA=</HashCode>
       <FileName>Scripts\Enemies\NurseEnemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -45,7 +45,7 @@
   <Class Name="HomicidalSuicidal.WorldObject">
     <Position X="14" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ICQACAAAABQAhMBgCBAiBAQAACAEAEAAAIBAAAAAgoA=</HashCode>
+      <HashCode>ISQACAAAQBQAhMBgCBAiBAQAQSAEAEAAAIBAAAAAgoA=</HashCode>
       <FileName>Scripts\WorldObject.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,7 +59,7 @@
   <Class Name="HomicidalSuicidal.Player">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQDCAIIAAQyAADAAATAAAAAAJAAAUCAAABABAECQAA=</HashCode>
+      <HashCode>BQ1DKAoMAAQ6QCDoAATAAEQAQIAAAWCAIABABAEiQkA=</HashCode>
       <FileName>Scripts\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.501" />
@@ -91,7 +91,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ABQIEMlAAAAgAwAgAAAAAKAACABIAAAAAAAEASAAAEQ=</HashCode>
+      <HashCode>CBQIEMlAAAAgAwAgAAAAAKAACABIAABAAAAEASAABEQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -188,7 +188,7 @@
   <Class Name="HomicidalSuicidal.Animator">
     <Position X="26.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQABAACAAAABAAAAAAAACAAAAAAmAAAAAAEAAAAAAA=</HashCode>
+      <HashCode>AAQABAACAAAAJAAAAAAAACAAAAAAmAAAAAAAgAAEAAA=</HashCode>
       <FileName>Scripts\Animator.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -205,7 +205,7 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAgAACAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <HashCode>AAAAAAAACAAAAAAAAAgAACAAAAAAAAAAAAAAAAAAgAA=</HashCode>
       <FileName>Scripts\Animator.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -230,8 +230,13 @@
       <Path>
         <Point X="12.75" Y="10" />
         <Point X="12.75" Y="9.625" />
-        <Point X="7.5" Y="9.625" />
-        <Point X="7.5" Y="5.905" />
+        <Point X="11.832" Y="9.625" />
+        <Point X="11.832" Y="0.418" />
+        <Point X="10.123" Y="0.418" />
+        <Point X="10.123" Y="4.641" />
+        <Point X="8.373" Y="4.641" />
+        <Point X="8.373" Y="3.203" />
+        <Point X="8.25" Y="3.203" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
