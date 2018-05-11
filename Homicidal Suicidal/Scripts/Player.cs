@@ -51,7 +51,7 @@ namespace HomicidalSuicidal
                            jumpPower = 7,
                            attackSpeed = .3f,
                            bulletSpeed = 20,
-                           deathRate = 0.02f;
+                           deathRate = 1f;
 
         bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
 
@@ -86,11 +86,15 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            // Die logic
+            // Live logic
             if (Health >= Player.maxHealth)
             {
                 //Console.WriteLine("Should Die");
-                DestroyObject();
+                Game1.CurrentState.Push(Game1.GameState.Lose);
+            }
+            else if (Health <= 0)
+            {
+                Game1.CurrentState.Push(Game1.GameState.Win);
             }
 
             KeyboardState keyboardState = Keyboard.GetState();
