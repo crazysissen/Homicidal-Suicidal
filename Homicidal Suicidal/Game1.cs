@@ -18,9 +18,9 @@ namespace HomicidalSuicidal
         public static Dictionary<string, Texture2D> AllSprites { get; set; }
         public static Player Player { get; set; }
         public static GraphicsDeviceManager Graphics { get; set; }
+        public static Stack<GameState> CurrentState { get; private set; }
 
         public enum GameState { MainMenu, InGame, Pause, Win, Lose }
-        public static Stack<GameState> CurrentState { get; private set; }
 
         GUI gui = new GUI();
         SpriteFont menuFont, defaultFont;

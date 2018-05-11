@@ -76,19 +76,19 @@ namespace HomicidalSuicidal
                 if (enemyType == 0)
                 {
                     // Default template for DoctorEnemy
-                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 3, 100, 10, 600, 0.4f);
+                    Enemies[i] = new DoctorEnemy("Doctor[" + NewIndex() + "]", true, Game1.AllSprites["Doctor_Attack"], Color.White, new Point(240, 145), possibleEnemyPositions[positionIndex] - new Vector2(120, 145), 3, 100, 15, 600, 0.4f);
                     Enemies[i].Tags.Add("Enemy");
                 }
 
                 if (enemyType == 1)
                 {
-                    Enemies[i] = new NurseEnemy("Nurse[" + NewIndex() + "]", true, Color.White, new Point(240, 180), possibleEnemyPositions[positionIndex] - new Vector2(120, 180), 0.05f, 250, 0.4f);
+                    Enemies[i] = new NurseEnemy("Nurse[" + NewIndex() + "]", true, Color.White, new Point(240, 180), possibleEnemyPositions[positionIndex] - new Vector2(120, 180), 0.1f, 250, 0.4f);
                     Enemies[i].Tags.Add("Enemy");
                 }
 
                 if (enemyType == 2)
                 {
-                    Enemies[i] = new SurgeonEnemy("Surgeon[" + NewIndex() + "]", true, Game1.AllSprites["Surgeon_Idle"], Color.White, new Point(140, 135), possibleEnemyPositions[positionIndex] - new Vector2(70, 135), 5, 100, 15, 600, 0.4f);
+                    Enemies[i] = new SurgeonEnemy("Surgeon[" + NewIndex() + "]", true, Game1.AllSprites["Surgeon_Idle"], Color.White, new Point(140, 135), possibleEnemyPositions[positionIndex] - new Vector2(70, 135), 5, 100, 8, 600, 0.4f);
                     Enemies[i].Tags.Add("Enemy");
                 }
 
