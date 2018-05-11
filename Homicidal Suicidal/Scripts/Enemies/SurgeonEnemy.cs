@@ -84,9 +84,9 @@ namespace HomicidalSuicidal
             sin2 = (float)Math.Sin(tempBulletAngle2);
 
             animator = new Animator(
-                new Animation(1, -1, new Animation.AnimationState(Game1.AllSprites["Surgeon_Idle"], 0)),     // State 0: Idle
-                new Animation(0.1f, 0, new Animation.AnimationState(Game1.AllSprites["Surgeon_Attack"], 0)),// State 1: Attack
-                new Animation(100, -1, new Animation.AnimationState(Game1.AllSprites["Surgeon_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Surgeon_Dead"], 0.8f)) // State 2: Death
+                new Animation(1, -1, false, new Animation.AnimationState(Game1.AllSprites["Surgeon_Idle"], 0)),     // State 0: Idle
+                new Animation(0.1f, 0, false, new Animation.AnimationState(Game1.AllSprites["Surgeon_Attack"], 0)),// State 1: Attack
+                new Animation(100, -1, false, new Animation.AnimationState(Game1.AllSprites["Surgeon_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Surgeon_Dead"], 0.8f)) // State 2: Death
                 );
         }
 

@@ -70,9 +70,9 @@ namespace HomicidalSuicidal
             attackTimer = attackSpeed;
 
             animator = new Animator(
-                new Animation(1, -1, new Animation.AnimationState(Game1.AllSprites["Doctor_Idle"], 0)),     // State 0: Idle
-                new Animation(0.1f , 0, new Animation.AnimationState(Game1.AllSprites["Doctor_Attack"], 0)),// State 1: Attack
-                new Animation(100, -1, new Animation.AnimationState(Game1.AllSprites["Doctor_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Doctor_Dead"], 0.8f)) // State 2: Death
+                new Animation(1, -1, false, new Animation.AnimationState(Game1.AllSprites["Doctor_Idle"], 0)),     // State 0: Idle
+                new Animation(0.1f , 0, false, new Animation.AnimationState(Game1.AllSprites["Doctor_Attack"], 0)),// State 1: Attack
+                new Animation(100, -1, false, new Animation.AnimationState(Game1.AllSprites["Doctor_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Doctor_Dead"], 0.8f)) // State 2: Death
                 );
 
             Tags.Add("Enemy");

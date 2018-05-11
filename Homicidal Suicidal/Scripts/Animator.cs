@@ -15,7 +15,10 @@ namespace HomicidalSuicidal
         Animation[] animations;
 
         public int CurrentState { get; private set; }
-        float currentCountdown;
+        public float CurrentTime { get; set; }
+
+        bool transferLive;
+        float transferBackTime;
 
         public Animator(params Animation[] animations)
         {
@@ -28,23 +31,31 @@ namespace HomicidalSuicidal
             if (state < animations.Length && state >= 0)
             {
                 CurrentState = state;
-                currentCountdown = 0;
+                CurrentTime = 0;
             }
 
             Console.WriteLine("State set");
         }
 
+        public void SetState(int state, float time)
+        {
+            SetState(state);
+            CurrentTime = time;
+        }
+
         public void Update(float deltaTime)
         {
-            currentCountdown += deltaTime;
-            if (currentCountdown > animations[CurrentState].endTime)
+            CurrentTime += deltaTime;
+            if (CurrentTime > animations[CurrentState].endTime)
             {
-                currentCountdown -= animations[CurrentState].endTime;
+                CurrentTime -= animations[CurrentState].endTime;
                 
                 if (animations[CurrentState].autoTransfer >= 0 && animations[CurrentState].autoTransfer < animations.Length)
                 {
+                    if (!animations[CurrentState].keepCurrentTime)
+                        CurrentTime = 0;
+
                     CurrentState = animations[CurrentState].autoTransfer;
-                    currentCountdown = 0;
                 }
             }
         }
@@ -53,7 +64,7 @@ namespace HomicidalSuicidal
         {
             if (animations.Length > 0)
                 for (int i = animations[CurrentState].animationStates.Length - 1; i >= 0; --i)
-                    if (animations[CurrentState].animationStates[i].timestamp <= currentCountdown)
+                    if (animations[CurrentState].animationStates[i].timestamp <= CurrentTime)
                         return animations[CurrentState].animationStates[i].texture;
 
             return Game1.AllSprites["Square"];
@@ -65,7 +76,7 @@ namespace HomicidalSuicidal
                 return;
 
             CurrentState = state;
-            currentCountdown = 0;
+            CurrentTime = 0;
         }
 
         public static void UpdateAll(float deltaTime)
@@ -82,12 +93,16 @@ namespace HomicidalSuicidal
         public AnimationState[] animationStates;
         public float endTime;
         public int autoTransfer;
+        public bool keepCurrentTime;
 
-        public Animation(float endTime, int autoTransfer = -1, params AnimationState[] states)
+        public Animation(float endTime, int autoTransfer = -1, bool keepCurrentTime = false, params AnimationState[] states) : this(endTime, states, autoTransfer, keepCurrentTime) { }
+
+        public Animation(float endTime, AnimationState[] states, int autoTransfer = -1, bool keepCurrentTime = false)
         {
             animationStates = states;
             this.endTime = endTime;
             this.autoTransfer = autoTransfer;
+            this.keepCurrentTime = keepCurrentTime;
         }
 
         public struct AnimationState

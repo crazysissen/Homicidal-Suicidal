@@ -41,7 +41,9 @@ namespace HomicidalSuicidal
         public Vector2 Position { get; set; }
         public Vector2 Offset => new Vector2((float)Size.X * 0.5f, (float)Size.Y * 0.5f);
         public Vector2 CenterPosition { get => Position + Offset; set => Position = value - Offset; }
-        public Rectangle Rect => new Rectangle(Position.ToPoint(), Size); 
+        public Rectangle Rect => new Rectangle(Position.ToPoint(), Size);
+
+        public float hitboxRightInset = 1, hitboxLeftInset = 1, hitboxUpInset = 1, hitboxDownInset = 1;
 
         public virtual PhysicsObject PhysObject => null;
 
@@ -183,15 +185,15 @@ namespace HomicidalSuicidal
 
         public bool Intersects(WorldObject worldObject)
         {
-            float   top = CenterPosition.Y - (float)Size.Y / 2,
-                    right = CenterPosition.X + (float)Size.X / 2,
-                    bottom = CenterPosition.Y + (float)Size.Y / 2,
-                    left = CenterPosition.X - (float)Size.X / 2,
+            float   top = CenterPosition.Y - hitboxUpInset * (float)Size.Y / 2,
+                    right = CenterPosition.X + hitboxRightInset * (float)Size.X / 2,
+                    bottom = CenterPosition.Y + hitboxDownInset * (float)Size.Y / 2,
+                    left = CenterPosition.X - hitboxLeftInset * (float)Size.X / 2,
 
-                    thatTop = worldObject.CenterPosition.Y - (float)worldObject.Size.Y / 2,
-                    thatRight = worldObject.CenterPosition.X + (float)worldObject.Size.X / 2,
-                    thatBottom = worldObject.CenterPosition.Y + (float)worldObject.Size.Y / 2,
-                    thatLeft = worldObject.CenterPosition.X - (float)worldObject.Size.X / 2;
+                    thatTop = worldObject.CenterPosition.Y - worldObject.hitboxUpInset * (float)worldObject.Size.Y / 2,
+                    thatRight = worldObject.CenterPosition.X + worldObject.hitboxRightInset * (float)worldObject.Size.X / 2,
+                    thatBottom = worldObject.CenterPosition.Y + worldObject.hitboxDownInset * (float)worldObject.Size.Y / 2,
+                    thatLeft = worldObject.CenterPosition.X - worldObject.hitboxLeftInset * (float)worldObject.Size.X / 2;
 
             return  ((top >= thatTop && top <= thatBottom) || (bottom <= thatBottom && bottom >= thatTop)) && 
                     ((left >= thatLeft && left <= thatRight) || (right <= thatRight && right >= thatLeft)) ||
@@ -203,10 +205,10 @@ namespace HomicidalSuicidal
         {
             float[] distances = new float[]
             {
-                (CenterPosition.X + (Size.X * 0.5f)) - (worldObject.CenterPosition.X - (worldObject.Size.X * 0.5f)), // Left
-                (worldObject.CenterPosition.X + worldObject.Size.X * 0.5f) - (CenterPosition.X - Size.X * 0.5f), // Right
-                (CenterPosition.Y + (Size.Y * 0.5f)) - (worldObject.CenterPosition.Y - (worldObject.Size.Y * 0.5f)), // Up
-                (worldObject.CenterPosition.Y + worldObject.Size.Y * 0.5f) - (CenterPosition.Y - Size.Y * 0.5f)  // Down
+                (CenterPosition.X + hitboxRightInset * (Size.X * 0.5f)) - (worldObject.CenterPosition.X - worldObject.hitboxRightInset * (worldObject.Size.X * 0.5f)), // Left
+                (worldObject.CenterPosition.X + worldObject.hitboxLeftInset * worldObject.Size.X * 0.5f) - (CenterPosition.X - hitboxLeftInset * Size.X * 0.5f), // Right
+                (CenterPosition.Y + hitboxDownInset * (Size.Y * 0.5f)) - (worldObject.CenterPosition.Y - worldObject.hitboxDownInset * (worldObject.Size.Y * 0.5f)), // Up
+                (worldObject.CenterPosition.Y + worldObject.hitboxUpInset * worldObject.Size.Y * 0.5f) - (CenterPosition.Y - hitboxUpInset * Size.Y * 0.5f)  // Down
             };
 
             Vector2[] directions = new Vector2[] { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };

@@ -48,15 +48,12 @@ namespace HomicidalSuicidal
 
         protected override void Initialize()
         {
+            WorldObject.InitializeClass();
+            new Player("Test", new Rectangle(1000, -540, 200, 200));
+
             base.Initialize();
 
-            WorldObject.InitializeClass();
-
             World.Initialize((new Random()).Next(0, 10000));
-
-            new Player("Test", new Rectangle(1000, -540, 40, 40), AllSprites["Square"]);
-            //new NurseEnemy("Nurse", true, AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), new Vector2(300, 0), 0.05f, 100, 999);
-            //WorldZone testZone = new WorldZone(1, 0);
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(inGameSong);
@@ -75,6 +72,8 @@ namespace HomicidalSuicidal
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             AllSprites = new Dictionary<string, Texture2D>();
+
+            Player.MainPlayer.ImportTextures(Content);
 
             foreach (string name in _loadTags)
                 if (Content.Load<Texture2D>(name) != null)
@@ -250,8 +249,8 @@ namespace HomicidalSuicidal
                 CurrentState.Push(GameState.Pause);
 
             WorldObject.UpdateAllPhysics(gameTime);
-            WorldObject.UpdateAllDerived(gameTime);
             WorldObject.UpdateAllCollision();
+            WorldObject.UpdateAllDerived(gameTime);
 
             gui.Add(
                 new GUI.Texture(new Rectangle(90, 970, 220, 70), Color.SlateGray),
