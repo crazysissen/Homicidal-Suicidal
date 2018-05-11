@@ -45,6 +45,7 @@ namespace HomicidalSuicidal
             acceleration = 4.2f,
             distancePerSpeedStep = 350;
 
+
         float Speed => defaultSpeed + acceleration * (0.2f * ((DistanceToPlayer / distancePerSpeedStep) * (DistanceToPlayer / distancePerSpeedStep))); // TODO
         float DistanceToPlayer => Player.MainPlayer.Position.X - Position.X - Offset.X * 2;
 
