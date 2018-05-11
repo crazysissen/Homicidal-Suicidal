@@ -41,7 +41,7 @@ namespace HomicidalSuicidal
 
         float rotationPerSec;
 
-        public NurseAura(Vector2 centerPos, Texture2D auraSprite, Rectangle auraRectangle, string auraName, int radius, float auraRotation, float auraLayer) : base(auraName, auraRectangle)
+        public NurseAura(Vector2 centerPos, Color auraColor, Texture2D auraSprite, Rectangle auraRectangle, string auraName, int radius, float auraRotation, float auraLayer) : base(auraName, auraRectangle)
         {
             CenterPosition = centerPos;
             Size = new Point(2 * radius, 2 * radius);
@@ -49,12 +49,13 @@ namespace HomicidalSuicidal
             rotationPerSec = auraRotation;
             sprite = auraSprite;
             layer = auraLayer;
+            color = auraColor;
         }
 
-        protected override void Update(GameTime gameTime, float deltaTime)
-        {
-            rotation += rotationPerSec * deltaTime;
-        }
+        //protected override void Update(GameTime gameTime, float deltaTime)
+        //{
+        //    rotation += rotationPerSec * deltaTime;
+        //}
 
         public void DestroyAura()
         {

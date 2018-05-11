@@ -73,7 +73,7 @@ namespace HomicidalSuicidal
             Kinematic = true;
             Tags.Add("Enemy");
 
-            nurseAura = new NurseAura(CenterPosition, Game1.AllSprites["Healing_Aura"], new Rectangle(-auraRadius, -auraRadius, 2 * auraRadius, 2 * auraRadius), "Healing Aura", auraRadius, 1, 0.99f);
+            nurseAura = new NurseAura(ApparentCenter + new Vector2(65, 20), Color.White, Game1.AllSprites["Healing_Aura"], new Rectangle(-auraRadius, -auraRadius, 2 * auraRadius, 2 * auraRadius), "Healing Aura", auraRadius, 1, 0.99f);
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
