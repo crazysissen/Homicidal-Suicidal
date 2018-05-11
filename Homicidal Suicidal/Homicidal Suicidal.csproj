@@ -49,6 +49,7 @@
     <Compile Include="Scripts\Animator.cs" />
     <Compile Include="Scripts\Bullet.cs" />
     <Compile Include="Scripts\Constants.cs" />
+    <Compile Include="Scripts\Enemies\NurseAura.cs" />
     <Compile Include="Scripts\GUI.cs" />
     <Compile Include="Scripts\RenderedObject.cs" />
     <Compile Include="Scripts\StaticObject.cs" />

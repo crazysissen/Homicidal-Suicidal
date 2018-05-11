@@ -48,13 +48,16 @@ namespace HomicidalSuicidal
 
         public bool hostile;
 
+        NurseAura nurseAura;
+
         Vector2 apparentOffset = new Vector2(15, 19);
         public Vector2 ApparentCenter => (Position + apparentOffset);
-        float auraRadius, healingMultiplier;
+        float healingMultiplier;
+        int auraRadius;
         public float Health { get; set; }
         public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
 
-        public NurseEnemy(string nurseName, bool nurseHostile, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseMaxHealthAuraHealingMultiplier, float nurseAuraRadius, float nurseLayer) : base(Vector2.Zero, 0, nurseName)
+        public NurseEnemy(string nurseName, bool nurseHostile, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseMaxHealthAuraHealingMultiplier, int nurseAuraRadius, float nurseLayer) : base(Vector2.Zero, 0, nurseName)
         {
             Name = nurseName;
             Size = nurseSize;
@@ -69,6 +72,8 @@ namespace HomicidalSuicidal
 
             Kinematic = true;
             Tags.Add("Enemy");
+
+            nurseAura = new NurseAura(CenterPosition, Game1.AllSprites["Healing_Aura"], new Rectangle(-auraRadius, -auraRadius, 2 * auraRadius, 2 * auraRadius), "Healing Aura", auraRadius, 1, 0.99f);
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
@@ -87,6 +92,7 @@ namespace HomicidalSuicidal
             if (Health <= 0)
             {
                 states = States.Dying;
+                nurseAura.DestroyAura();
                 hostile = false;
                 //DestroyObject();
             }
