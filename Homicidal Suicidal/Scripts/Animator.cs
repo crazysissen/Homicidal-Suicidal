@@ -17,7 +17,6 @@ namespace HomicidalSuicidal
         public int CurrentState { get; private set; }
         public float CurrentTime { get; set; }
 
-
         bool transferLive;
         float transferBackTime;
 
