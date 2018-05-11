@@ -277,9 +277,15 @@ namespace HomicidalSuicidal
 
         public static void DestroyAllObjects()
         {
-            for (int i = WorldObjects.Count - 1; i >= 0; --i)
+            List<WorldObject> tempList = new List<WorldObject>();
+            foreach (KeyValuePair<string, WorldObject> pair in WorldObjects)
             {
-                WorldObjects[i].DestroyObject();
+                tempList.Add(pair.Value);
+            }
+
+            for (int i = tempList.Count - 1; i >= 0; --i)
+            {
+                tempList[i].DestroyObject();
             }
         }
     }
