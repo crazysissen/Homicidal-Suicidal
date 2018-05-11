@@ -91,7 +91,6 @@ namespace HomicidalSuicidal
             // Live logic
             if (Health >= Player.maxHealth)
             {
-                //Console.WriteLine("Should Die");
                 Game1.CurrentState.Push(Game1.GameState.Lose);
             }
             else if (Health <= 0)
@@ -106,7 +105,6 @@ namespace HomicidalSuicidal
 
             Attack(mousePos, deltaTime);
             Dying(deathRate, deltaTime);
-            //Console.WriteLine("Health: " + Health);
 
             Vector2 velocity = (keyboardState.IsKeyDown(Keys.D)) ? new Vector2(speed, 0) : Vector2.Zero;
             velocity += (keyboardState.IsKeyDown(Keys.A)) ? new Vector2(-speed, 0) : Vector2.Zero;
@@ -118,8 +116,6 @@ namespace HomicidalSuicidal
                 Velocity = new Vector2(Velocity.X, -jumpPower);
                 airJumped = true;
             }
-
-            // Console.WriteLine(Intersects(StaticObject.worldObjectThing));
         }
 
         public override void OnCollision(PhysicsObject physicsObject)

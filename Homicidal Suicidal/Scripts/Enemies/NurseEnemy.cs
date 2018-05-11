@@ -98,7 +98,6 @@ namespace HomicidalSuicidal
                 states = States.Dying;
                 nurseAura.DestroyAura();
                 hostile = false;
-                //DestroyObject();
 
                 if (animator.CurrentState != 1)
                 {

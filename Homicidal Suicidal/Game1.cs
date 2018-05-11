@@ -271,7 +271,6 @@ namespace HomicidalSuicidal
                 Renderer.RenderAll(spriteBatch);
 
             gui.Draw(spriteBatch);
-            //spriteBatch.DrawString(defaultFont, "Hello", new Vector2(100, 100), Color.White, 0, Vector2.One, 12, SpriteEffects.None);
 
             spriteBatch.End();
 
