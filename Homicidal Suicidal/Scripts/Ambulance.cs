@@ -63,7 +63,11 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
-            Velocity = new Vector2(Speed, 0);
+            if (Player.MainPlayer.overAnimating)
+                Velocity = new Vector2(-defaultSpeed, 0);
+
+            if (!Player.MainPlayer.overAnimating)
+                Velocity = new Vector2(Speed, 0);
 
             if (Player.MainPlayer.Position.X < Position.X + Offset.X * 1.7f)
                 Player.MainPlayer.Heal(Player.maxHealth);

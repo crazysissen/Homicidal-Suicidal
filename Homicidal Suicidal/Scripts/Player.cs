@@ -57,7 +57,7 @@ namespace HomicidalSuicidal
 
         Vector2 mousePos;
 
-        float attackTimer, shootAnimationCountdown;
+        float attackTimer, shootAnimationCountdown, overAnimationCountdown;
 
         public float Health { get; set; }
 
@@ -65,6 +65,9 @@ namespace HomicidalSuicidal
 
         bool airJumped;
 
+        Game1.GameState nextState;
+
+        public bool overAnimating;
 
         string[]
             runningTexturesImport = new string[] { "Player_Run_1&7", "Player_Run_2", "Player_Run_3", "Player_Run_4", "Player_Run_5", "Player_Run_6", "Player_Run_1&7", "Player_Run_8", "Player_Run_9", "Player_Run_10", "Player_Run_11", "Player_Run_12" },
@@ -115,8 +118,8 @@ namespace HomicidalSuicidal
                 new Animation(animationStateTime * rsTextures.Length, CreateAnimationStateList(rsTextures, animationStateTime), -1, false), // Run shoot
                 new Animation(100, CreateAnimationStateList(jTextures, 0.3f)), // Jump
                 new Animation(100, CreateAnimationStateList(jsTextures, 0.3f)), // Jump shoot
-                new Animation(100, CreateAnimationStateList(dTextures, 0.1f)), // Dying
-                new Animation(100, CreateAnimationStateList(lTextures, 0.1f)) // Living
+                new Animation(100, CreateAnimationStateList(dTextures, 0.2f)), // Dying
+                new Animation(100, CreateAnimationStateList(lTextures, 0.3f)) // Living
                 );
         }
 
@@ -149,14 +152,34 @@ namespace HomicidalSuicidal
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
+            if (overAnimating)
+            {
+                overAnimationCountdown -= deltaTime;
+
+                if (overAnimationCountdown <= 0)
+                {
+                    Game1.CurrentState.Push(nextState);
+                }
+
+                Velocity = Vector2.Zero;
+
+                return;
+            }
+
             // Live logic
             if (Health >= Player.maxHealth)
             {
-                Game1.CurrentState.Push(Game1.GameState.Lose);
+                overAnimating = true;
+                animator.ChangeState(7);
+                overAnimationCountdown = 2;
+                nextState = Game1.GameState.Lose;
             }
             else if (Health <= 0)
             {
-                Game1.CurrentState.Push(Game1.GameState.Win);
+                overAnimating = true;
+                animator.ChangeState(6);
+                overAnimationCountdown = 1;
+                nextState = Game1.GameState.Win;
             }
 
             KeyboardState keyboardState = Keyboard.GetState();
@@ -176,7 +199,8 @@ namespace HomicidalSuicidal
                 airJumped = true;
             }
 
-            Animate(deltaTime);
+            if (!overAnimating)
+                Animate(deltaTime);
 
             grounded = false;
         }

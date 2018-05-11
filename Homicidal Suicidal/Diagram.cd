@@ -59,7 +59,7 @@
   <Class Name="HomicidalSuicidal.Player">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BQ1DKAoMAAQ6QCDoAATAAEQAQIAAAWCAIABABAEiQkA=</HashCode>
+      <HashCode>BQ1DKAoMAAQ6QCDoAATAAEQAQIAAAWCAIABABAEiQkE=</HashCode>
       <FileName>Scripts\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.501" />
