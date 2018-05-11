@@ -231,7 +231,7 @@ namespace HomicidalSuicidal
 
             if (LeftMousePressed && attackTimer <= 0)
             {
-                Bullet bullet = new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 20, 0, 0, "Enemy");
+                Bullet bullet = new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 15, 0, 0, "Enemy");
                 bullet.Tags.Add("Bullet");
 
                 Console.WriteLine("Bullet fired");

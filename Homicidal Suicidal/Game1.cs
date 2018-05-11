@@ -30,7 +30,7 @@ namespace HomicidalSuicidal
 
         string[] _loadTags = new string[] 
         {
-            "Square", "Floor", "Syringe", "Button", "Wall", "Scalpel", "Platform",
+            "Square", "Floor", "Syringe", "Button", "Wall", "Scalpel", "Platform", "Bullet",
             "Doctor_Attack", "Doctor_Dead", "Doctor_Dying", "Doctor_Idle",
             "Healing_Aura", "Nurse_Dying", "Nurse_Dead", "Nurse_Healing",
             "Surgeon_Attack", "Surgeon_Dead", "Surgeon_Dying", "Surgeon_Idle"
@@ -138,7 +138,7 @@ namespace HomicidalSuicidal
 
         void IntroductionUpdate()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 CurrentState.Push(GameState.InGame);
 
             Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
@@ -148,7 +148,7 @@ namespace HomicidalSuicidal
                 new GUI.Label("I want to die.", 100, new Vector2(100, 100), menuFont, Color.White),
                 new GUI.Label("They won't let me die.", 100, new Vector2(100, 300), menuFont, Color.White),
                 new GUI.Label("They must die.", 100, new Vector2(100, 500), menuFont, Color.White),
-                new GUI.Label("Press Enter to continue", 60, new Vector2(900, 1000), defaultFont, Color.White)
+                new GUI.Label("Press Space to continue", 60, new Vector2(900, 990), defaultFont, Color.White)
                 );
         }
 
