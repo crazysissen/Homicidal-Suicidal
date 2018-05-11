@@ -179,6 +179,8 @@ namespace HomicidalSuicidal
                 grounded = false;
             }
 
+            tempCollisionObject.DestroyObject();
+
             // Live logic
             if (Health >= Player.maxHealth)
             {
