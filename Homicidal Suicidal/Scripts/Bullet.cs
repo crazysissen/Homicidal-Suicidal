@@ -82,7 +82,7 @@ namespace HomicidalSuicidal
                 DestroyObject();
             }
 
-            if (Tags.Contains("Syringe") || Tags.Contains("Scalpel")/* || Tags.Contains("Player Bullet")*/)
+            if (Tags.Contains("Syringe") || Tags.Contains("Scalpel") || Tags.Contains("Player Bullet"))
             {
                 rotation = (float)Math.Atan2(Velocity.Y, Velocity.X) + (float)Math.PI / 2;
 
