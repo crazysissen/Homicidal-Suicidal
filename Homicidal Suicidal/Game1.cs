@@ -20,7 +20,7 @@ namespace HomicidalSuicidal
         public static GraphicsDeviceManager Graphics { get; set; }
         public static Stack<GameState> CurrentState { get; private set; }
 
-        public enum GameState { MainMenu, InGame, Pause, Win, Lose }
+        public enum GameState { MainMenu, InGame, Pause, Win, Lose, Introduction }
 
         GUI gui = new GUI();
         SpriteFont menuFont, defaultFont;
@@ -117,9 +117,16 @@ namespace HomicidalSuicidal
                         WinUpdate();
                         break;
                     }
+
                 case GameState.Lose:
                     {
                         LoseUpdate();
+                        break;
+                    }
+
+                case GameState.Introduction:
+                    {
+                        IntroductionUpdate();
                         break;
                     }
             }
@@ -127,6 +134,22 @@ namespace HomicidalSuicidal
             base.Update(gameTime);
 
             Methods.UpdateMethods();
+        }
+
+        void IntroductionUpdate()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                CurrentState.Push(GameState.InGame);
+
+            Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+
+            gui.Add(
+                new GUI.Texture(new Rectangle(-1, -1, screenSize.X + 2, screenSize.Y + 2), new Color(0, 0, 0, 0.7f)),
+                new GUI.Label("I want to die.", 100, new Vector2(100, 100), menuFont, Color.White),
+                new GUI.Label("They won't let me die.", 100, new Vector2(100, 300), menuFont, Color.White),
+                new GUI.Label("They must die.", 100, new Vector2(100, 500), menuFont, Color.White),
+                new GUI.Label("Press Enter to continue", 60, new Vector2(900, 1000), defaultFont, Color.White)
+                );
         }
 
         void LoseUpdate()
@@ -164,7 +187,7 @@ namespace HomicidalSuicidal
                 new GUI.Label("You Died! Congrats!", 140, new Vector2(100, 100), menuFont, Color.White),
                 new GUI.Button(new Rectangle(100, 660, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, PlayAgainButton),
                 new GUI.Button(new Rectangle(100, 830, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, ExitButton),
-                new GUI.Label("Play Again", 46, new Vector2(120, 685), defaultFont, Color.Black),
+                new GUI.Label("Play Again", 46, new Vector2(120, 687), defaultFont, Color.Black),
                 new GUI.Label("Quit", 80, new Vector2(158, 840), defaultFont, Color.Black)
                 );
         }
@@ -174,7 +197,7 @@ namespace HomicidalSuicidal
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                CurrentState.Push(GameState.InGame);
+                CurrentState.Push(GameState.Introduction);
 
             Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
 
@@ -213,7 +236,7 @@ namespace HomicidalSuicidal
 
         void ResumeButton() => CurrentState.Pop();
 
-        void StartButton() => CurrentState.Push(GameState.InGame);
+        void StartButton() => CurrentState.Push(GameState.Introduction);
 
         void ExitButton() => Exit();
 
@@ -247,7 +270,6 @@ namespace HomicidalSuicidal
                 Renderer.RenderAll(spriteBatch);
 
             gui.Draw(spriteBatch);
-            //spriteBatch.DrawString(defaultFont, "Hello", new Vector2(100, 100), Color.White, 0, Vector2.One, 12, SpriteEffects.None);
 
             spriteBatch.End();
 

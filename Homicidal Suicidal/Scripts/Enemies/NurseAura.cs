@@ -52,11 +52,6 @@ namespace HomicidalSuicidal
             color = auraColor;
         }
 
-        //protected override void Update(GameTime gameTime, float deltaTime)
-        //{
-        //    rotation += rotationPerSec * deltaTime;
-        //}
-
         public void DestroyAura()
         {
             DestroyObject();

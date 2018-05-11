@@ -42,7 +42,7 @@ namespace HomicidalSuicidal
 
         #endregion
 
-        // Temporary Angles for the 2nd and 3rd bullet
+        // Angles for the 2nd and 3rd bullet
         readonly float tempBulletAngle = (float)Math.Atan2(1.5f, 2);
         readonly float tempBulletAngle2 = -(float)Math.Atan2(1.5f, 2);
 
@@ -110,7 +110,7 @@ namespace HomicidalSuicidal
             if (Health <= 0)
             {
                 states = States.Dying;
-                //DestroyObject();
+                
                 if (animator.CurrentState != 2)
                 {
                     Tags.Remove("Enemy");
