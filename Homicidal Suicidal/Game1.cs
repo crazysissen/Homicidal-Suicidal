@@ -115,7 +115,12 @@ namespace HomicidalSuicidal
 
                 case GameState.Win:
                     {
-
+                        WinUpdate();
+                        break;
+                    }
+                case GameState.Lose:
+                    {
+                        LoseUpdate();
                         break;
                     }
             }
@@ -123,6 +128,44 @@ namespace HomicidalSuicidal
             base.Update(gameTime);
 
             Methods.UpdateMethods();
+        }
+
+        void LoseUpdate()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                CurrentState.Push(GameState.InGame);
+
+            Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+
+            //gui.Add(
+            //    new GUI.Texture(new Rectangle(-1, -1, screenSize.X + 2, screenSize.Y + 2), new Color(0, 0, 0, 0.7f)),
+            //    new GUI.Label("You Died! Congrats!", 140, new Vector2(100, 100), menuFont, Color.White),
+            //    new GUI.Button(new Rectangle(100, 660, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, PlayAgainButton),
+            //    new GUI.Button(new Rectangle(100, 830, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, ExitButton),
+            //    new GUI.Label("Play Again", 46, new Vector2(120, 685), defaultFont, Color.Black),
+            //    new GUI.Label("Quit", 80, new Vector2(158, 840), defaultFont, Color.Black)
+            //    );
+        }
+
+        void WinUpdate()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                CurrentState.Push(GameState.InGame);
+
+            Point screenSize = new Point(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+
+            gui.Add(
+                new GUI.Texture(new Rectangle(-1, -1, screenSize.X + 2, screenSize.Y + 2), new Color(0, 0, 0, 0.7f)),
+                new GUI.Label("You Died! Congrats!", 140, new Vector2(100, 100), menuFont, Color.White),
+                new GUI.Button(new Rectangle(100, 660, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, PlayAgainButton),
+                new GUI.Button(new Rectangle(100, 830, 340, 120), AllSprites["Button"], Color.White, Color.LightGray, Color.Gray, ExitButton),
+                new GUI.Label("Play Again", 46, new Vector2(120, 685), defaultFont, Color.Black),
+                new GUI.Label("Quit", 80, new Vector2(158, 840), defaultFont, Color.Black)
+                );
         }
 
         void MainMenuUpdate()
@@ -158,6 +201,13 @@ namespace HomicidalSuicidal
                 new GUI.Button(new Rectangle(100, 480, 500, 80), ResumeButton),
                 new GUI.Button(new Rectangle(100, 600, 500, 80), ExitButton)
                 );
+        }
+
+        void PlayAgainButton()
+        {
+            WorldObject.DestroyAllObjects();
+            Initialize();
+            CurrentState.Push(GameState.InGame);
         }
 
         void ResumeButton() => CurrentState.Pop();
