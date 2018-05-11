@@ -235,12 +235,12 @@
         <Point X="10.123" Y="0.418" />
         <Point X="10.123" Y="4.641" />
         <Point X="8.373" Y="4.641" />
-        <Point X="8.373" Y="3.203" />
-        <Point X="8.25" Y="3.203" />
+        <Point X="8.373" Y="3.107" />
+        <Point X="8.25" Y="3.107" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>BAQBAAAAAIQwAAAAAASAAABBAAABAAaAIABABAACAAA=</HashCode>
+      <HashCode>BAQBAAAAAIQwAAAAAASAAABBAAABAAaAAABABAACAAA=</HashCode>
       <FileName>Scripts\Ambulance.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

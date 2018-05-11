@@ -58,21 +58,15 @@ namespace HomicidalSuicidal
                 new Animation.AnimationState(Game1.AllSprites["Ambulance_1"] /*TODO*/, 0), 
                 new Animation.AnimationState(Game1.AllSprites["Ambulance_2"] /*TODO*/, 0.75f)));
 
-            hitboxUpInset = 10;
+            hitboxRightInset = 0.1f;
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
         {
             Velocity = new Vector2(Speed, 0);
-        }
 
-        public override void OnCollision(PhysicsObject physicsObject)
-        {
-            if (physicsObject.Tags.Contains("Player"))
-            {
-                Player player = physicsObject.GetComponent<Player>(out bool successful);
-                player.Heal(Player.maxHealth);
-            }
+            if (Player.MainPlayer.Position.X < Position.X + Offset.X * 2)
+                Player.MainPlayer.Heal(Player.maxHealth);
         }
     }
 }
