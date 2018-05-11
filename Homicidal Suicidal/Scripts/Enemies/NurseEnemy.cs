@@ -26,8 +26,8 @@ namespace HomicidalSuicidal
 
         WorldObject IRenderable.Object { get => this; }
 
-        Texture2D IRenderable.Sprite { get => sprite; }
-        Texture2D sprite;
+        Texture2D IRenderable.Sprite { get => animator.GetTexture(); }
+        Animator animator;
 
         float IRenderable.Rotation { get => rotation; }
         float rotation;
@@ -57,12 +57,11 @@ namespace HomicidalSuicidal
         public float Health { get; set; }
         public float DistanceToPlayer => (Player.MainPlayer.CenterPosition - ApparentCenter).Length();
 
-        public NurseEnemy(string nurseName, bool nurseHostile, Texture2D nurseTexture, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseMaxHealthAuraHealingMultiplier, int nurseAuraRadius, float nurseLayer) : base(Vector2.Zero, 0, nurseName)
+        public NurseEnemy(string nurseName, bool nurseHostile, Color nurseColor, Point nurseSize, Vector2 nurseStartPos, float nurseMaxHealthAuraHealingMultiplier, int nurseAuraRadius, float nurseLayer) : base(Vector2.Zero, 0, nurseName)
         {
             Name = nurseName;
             Size = nurseSize;
             layer = nurseLayer;
-            sprite = nurseTexture;
             color = nurseColor;
             Position = nurseStartPos;
             auraRadius = nurseAuraRadius;
@@ -74,6 +73,11 @@ namespace HomicidalSuicidal
             Tags.Add("Enemy");
 
             nurseAura = new NurseAura(ApparentCenter + new Vector2(65, 20), Color.White, Game1.AllSprites["Healing_Aura"], new Rectangle(-auraRadius, -auraRadius, 2 * auraRadius, 2 * auraRadius), "Healing Aura", auraRadius, 1, 0.99f);
+
+            animator = new Animator(
+                new Animation(1, -1, new Animation.AnimationState(Game1.AllSprites["Nurse_Healing"], 0)),// State 1: Attack
+                new Animation(100, -1, new Animation.AnimationState(Game1.AllSprites["Nurse_Dying"], 0), new Animation.AnimationState(Game1.AllSprites["Nurse_Dead"], 0.8f)) // State 2: Death
+                );
         }
 
         protected override void Update(GameTime gameTime, float deltaTime)
@@ -95,6 +99,13 @@ namespace HomicidalSuicidal
                 nurseAura.DestroyAura();
                 hostile = false;
                 //DestroyObject();
+
+                if (animator.CurrentState != 1)
+                {
+                    Tags.Remove("Enemy");
+                    Tags.Add("Ground");
+                    animator.SetState(1);
+                }
             }
             else if (Health > 0)
             {

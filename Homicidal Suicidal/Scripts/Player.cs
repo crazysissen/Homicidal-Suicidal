@@ -51,7 +51,7 @@ namespace HomicidalSuicidal
                            jumpPower = 7,
                            attackSpeed = .3f,
                            bulletSpeed = 20,
-                           deathRate = 0.01f;
+                           deathRate = 0.04f;
 
         bool LeftMousePressed => Mouse.GetState().LeftButton == ButtonState.Pressed;
 
@@ -122,7 +122,8 @@ namespace HomicidalSuicidal
 
             if (LeftMousePressed && attackTimer <= 0)
             {
-                new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 10, 0, 0, "Enemy");
+                Bullet bullet = new Bullet("Player Bullet", "Player Bullet", Bullet.Owner.Player, CenterPosition, Game1.NormalizeThis(mousePos - CenterPosition) * bulletSpeed, Game1.AllSprites["Square"], Color.White, new Point(10, 10), 20, 0, 0, "Enemy");
+                bullet.Tags.Add("Bullet");
 
                 Console.WriteLine("Bullet fired");
                 attackTimer = attackSpeed;

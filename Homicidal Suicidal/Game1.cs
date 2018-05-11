@@ -63,7 +63,7 @@ namespace HomicidalSuicidal
 
             CurrentState = new Stack<GameState>();
             CurrentState.Push(GameState.MainMenu);
-            Ambulance ambulance = new Ambulance(new Rectangle(0, -900, 200, 900)); 
+            Ambulance ambulance = new Ambulance(new Rectangle(0, -900, 200, 1200)); 
         }
 
         protected override void LoadContent()

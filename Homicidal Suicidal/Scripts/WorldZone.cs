@@ -82,7 +82,7 @@ namespace HomicidalSuicidal
 
                 if (enemyType == 1)
                 {
-                    Enemies[i] = new NurseEnemy("Nurse[" + NewIndex() + "]", true, Game1.AllSprites["Nurse_Healing"], Color.White, new Point(240, 180), possibleEnemyPositions[positionIndex] - new Vector2(120, 180), 0.05f, 250, 0.4f);
+                    Enemies[i] = new NurseEnemy("Nurse[" + NewIndex() + "]", true, Color.White, new Point(240, 180), possibleEnemyPositions[positionIndex] - new Vector2(120, 180), 0.05f, 250, 0.4f);
                     Enemies[i].Tags.Add("Enemy");
                 }
 
