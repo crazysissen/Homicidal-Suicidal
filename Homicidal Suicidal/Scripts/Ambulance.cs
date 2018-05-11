@@ -65,7 +65,7 @@ namespace HomicidalSuicidal
         {
             Velocity = new Vector2(Speed, 0);
 
-            if (Player.MainPlayer.Position.X < Position.X + Offset.X * 2)
+            if (Player.MainPlayer.Position.X < Position.X + Offset.X * 1.7f)
                 Player.MainPlayer.Heal(Player.maxHealth);
         }
     }
